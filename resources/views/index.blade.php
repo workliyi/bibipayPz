@@ -1,19 +1,16 @@
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
+<!DOCTYPE html>
+<html style="height: 100%">
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Laravel</title>
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+    <title>laravel-vue-iview项目</title>
 </head>
-<body>
+<body style="height: 100%">
 <div id="app">
-    <example-component></example-component>
-</div>
-</body>
 
+</div>
 <script src="{{ mix('js/app.js') }}"></script>
+
+</body>
 </html>

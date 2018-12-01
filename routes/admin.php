@@ -8,6 +8,9 @@
 Route::get('/', function () {
     return view('index');
 });
-Route::get('/home', function () {
-    return view('home');
-});
+// Route::get('/home', function () {
+//     return view('home');
+// });
+Route::get('/login' , 'Admin\LoginController@login');
+
+// Route::get('/home', 'Admin/HomeController@index');
