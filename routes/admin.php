@@ -12,5 +12,6 @@ Route::get('/', function () {
 //     return view('home');
 // });
 Route::get('/login' , 'Admin\LoginController@login');
+Route::post('/dologin', 'Admin\LoginController@DoLogin');
 
 // Route::get('/home', 'Admin/HomeController@index');

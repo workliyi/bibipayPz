@@ -8,10 +8,12 @@ import VueRouter from 'vue-router';
 import iView from 'iview';
 import 'iview/dist/styles/iview.css';
 import rooter from './rooter/index';
+import axios from 'axios';
 
 // 导入vue
 Vue.use(iView);
 Vue.use(VueRouter);
+Vue.prototype.$axios = axios;
 
 // 路由配置
 const RouterConfig = {
