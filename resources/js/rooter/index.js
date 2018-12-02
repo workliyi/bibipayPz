@@ -1,5 +1,7 @@
-import ExampleComponent from './components/ExampleComponent.vue';
-import AdminHome from './components/AdminHome.vue';
+import ExampleComponent from '../components/ExampleComponent.vue';
+import AdminHome from '../components/AdminHome.vue';
 
-Vue.component(ExampleComponent.name, ExampleComponent);
-Vue.component(AdminHome.name, AdminHome);
+export default [
+    { path: '/', component: AdminHome },
+    { path: '/home', component: ExampleComponent }
+]
