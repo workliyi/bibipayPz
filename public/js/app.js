@@ -85819,7 +85819,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.login[data-v-a65db5f6]{\n  background: linear-gradient(135deg, #7262d1, #48d7e4);\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  top: 0px;\n  left: 0px;\n}\n.from[data-v-a65db5f6]{\n  width: 175px;\n  height: 150px;\n  position: absolute;\n  top: 0px;\n  left: 0px;\n  bottom: 0px;\n  right: 0px;\n  margin: auto;\n}\n.title[data-v-a65db5f6]{\n  text-align: center;\n  font-size: 4em;\n  font-family: cursive;\n}\n.box-one[data-v-a65db5f6]{\n  margin-top: 15px;\n}\n\n", ""]);
+exports.push([module.i, "\n.login[data-v-a65db5f6]{\n  background: linear-gradient(135deg, #7262d1, #48d7e4);\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  top: 0px;\n  left: 0px;\n}\n.from[data-v-a65db5f6]{\n  width: 175px;\n  height: 150px;\n  position: absolute;\n  top: 0px;\n  left: 0px;\n  bottom: 0px;\n  right: 0px;\n  margin: auto;\n}\n.title[data-v-a65db5f6]{\n  text-align: center;\n  font-size: 4em;\n  font-family: cursive;\n  margin-right: 20px;\n}\n.box-one[data-v-a65db5f6]{\n  margin-top: 15px;\n}\n\n", ""]);
 
 // exports
 

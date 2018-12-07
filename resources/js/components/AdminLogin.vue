@@ -99,6 +99,7 @@ export default {
   text-align: center;
   font-size: 4em;
   font-family: cursive;
+  margin-right: 20px;
 }
 .box-one{
   margin-top: 15px;
