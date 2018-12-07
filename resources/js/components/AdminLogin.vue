@@ -56,9 +56,10 @@ export default {
   },
   methods: {
     handleSubmit(name) {
+      console.log('123123213')
       this.$refs[name].validate(valid => {
         this.$axios({
-           method: 'post',
+          method: 'post',
           url:'admin/dologin',
           params: {
             username:this.formInline.user,
@@ -67,6 +68,7 @@ export default {
         })
         .then(function (response) {
           console.log(response.data);
+          // this.$router.push('/')
         })
         .catch(function (error) {
           console.log(error);
