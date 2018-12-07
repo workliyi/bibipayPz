@@ -3,7 +3,7 @@ require('./bootstrap');
 // 导入扩展包
 window.Vue = require('vue'); 
 
-import App from './app.vue'
+import App from './app.vue';
 import VueRouter from 'vue-router';
 import iView from 'iview';
 import 'iview/dist/styles/iview.css';
