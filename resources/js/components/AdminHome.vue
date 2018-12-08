@@ -78,7 +78,13 @@
         </Menu>
       </Sider>
       <Layout>
-        <Header :style="{background: '#fff', boxShadow: '0 2px 3px 2px rgba(0,0,0,.1)'}"></Header>
+        <Header :style="{background: '#fff', boxShadow: '0 2px 3px 2px rgba(0,0,0,.1)'}">
+          <Row>
+            <i-col span="10">USDT地址：</i-col>
+            <i-col span="7">USDT余额：</i-col>
+            <i-col span="7">BTC余额：</i-col>
+        </Row>
+        </Header>
         <Content :style="{padding: '0 16px 16px'}">
           <Card>
             <div :style="{minHeight: '600px'}"><router-view></router-view></div>

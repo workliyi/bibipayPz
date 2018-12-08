@@ -1,5 +1,18 @@
 <template>
     <div>
+        <Row style="margin-top: 10px;">
+            <i-col span="2" style="text-align: left; line-height: 30px;">订单名称：</i-col>
+            <i-col span="6">
+                <i-input :value.sync="Order.name" placeholder="请输入订单名称"></i-input>
+            </i-col>
+            <i-col span="2" style="text-align: left; line-height: 30px;">订单ID:</i-col>
+            <i-col span="6">
+                <i-input :value.sync="Order.id" placeholder="请输入订单ID"></i-input>
+            </i-col>
+            <i-col span="2">
+                <Button type="primary">搜索</Button>
+            </i-col>
+        </Row>
         <i-table width='90%' border :columns="columns2" :data="data3"></i-table>
          <Page :total="100" show-total />
     </div>  
@@ -49,7 +62,11 @@
                         time: '1539308856',
                         Purchaser: ''
                     }
-                ]
+                ],
+                Order:{
+                    name:'',
+                    id:''
+                }
             }
         }
     }

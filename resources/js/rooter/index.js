@@ -9,6 +9,9 @@ import AdminInfoList from '../components/AdminInfoList.vue';
 import AdminCost from '../components/AdminCost.vue';
 import AdminDraft from '../components/AdminDraft.vue';
 import AdminReview from '../components/AdminReview.vue';
+import AdminDeteail from '../components/AdminDeteail.vue';
+import AdminDateails from '../components/AdminDateails.vue';
+import AdminTermReview from '../components/AdminTermReview.vue';
 export default [
     { path: '/login', component: AdminLogin },
     { path: '/',
@@ -21,7 +24,10 @@ export default [
             { path: '/List', component: AdminInfoList },
             { path: '/Cost', component: AdminCost },
             { path: '/Review', component: AdminReview },
-            { path: '/Draft', component: AdminDraft }
+            { path: '/Draft', component: AdminDraft },
+            { path: '/Deteail', component: AdminDeteail },
+            { path: '/Deteails', component: AdminDateails },
+            { path: '/TermReview', component: AdminTermReview }
         ]
     },
 ]

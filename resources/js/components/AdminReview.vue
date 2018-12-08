@@ -1,10 +1,26 @@
 <template>
     <div>
-        <!-- <Col span="12" style="padding-right:10px">
-            <Select v-model="model11" filterable>
-                <Option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-            </Select>
-        </Col> -->
+        <Row>
+            <i-col span="2" style="text-align: left; line-height: 30px;">
+                币种：
+            </i-col>
+            <i-col span="4" style="padding-right:10px">
+                <Select v-model="model1" filterable>
+                    <Option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                </Select>
+            </i-col>
+            <i-col span="2" style="text-align: left; line-height: 30px;">
+                状态:
+            </i-col>
+            <i-col span="4" style="padding-right:10px">
+                <Select v-model="model2" filterable>
+                    <Option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                </Select>
+            </i-col>
+            <i-col span="2">
+                <i-button type="ghost" style="margin-left: 8px" @click='this.TermReview'>配置审核</i-button>
+            </i-col>
+        </Row>
         <i-table width='90%' border :columns="columns2" :data="data3"></i-table>
         <Page :total="100" show-total />
     </div>  
@@ -109,7 +125,13 @@
                         label: 'Canberra'
                     }
                 ],
-                model11: '',
+                model1: '',
+                model2: ''
+            }
+        },
+        methods: {
+            TermReview () {
+                this.$router.push('/TermReview')
             }
         }
     }

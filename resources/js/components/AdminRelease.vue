@@ -133,8 +133,9 @@
             <i-input :value.sync="data.bail_return" placeholder="请输入保证金返还"></i-input>
         </Form-item>
         <Form-item>
-            <i-button type="primary">提交</i-button>
-            <i-button type="ghost" style="margin-left: 8px">取消</i-button>
+            <i-button type="primary">发布</i-button>
+            <i-button type="ghost" style="margin-left: 8px">存为草稿</i-button>
+            <i-button type="ghost" style="margin-left: 8px">预览</i-button>
         </Form-item>
     </i-form>
 </template>
