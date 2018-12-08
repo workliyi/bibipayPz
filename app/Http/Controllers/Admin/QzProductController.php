@@ -6,7 +6,7 @@
  * Time: 14:21
  */
 
-namespace Zhiyi\Plus\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -21,7 +21,6 @@ class QzProductController extends Controller
     public function create(Request $request, QzProductModel $QzProductModel)
     {
         $data = $request->all()['data'];
-
         $data['withdraw'] = $request->post('withdraw');
         $data['create_time'] = time();
         $data['status'] = 1;
