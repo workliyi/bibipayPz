@@ -10,14 +10,29 @@
             <i-col span="6">充值查询</i-col>
         </Row>
         <Row>
-                <i-col span="6">
-                        <Date-picker type="datetime" placeholder="选择日期" :value.sync="data.start_time"></Date-picker>
-                </i-col>
-                <i-col span="2" style="text-align: center">-</i-col>
-                <i-col span="6">
-                        <Date-picker type="datetime" placeholder="选择日期" :value.sync="data.end_time"></Date-picker>
-                </i-col>
-            </Row>
+            <i-col span="1" style="text-align: center; line-height: 30px;">时间：</i-col>
+            <i-col span="6">
+                <Date-picker type="datetime" placeholder="选择日期" :value.sync="data.start_time"></Date-picker>
+            </i-col>
+            <i-col span="1" style="text-align: center">-</i-col>
+            <i-col span="6">
+                <Date-picker type="datetime" placeholder="选择日期" :value.sync="data.end_time"></Date-picker>
+            </i-col>
+        </Row>
+        <Row>
+            <i-col span="1" style="text-align: center; line-height: 30px;">id搜索</i-col>
+            <i-col span="6">
+                <i-input :value.sync="data.delivery_type" placeholder="请输入id"></i-input>
+            </i-col>
+            <i-col span="1" style="text-align: center">手机号搜索</i-col>
+            <i-col span="6">
+                <i-input :value.sync="data.delivery_type" placeholder="请输入手机号码"></i-input>
+            </i-col>
+            <i-col span="1" style="text-align: center">用户名搜索</i-col>
+            <i-col span="6">
+                <i-input :value.sync="data.delivery_type" placeholder="请输入用户名"></i-input>
+            </i-col>
+        </Row>
     <i-table width="90%" border :columns="columns2" :data="data3"></i-table>
     <Page :total="100" show-total/>
   </div>
@@ -65,22 +80,22 @@
                 }
             }
         },
-        created(){
-            this.$axios({
-                method: 'post',
-                url:'admin/userlist',
-                params: {
-                    userId:'',
-                    name:'',
-                    tel:'',
-                }
-            })
-            .then((response) => {
-                console.log(response)
-            })
-            .catch(function (error) {
-                console.log(error);
-            })
-        }
+        // created(){
+        //     this.$axios({
+        //         method: 'post',
+        //         url:'admin/userlist',
+        //         params: {
+        //             userId:'',
+        //             name:'',
+        //             tel:'',
+        //         }
+        //     })
+        //     .then((response) => {
+        //         console.log(response)
+        //     })
+        //     .catch(function (error) {
+        //         console.log(error);
+        //     })
+        // }
     }
 </script>
