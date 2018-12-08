@@ -13,20 +13,22 @@ use Illuminate\Support\Facades\DB;
 use App\Model\QzChargeLog as ChargeLogModel;
 use App\Http\Controllers\Controller;
 use App\Model\User as UserModel;
-
+use App\Model\Token as TokenModel;
+use App\Model\TokenWallet as TokenWallet;
 class UserController extends Controller
 {
     /**
      * 权证用户账户管理(列表)
      */
-    public function account(Request $request, BaseUserModel $UserModel)
+    public function account(Request $request, UserModel $UserModel)
     {
         $userId = $request->post('userId');
         $name = $request->post('name');
         $perPage = $request->post('perPage', 15);
+        $base_user = $UserModel->where('id' , $userId)->first();
         if ($userId && $users = $UserModel->where(['id' => $userId])
                 ->paginate($perPage)) {
-            $datas = BaseUserModel::where(['id' => $userId])->orderBy('id', 'desc')->paginate(15);
+            $datas = UserModel::where(['id' => $userId])->orderBy('id', 'desc')->paginate(15);
             $datas->each(function ($item) {
                 $item['wallet'] = TokenWallet::where('user_id', $item['id'])
                     ->select('balance', 'type_name')
@@ -36,7 +38,7 @@ class UserController extends Controller
             return response()->json($datas)->setStatusCode(200);
         }
         if ($name) {
-            $datas = BaseUserModel::where('name' ,'like', '%'.$name.'%')
+            $datas = UserModel::where('name' ,'like', '%'.$name.'%')
                 ->orderBy('id', 'desc')->paginate(15);
             $datas->each(function ($item) {
                 $item['wallet'] = TokenWallet::where('user_id', $item['id'])
@@ -46,14 +48,7 @@ class UserController extends Controller
             });
             return response()->json($datas)->setStatusCode(200);
         }
-//        $datas = array_map(function ($data){
-//            $data['wallet'] = TokenWallet::where('user_id', $data['id'])
-//                ->select('balance', 'type_name')
-//                ->get();
-//            return $data;
-//        }, array(BaseUserModel::where(['platform' => 1])->orderBy('id', 'desc')->paginate(2)));
-
-        $datas = BaseUserModel::orderBy('id', 'desc')->paginate(15);
+        $datas = UserModel::orderBy('id', 'desc')->paginate(15);
         $datas->each(function ($item) {
             $item['wallet'] = TokenWallet::where('user_id', $item['id'])
                 ->select('balance', 'type_name')
@@ -69,12 +64,10 @@ class UserController extends Controller
      */
     public function account_log(Request $request, ChargeLogModel $ChargeLogModel)
     {
-
         $userid = $request->post('user_id');
         $data = $ChargeLogModel
             ->where('user_id', $userid)
             ->whereIn('action_type', [5,6,7,8,9,10])->paginate(15);
-
         $data->each(function ($item) {
             $action = [
                 5 => '提现',
@@ -186,19 +179,17 @@ class UserController extends Controller
         
         //当日注册人数
         $today_login_count = (new UserModel())
-            ->join('qz_user', 'qz_user.id', '=', 'qz_user.id')
-            ->whereBetween('qz_user.created_at', [$beginToday, $endToday])
+            ->whereBetween('created_at', [$beginToday, $endToday])
             ->count();
-
+        
         //共充值usdt
-        $USDT_id = (new TokenModel())->where('token_name', 'USDT')->value('id');
         $usdt_count = (new ChargeLogModel())
-            ->where(['type' => $USDT_id, 'action_type' => 6])
+            ->where(['type' => 2, 'action_type' => 6])
             ->sum('add_number');
 
         //今日充值usdt
         $today_usdt_count = (new ChargeLogModel())
-            ->where(['type' => $USDT_id, 'action_type' => 6])
+            ->where(['type' => 2, 'action_type' => 6])
             ->whereBetween('created_time', [$beginToday, $endToday])
             ->sum('add_number');
 //        $data_array = [];
@@ -292,19 +283,17 @@ class UserController extends Controller
         
         //当日注册人数
         $today_login_count = (new UserModel())
-            ->join('qz_user', 'qz_user.id', '=', 'qz_user.id')
-            ->whereBetween('qz_user.created_at', [$beginToday, $endToday])
+            ->whereBetween('created_at', [$beginToday, $endToday])
             ->count();
         
         //共充值usdt
-        $USDT_id = (new TokenModel())->where('token_name', 'USDT')->value('id');
         $usdt_count = (new ChargeLogModel())
-            ->where(['type' => $USDT_id, 'action_type' => 6])
+            ->where(['type' => 2, 'action_type' => 6])
             ->sum('add_number');
 
         //今日充值usdt
         $today_usdt_count = (new ChargeLogModel())
-            ->where(['type' => $USDT_id, 'action_type' => 6])
+            ->where(['type' => 2, 'action_type' => 6])
             ->whereBetween('created_time', [$beginToday, $endToday])
             ->sum('add_number');
 
@@ -317,5 +306,4 @@ class UserController extends Controller
                 'today_usdt_count'  =>      $today_usdt_count
             ])->setStatusCode(200);
     }
-
 }
