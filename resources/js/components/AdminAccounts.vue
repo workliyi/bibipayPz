@@ -1,8 +1,26 @@
 <template>
-    <div>
-        <i-table width='90%' border :columns="columns2" :data="data3"></i-table>
-         <Page :total="100" show-total />
-    </div>  
+  <div>
+        <Row>
+            <i-col span="9">共注册：</i-col>
+            <i-col span="9">当日注册：</i-col>
+        </Row>
+        <Row>
+            <i-col span="9">共充值（usdt）：</i-col>
+            <i-col span="9">当日充值（usdt）：</i-col>
+            <i-col span="6">充值查询</i-col>
+        </Row>
+        <Row>
+                <i-col span="6">
+                        <Date-picker type="datetime" placeholder="选择日期" :value.sync="data.start_time"></Date-picker>
+                </i-col>
+                <i-col span="2" style="text-align: center">-</i-col>
+                <i-col span="6">
+                        <Date-picker type="datetime" placeholder="选择日期" :value.sync="data.end_time"></Date-picker>
+                </i-col>
+            </Row>
+    <i-table width="90%" border :columns="columns2" :data="data3"></i-table>
+    <Page :total="100" show-total/>
+  </div>
 </template>
 <script>
     export default {
@@ -40,8 +58,29 @@
                         phone: "'0IPC', '0USDT'",
                         time: '2018-10-11 22:15:17'
                     }
-                ]
+                ],
+                data: {
+                    start_time:'',
+                    end_time:''
+                }
             }
+        },
+        created(){
+            this.$axios({
+                method: 'post',
+                url:'admin/userlist',
+                params: {
+                    userId:'',
+                    name:'',
+                    tel:'',
+                }
+            })
+            .then((response) => {
+                console.log(response)
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
         }
     }
 </script>

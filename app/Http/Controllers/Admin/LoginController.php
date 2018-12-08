@@ -21,8 +21,7 @@ class LoginController extends Controller
             $request,['password' => ['required']],['password.required'=>"密码不能为空"]
         );
         $password =  md5(md5($request->password).env('PLATFORM_KEY'));  
-        echo $password;
         $userdetial = QzAdminUser::where('name' , $username)->where('password' , $password)->first();
-        return  $username;
+        return  $userdetial;
     }
 }

@@ -89869,7 +89869,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     handleSubmit: function handleSubmit(name) {
       var _this = this;
 
-      console.log('123123213');
       this.$refs[name].validate(function (valid) {
         _this.$axios({
           method: 'post',
@@ -89879,8 +89878,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             password: _this.formInline.password
           }
         }).then(function (response) {
-          console.log(response.data);
-          // this.$router.push('/')
+
+          if (response.data.id) {
+            _this.$router.push('/');
+          }
         }).catch(function (error) {
           console.log(error);
         });
@@ -90067,6 +90068,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -90096,8 +90120,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 name: '我们都是好孩子',
                 phone: "'0IPC', '0USDT'",
                 time: '2018-10-11 22:15:17'
-            }]
+            }],
+            data: {
+                start_time: '',
+                end_time: ''
+            }
         };
+    },
+    created: function created() {
+        this.$axios({
+            method: 'post',
+            url: 'admin/userlist',
+            params: {
+                userId: '',
+                name: '',
+                tel: ''
+            }
+        }).then(function (response) {
+            console.log(response);
+        }).catch(function (error) {
+            console.log(error);
+        });
     }
 });
 
@@ -90112,6 +90155,92 @@ var render = function() {
   return _c(
     "div",
     [
+      _c(
+        "Row",
+        [
+          _c("i-col", { attrs: { span: "9" } }, [_vm._v("共注册：")]),
+          _vm._v(" "),
+          _c("i-col", { attrs: { span: "9" } }, [_vm._v("当日注册：")])
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "Row",
+        [
+          _c("i-col", { attrs: { span: "9" } }, [_vm._v("共充值（usdt）：")]),
+          _vm._v(" "),
+          _c("i-col", { attrs: { span: "9" } }, [_vm._v("当日充值（usdt）：")]),
+          _vm._v(" "),
+          _c("i-col", { attrs: { span: "6" } }, [_vm._v("充值查询")])
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "Row",
+        [
+          _c("i-col", { attrs: { span: "9" } }, [_vm._v("共充值（usdt）：")]),
+          _vm._v(" "),
+          _c("i-col", { attrs: { span: "9" } }, [_vm._v("当日充值（usdt）：")]),
+          _vm._v(" "),
+          _c("i-col", { attrs: { span: "6" } }, [_vm._v("充值查询")])
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "Row",
+        [
+          _c(
+            "i-col",
+            { attrs: { span: "6" } },
+            [
+              _c("Date-picker", {
+                attrs: {
+                  type: "datetime",
+                  placeholder: "选择日期",
+                  value: _vm.data.start_time
+                },
+                on: {
+                  "update:value": function($event) {
+                    _vm.$set(_vm.data, "start_time", $event)
+                  }
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "i-col",
+            { staticStyle: { "text-align": "center" }, attrs: { span: "2" } },
+            [_vm._v("-")]
+          ),
+          _vm._v(" "),
+          _c(
+            "i-col",
+            { attrs: { span: "6" } },
+            [
+              _c("Date-picker", {
+                attrs: {
+                  type: "datetime",
+                  placeholder: "选择日期",
+                  value: _vm.data.end_time
+                },
+                on: {
+                  "update:value": function($event) {
+                    _vm.$set(_vm.data, "end_time", $event)
+                  }
+                }
+              })
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
       _c("i-table", {
         attrs: {
           width: "90%",

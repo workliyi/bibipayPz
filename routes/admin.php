@@ -10,3 +10,4 @@ Route::get('/', function () {
 });
 
 Route::post('/dologin', 'Admin\LoginController@DoLogin');
+Route::post('/userlist', 'Admin\User@user_list');

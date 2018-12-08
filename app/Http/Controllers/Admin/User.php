@@ -99,6 +99,7 @@ class BaseUser extends Controller
      */
     public function user_list(Request $request)
     {
+        echo $request;
         $beginToday = date('Y-m-d H:i:s', mktime(0,0,0,date('m'),date('d'),date('Y')));
         $endToday = date('Y-m-d H:i:s', mktime(0,0,0,date('m'),date('d')+1,date('Y'))-1);
 

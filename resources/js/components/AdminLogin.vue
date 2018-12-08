@@ -56,7 +56,6 @@ export default {
   },
   methods: {
     handleSubmit(name) {
-      console.log('123123213')
       this.$refs[name].validate(valid => {
         this.$axios({
           method: 'post',
@@ -66,9 +65,11 @@ export default {
             password:this.formInline.password,
           }
         })
-        .then(function (response) {
-          console.log(response.data);
-          // this.$router.push('/')
+        .then((response) => {
+
+          if(response.data.id){
+            this.$router.push('/')
+          }
         })
         .catch(function (error) {
           console.log(error);
