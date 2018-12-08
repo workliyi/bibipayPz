@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\DB;
 use App\Model\QzProduct as QzProductModel;
 use App\Http\Controllers\Controller;
 
-class QzProduct extends Controller
+class QzProductController extends Controller
 {
     /**
      * 创建权证产品
