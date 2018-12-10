@@ -65,7 +65,7 @@
       <Row>
         <i-col span="6">
           <Form-item prop="datetime">
-            <Date-picker placeholder="选择日期" format="yyyy-MM-dd HH:mm:ss" @on-change="ipo_time"></Date-picker>
+            <Date-picker type="datetime" placeholder="选择日期" format="yyyy-MM-dd HH:mm:ss" @on-change="ipo_time"></Date-picker>
           </Form-item>
         </i-col>
       </Row>
@@ -74,7 +74,7 @@
       <Row>
         <i-col span="6">
           <Form-item prop="datetime">
-            <Date-picker placeholder="选择日期" format="yyyy-MM-dd HH:mm:ss" @on-change="end_time"></Date-picker>
+            <Date-picker type="datetime" placeholder="选择日期" format="yyyy-MM-dd HH:mm:ss" @on-change="end_time"></Date-picker>
           </Form-item>
         </i-col>
       </Row>
@@ -83,13 +83,13 @@
       <Row>
         <i-col span="6">
           <Form-item prop="datetime">
-            <Date-picker type="datetime" placeholder="选择日期" format="yyyy-MM-dd HH:mm:ss" @on-change="par_start_time"></Date-picker>
+            <Date-picker type="datetime" placeholder="选择日期" format="yyyy-MM-dd HH:mm:ss" @on-change="pay_start_time"></Date-picker>
           </Form-item>
         </i-col>
         <i-col span="2" style="text-align: center">-</i-col>
         <i-col span="6">
           <Form-item prop="datetime">
-            <Date-picker type="datetime" placeholder="选择日期" format="yyyy-MM-dd HH:mm:ss" @on-change="par_end_time"></Date-picker>
+            <Date-picker type="datetime" placeholder="选择日期" format="yyyy-MM-dd HH:mm:ss" @on-change="pay_end_time"></Date-picker>
           </Form-item>
         </i-col>
       </Row>
@@ -139,6 +139,11 @@
     <Form-item label="保证金返还：">
       <i-input v-model="data.bail_return" placeholder="请输入保证金返还"></i-input>
     </Form-item>
+    <Row>
+      <i-col>
+        注：带‘*’为必填项
+      </i-col>
+    </Row>
     <Form-item>
       <i-button type="primary" @click="release(2)">发布</i-button>
       <i-button type="ghost" style="margin-left: 8px" @click="release(3)">存为草稿</i-button>
@@ -163,8 +168,8 @@ export default {
         exercise_price: "",
         ipo_time: "",
         end_time: "",
-        par_start_time: "",
-        par_end_time: "",
+        pay_start_time: "",
+        pay_end_time: "",
         exercise_start_time: "",
         exercise_end_time: "",
         max_num_option: "",
@@ -203,11 +208,11 @@ export default {
     end_time(date){
       this.data.end_time = date
     },
-    par_start_time(date){
-      this.data.par_start_time = date
+    pay_start_time(date){
+      this.data.pay_start_time = date
     },
-    par_end_time(date){
-      this.data.par_end_time = date
+    pay_end_time(date){
+      this.data.pay_end_time = date
     },
     exercise_start_time(date){
       this.data.exercise_start_time = date
@@ -216,50 +221,50 @@ export default {
       this.data.exercise_end_time = date
     },
     release(withdraw) {
-      // console.log(withdraw);
-      // let time = new Date(this.data.exercise_start_time).getTime(); //行权开始时间
-      // let time1 = new Date(this.data.exercise_end_time).getTime(); //行权结束时间
-      // let time3 = new Date(this.data.ipo_time).getTime(); //上市时间
-      // let time4 = new Date(this.data.end_time).getTime(); //期权时间
-      // let time5 = new Date(this.data.pay_start_time).getTime(); //交易开始时间
-      // let time6 = new Date(this.data.pay_end_time).getTime(); //交易结束时间
-      // if (!this.data.title) {
-      //   alert("名称不能为空");
-      //   return;
-      // } else if (!this.data.issue_price) {
-      //   alert("发行价不能为空");
-      //   return;
-      // } else if (!this.data.exercise_start_time) {
-      //   alert("缺少行权时间");
-      //   return;
-      // } else if (!this.data.exercise_end_time) {
-      //   alert("缺少行权时间");
-      //   return;
-      // } else if (!this.data.ipo_time) {
-      //   alert("上市时间不能为空");
-      //   return;
-      // } else if (!this.data.end_time) {
-      //   alert("期权到期时间不能为空");
-      //   return;
-      // } else if (!this.data.max_num_option) {
-      //   alert("每人最多购买期权数量不能为空");
-      //   return;
-      // } else if (!this.data.exercise_price) {
-      //   alert("行权价格不能为空");
-      //   return;
-      // } else if (!this.data.contract_first || !this.data.constarct_second) {
-      //   alert("合约比较不能为空");
-      //   return;
-      // } else if (time4 <= time3) {
-      //   alert("期权到期时间必须大于上市时间");
-      //   return;
-      // } else if (time5 <= time3 || time6 >= time4) {
-      //   alert("交易期限必须大于上市时间小于期权到期时间");
-      //   return;
-      // } else if (time <= time4) {
-      //   alert("行权开始时间必须大于期权到期时间");
-      //   return;
-      // }
+      console.log(withdraw);
+      let time = new Date(this.data.exercise_start_time).getTime(); //行权开始时间
+      let time1 = new Date(this.data.exercise_end_time).getTime(); //行权结束时间
+      let time3 = new Date(this.data.ipo_time).getTime(); //上市时间
+      let time4 = new Date(this.data.end_time).getTime(); //期权时间
+      let time5 = new Date(this.data.pay_start_time).getTime(); //交易开始时间
+      let time6 = new Date(this.data.pay_end_time).getTime(); //交易结束时间
+      if (!this.data.title) {
+        alert("名称不能为空");
+        return;
+      } else if (!this.data.issue_price) {
+        alert("发行价不能为空");
+        return;
+      } else if (!this.data.exercise_start_time) {
+        alert("缺少行权时间");
+        return;
+      } else if (!this.data.exercise_end_time) {
+        alert("缺少行权时间");
+        return;
+      } else if (!this.data.ipo_time) {
+        alert("上市时间不能为空");
+        return;
+      } else if (!this.data.end_time) {
+        alert("期权到期时间不能为空");
+        return;
+      } else if (!this.data.max_num_option) {
+        alert("每人最多购买期权数量不能为空");
+        return;
+      } else if (!this.data.exercise_price) {
+        alert("行权价格不能为空");
+        return;
+      } else if (!this.data.contract_first || !this.data.constarct_second) {
+        alert("合约比较不能为空");
+        return;
+      } else if (time4 <= time3) {
+        alert("期权到期时间必须大于上市时间");
+        return;
+      } else if (time5 <= time3 || time6 >= time4) {
+        alert("交易期限必须大于上市时间小于期权到期时间");
+        return;
+      } else if (time <= time4) {
+        alert("行权开始时间必须大于期权到期时间");
+        return;
+      }
       this.$axios({
         method: "post",
         url: "admin/pushproduct",

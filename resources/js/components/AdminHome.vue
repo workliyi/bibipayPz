@@ -80,9 +80,9 @@
       <Layout>
         <Header :style="{background: '#fff', boxShadow: '0 2px 3px 2px rgba(0,0,0,.1)'}">
           <Row>
-            <i-col span="10">USDT地址：</i-col>
-            <i-col span="7">USDT余额：</i-col>
-            <i-col span="7">BTC余额：</i-col>
+            <i-col span="10">USDT地址：{{data.usdt_address}}</i-col>
+            <i-col span="7">USDT余额：{{data.usdt_balance}}</i-col>
+            <i-col span="7">BTC余额：{{data.btc_balance}}</i-col>
         </Row>
         </Header>
         <Content :style="{padding: '0 16px 16px'}">
@@ -98,7 +98,12 @@
   export default {
     data () {
       return {
-        isCollapsed: false
+        isCollapsed: false,
+        data:{
+          btc_balance:'',
+          usdt_address:'',
+          usdt_balance:''
+        },
       };
     },
     computed: {
@@ -112,7 +117,12 @@
     },
     created(){
       this.$axios('admin/getusdt').then( (response) => {
-        console.log(response)
+        let { btc_balance, usdt_address, usdt_balance } = response.data
+        this.data ={
+          btc_balance,
+          usdt_address,
+          usdt_balance
+        }
       })
     }
   }

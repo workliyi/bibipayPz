@@ -21,7 +21,7 @@ class QzProductController extends Controller
     public function create(Request $request, QzProductModel $QzProductModel)
     {
         
-        $data = $request->all()['data'];
+        $data = json_decode($request->data,true);
         $data['withdraw'] = $request->withdraw;
         $data['create_time'] = time();
         $data['status'] = 1;
