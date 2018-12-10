@@ -22,9 +22,9 @@ class UserController extends Controller
      */
     public function account(Request $request, UserModel $UserModel)
     {
-        $userId = $request->post('userId');
-        $name = $request->post('name');
-        $perPage = $request->post('perPage', 15);
+        $userId = $request->userId;
+        $name = $request->name;
+        $perPage = $request->perPage ? $request->perPage : 15;
         $base_user = $UserModel->where('id' , $userId)->first();
         if ($userId && $users = $UserModel->where(['id' => $userId])
                 ->paginate($perPage)) {
@@ -64,7 +64,7 @@ class UserController extends Controller
      */
     public function account_log(Request $request, ChargeLogModel $ChargeLogModel)
     {
-        $userid = $request->post('user_id');
+        $userid = $request->user_id;
         $data = $ChargeLogModel
             ->where('user_id', $userid)
             ->whereIn('action_type', [5,6,7,8,9,10])->paginate(15);
@@ -92,11 +92,11 @@ class UserController extends Controller
     {
         $beginToday = mktime(0,0,0,date('m'),date('d'),date('Y'));
         $endToday = mktime(0,0,0,date('m'),date('d')+1,date('Y'))-1;
-        $id = $request->post('id');//id
-        $name = $request->post('name');//用户名称
-        $tel = $request->post('tel');//手机号
-        $beginTime = $request->post('beginTime');//查询开始时间
-        $endTime = $request->post('endTime');//查询结束时间
+        $id = $request->id;//id
+        $name = $request->name;//用户名称
+        $tel = $request->tel;//手机号
+        $beginTime = $request->beginTime;//查询开始时间
+        $endTime = $request->endTime;//查询结束时间
         
         if(is_null($beginTime) && !empty($endTime)){
             $data = UserModel::where('created_at','<=',$endTime)->orderBy('created_at', 'desc')->paginate(15);
@@ -215,9 +215,9 @@ class UserController extends Controller
         $beginToday = date('Y-m-d H:i:s', mktime(0,0,0,date('m'),date('d'),date('Y')));
         $endToday = date('Y-m-d H:i:s', mktime(0,0,0,date('m'),date('d')+1,date('Y'))-1);
 
-        $name = $request->post('name');//用户名称
-        $beginTime = $request->post('beginTime');//查询开始时间
-        $endTime = $request->post('endTime');//查询结束时间
+        $name = $request->name;//用户名称
+        $beginTime = $request->beginTime;//查询开始时间
+        $endTime = $request->endTime;//查询结束时间
         if($name){
             $user = UserModel::where('name',$name)->first();
             if($user){
