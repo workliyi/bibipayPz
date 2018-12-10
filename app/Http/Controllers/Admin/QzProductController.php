@@ -20,6 +20,7 @@ class QzProductController extends Controller
      */
     public function create(Request $request, QzProductModel $QzProductModel)
     {
+        
         $data = $request->all()['data'];
         $data['withdraw'] = $request->post('withdraw');
         $data['create_time'] = time();

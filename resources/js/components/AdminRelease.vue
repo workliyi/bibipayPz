@@ -216,64 +216,69 @@ export default {
       this.data.exercise_end_time = date
     },
     release(withdraw) {
-      console.log(withdraw);
-      let time = new Date(this.data.exercise_start_time).getTime(); //行权开始时间
-      let time1 = new Date(this.data.exercise_end_time).getTime(); //行权结束时间
-      let time3 = new Date(this.data.ipo_time).getTime(); //上市时间
-      let time4 = new Date(this.data.end_time).getTime(); //期权时间
-      let time5 = new Date(this.data.pay_start_time).getTime(); //交易开始时间
-      let time6 = new Date(this.data.pay_end_time).getTime(); //交易结束时间
-      if (!this.data.title) {
-        alert("名称不能为空");
-        return;
-      } else if (!this.data.issue_price) {
-        alert("发行价不能为空");
-        return;
-      } else if (!this.data.exercise_start_time) {
-        alert("缺少行权时间");
-        return;
-      } else if (!this.data.exercise_end_time) {
-        alert("缺少行权时间");
-        return;
-      } else if (!this.data.ipo_time) {
-        alert("上市时间不能为空");
-        return;
-      } else if (!this.data.end_time) {
-        alert("期权到期时间不能为空");
-        return;
-      } else if (!this.data.max_num_option) {
-        alert("每人最多购买期权数量不能为空");
-        return;
-      } else if (!this.data.exercise_price) {
-        alert("行权价格不能为空");
-        return;
-      } else if (!this.data.contract_first || !this.data.constarct_second) {
-        alert("合约比较不能为空");
-        return;
-      } else if (time4 <= time3) {
-        alert("期权到期时间必须大于上市时间");
-        return;
-      } else if (time5 <= time3 || time6 >= time4) {
-        alert("交易期限必须大于上市时间小于期权到期时间");
-        return;
-      } else if (time <= time4) {
-        alert("行权开始时间必须大于期权到期时间");
-        return;
-      }
-      this.axios = false;
-      request
-        .post(createRequestURI("admin/create"), {
+      // console.log(withdraw);
+      // let time = new Date(this.data.exercise_start_time).getTime(); //行权开始时间
+      // let time1 = new Date(this.data.exercise_end_time).getTime(); //行权结束时间
+      // let time3 = new Date(this.data.ipo_time).getTime(); //上市时间
+      // let time4 = new Date(this.data.end_time).getTime(); //期权时间
+      // let time5 = new Date(this.data.pay_start_time).getTime(); //交易开始时间
+      // let time6 = new Date(this.data.pay_end_time).getTime(); //交易结束时间
+      // if (!this.data.title) {
+      //   alert("名称不能为空");
+      //   return;
+      // } else if (!this.data.issue_price) {
+      //   alert("发行价不能为空");
+      //   return;
+      // } else if (!this.data.exercise_start_time) {
+      //   alert("缺少行权时间");
+      //   return;
+      // } else if (!this.data.exercise_end_time) {
+      //   alert("缺少行权时间");
+      //   return;
+      // } else if (!this.data.ipo_time) {
+      //   alert("上市时间不能为空");
+      //   return;
+      // } else if (!this.data.end_time) {
+      //   alert("期权到期时间不能为空");
+      //   return;
+      // } else if (!this.data.max_num_option) {
+      //   alert("每人最多购买期权数量不能为空");
+      //   return;
+      // } else if (!this.data.exercise_price) {
+      //   alert("行权价格不能为空");
+      //   return;
+      // } else if (!this.data.contract_first || !this.data.constarct_second) {
+      //   alert("合约比较不能为空");
+      //   return;
+      // } else if (time4 <= time3) {
+      //   alert("期权到期时间必须大于上市时间");
+      //   return;
+      // } else if (time5 <= time3 || time6 >= time4) {
+      //   alert("交易期限必须大于上市时间小于期权到期时间");
+      //   return;
+      // } else if (time <= time4) {
+      //   alert("行权开始时间必须大于期权到期时间");
+      //   return;
+      // }
+      this.$axios({
+        method: "post",
+        url: "admin/pushproduct",
+        params:{
           data: this.data,
-          withdraw: withdraw
-        })
-        .then(response => {
-          this.data = response.data;
-          if (withdraw == 2) {
+          withdraw:withdraw
+        }
+      })
+      .then(response => {
+        console.log(response)
+        if (withdraw == 2) {
             this.$router.push("/List");
           } else {
             this.$router.push("/Draft");
           }
-        })
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
     },
     time(value) {
       if (!value) {
