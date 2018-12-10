@@ -108,6 +108,12 @@
           this.isCollapsed ? 'collapsed-menu' : ''
         ]
       }
+      
+    },
+    created(){
+      this.$axios('admin/getusdt').then( (response) => {
+        console.log(response)
+      })
     }
   }
 </script>

@@ -66,7 +66,6 @@ export default {
           }
         })
         .then((response) => {
-
           if(response.data.id){
             this.$router.push('/')
           }

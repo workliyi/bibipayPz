@@ -26,7 +26,7 @@ export default [
             { path: '/Review', component: AdminReview },
             { path: '/Draft', component: AdminDraft },
             { path: '/Deteail', component: AdminDeteail },
-            { path: '/Deteails', component: AdminDateails },
+            { path: '/Deteails/:id', component: AdminDateails },
             { path: '/TermReview', component: AdminTermReview }
         ]
     },

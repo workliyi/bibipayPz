@@ -13,60 +13,102 @@
                 <Button type="primary">搜索</Button>
             </i-col>
         </Row>
-        <i-table width='90%' border :columns="columns2" :data="data3"></i-table>
-         <Page :total="100" show-total />
+        <i-table style="margin-top: 10px;" width='90%' border :columns="columns2" :data="data3"></i-table>
+         <Page :total="1" show-total />
     </div>  
 </template>
 <script>
+
+let moment = require("moment");
     export default {
         data () {
             return {
                 columns2: [
                     {
                         title: '订单ID',
-                        key: 'id',
+                        key: 'product_id',
                         width: 100
                     },
                     {
                         title: '订单名称',
-                        key: 'name',
+                        key: 'product_name',
                         width: 200
                     },
                     {
                         title: '购买金额（usdt)',
-                        key: 'money',
-                        width: 200
+                        width: 200,
+                        render: (h, params) => {
+                            let price = params.row.token_price*params.row.token_amount
+                            return h('Input', {
+                                    props: {
+                                        type: 'text',
+                                        value: price,
+                                        disabled:"disabled"
+                                    },
+                                })
+                        }
                     },
                     {
                         title: '状态',
-                        key: 'status',
-                        width: 200
+                        render:(h, params) => {
+                            let status = params.row.status;
+                            if (status===0){ return h('span','未付款')};
+                            if (status===1){ return h('span','已支付')};
+                            if (status===2){ return h('span','已行权')};
+                            if (status===3){ return h('span','已失效')};
+                            if (status===4){ return h('span','自动行权')};
+                        }
                     },
                     {
                         title: '购买日期',
-                        key: 'time',
-                        width: 200
+                        width: 200,
+                        render: (h, params) => {
+                            console.log(this.time)
+                            let price = this.time(params.row.buy_time * 1000)
+                            return h('Input', {
+                                    props: {
+                                        type: 'text',
+                                        value: price,
+                                        disabled:"disabled"
+                                    },
+                                })
+                        }
                     },
                     {
                         title: '购买人',
-                        key: 'Purchaser',
+                        key: 'user_name',
                         width: 200
                     }
                 ],
                 data3: [
-                    {
-                        id: 74,
-                        name: '权利宝1011号',
-                        money: "36.28131077119554",
-                        status: '未付款',
-                        time: '1539308856',
-                        Purchaser: ''
-                    }
                 ],
                 Order:{
                     name:'',
                     id:''
                 }
+            }
+        },
+        created(){
+            this.$axios({
+            method: 'post',
+            url:'admin/orderlist',
+            params: {
+                product_num:this.Order.id,
+                product_name:this.Order.userName,
+                perPage:1
+            }
+            })
+            .then((response) => {
+               this.data3 = response.data.data
+                console.log(response.data)
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+        },
+        methods:{
+            time(value){
+                return moment(parseInt(value)).format('YYYY-MM-DD HH:mm')
             }
         }
     }

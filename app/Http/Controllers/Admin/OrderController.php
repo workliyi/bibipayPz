@@ -42,6 +42,7 @@ class OrderController extends Controller
             }
         }
             $data = $builder->orderBy('create_time', 'desc')->paginate(15);
+            return $data;
             $data->each(function ($item) {
                 $item['user_name'] = User::where('id', $item['user_id'])->value('name');
             });

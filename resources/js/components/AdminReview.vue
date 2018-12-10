@@ -90,14 +90,6 @@
                     }
                 ],
                 data3: [
-                    {
-                        id: 74,
-                        name: '权利宝1011号',
-                        money: "36.28131077119554",
-                        status: '未付款',
-                        time: '1539308856',
-                        Purchaser: ''
-                    }
                 ],
                 cityList: [
                     {
@@ -128,6 +120,19 @@
                 model1: '',
                 model2: ''
             }
+        },
+        created(){
+            this.$axios({
+            method: 'post',
+            url:'admin/withdrawlist'
+            })
+            .then((response) => {
+                this.data3 = response.data.data
+                console.log(response.data)
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
         },
         methods: {
             TermReview () {

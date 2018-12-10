@@ -7,7 +7,7 @@
  */
 Route::get('/', function () {
     return view('index');
-});
+}); 
 Route::post('/dologin', 'Admin\LoginController@DoLogin');
 Route::post('/userlist', 'Admin\UserController@user_list');
 Route::post('/usdtlist', 'Admin\UserController@usdt_recharge');
@@ -20,6 +20,8 @@ Route::get('/data', 'Admin\QzProductController@data');
 Route::post('/newproduct', 'Admin\QzProductController@news');
 Route::post('/delproduct', 'Admin\QzProductController@delete');
 Route::post('/withdraw', 'Admin\QzProductController@withdraw');
+Route::post('/prolist', 'Admin\QzProductController@lists');
 Route::post('/poundage', 'Admin\TokenController@poundage');
 Route::get('/retutoken', 'Admin\TokenController@return_token');
 Route::get('/getusdt', 'Admin\TokenController@getusdt');
+Route::post('/withdrawlist', 'Admin\WithdrawalsApply@lists');

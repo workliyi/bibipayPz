@@ -1,51 +1,134 @@
 <template>
-    <div>
-        <i-table width='90%' border :columns="columns2" :data="data3"></i-table>
-         <Page :total="100" show-total />
-    </div>  
+  <div>
+    <i-table width="90%" border :columns="columns2" :data="data3"></i-table>
+    <Page :total="100" show-total/>
+  </div>
 </template>
 <script>
-    export default {
-        data () {
-            return {
-                columns2: [
-                    {
-                        title: '权证名称',
-                        key: 'name',
-                        width: 200
+let moment = require("moment");
+export default {
+  data() {
+    return {
+      columns2: [
+        {
+          title: "权证名称",
+          key: "title",
+          width: 200
+        },
+        {
+          title: "发布日期",
+          width: 300,
+          render: (h, params) => {
+            console.log(this.time);
+            let price = this.time(params.row.create_time * 1000);
+            return h("Input", {
+              props: {
+                type: "text",
+                value: price,
+                disabled: "disabled"
+              }
+            });
+          }
+        },
+        {
+          title: "到期日期",
+          width: 300,
+          render: (h, params) => {
+            let price = this.time(params.row.pay_end_time * 1000);
+            return h("Input", {
+              props: {
+                type: "text",
+                value: price,
+                disabled: "disabled"
+              }
+            });
+          }
+        },
+        {
+          title: "操作",
+          key: "action",
+          width: 300,
+          render: (h, params) => {
+            return h(
+              "div",
+              {
+                style: {
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "space-around"
+                }
+              },
+              [
+                h(
+                  "i-button",
+                    { 
+                      attrs: { type: "success", size: "small" } ,
+                      
                     },
+                  "修改"
+                ),
+                h(
+                  "i-button",
+                  { attrs: { type: "success", size: "small" } },
+                  "查看"
+                ),
+                h(
+                  "i-button",
+                  { attrs: { type: "success", size: "small" } },
+                  "发布"
+                ),
+                h(
+                  "i-button",
                     {
-                        title: '发布日期',
-                        key: 'startTime',
-                        width: 300
-                    },
-                    {
-                        title: '到期日期',
-                        key: 'endTime',
-                        width: 300
-                    },
-                    {
-                        title: '操作',
-                        key: 'action',
-                        width: 300,
-                        render:(h, params) => {
-                            return h('div',{style:{width: '100%',display: 'flex',justifyContent: 'space-around'}},[
-                                 h('i-button',{attrs:{type:"success",size:"small"}},'修改'),
-                                 h('i-button',{attrs:{type:"success",size:"small"}},'查看'),
-                                 h('i-button',{attrs:{type:"success",size:"small"}},'发布'),
-                                 h('i-button',{attrs:{type:"success",size:"small"}},'删除')
-                            ])
+                       attrs: { type: "success", size: "small" },
+                       on: {
+                            click: () => {
+                                this.$axios({
+                                    method: "post",
+                                    url: "admin/delproduct",
+                                    params: {
+                                        id:params.row.id,
+                                    }
+                                })
+                                    .then(response => {
+                                    console.log(response.data);
+                                    })
+                                    .catch(function(error) {
+                                    console.log(error);
+                                    });
+                                },
                         }
-                    }
-                ],
-                data3: [
-                    {
-                        name:'权证宝',
-                        startTime:'123123',
-                        endTime:'qeqqew'
-                    }
-                ]
-            }
+                    },
+                  "删除"
+                )
+              ]
+            );
+          }
         }
+      ],
+      data3: []
+    };
+  },
+  created() {
+    this.$axios({
+      method: "post",
+      url: "admin/draft"
+    })
+      .then(response => {
+        this.data3 = response.data.data;
+        console.log(response.data);
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  },
+  methods: {
+    delproduct(id) {
+      
+    },
+    time(value) {
+      return moment(parseInt(value)).format("YYYY-MM-DD HH:mm");
     }
+  }
+};
 </script>

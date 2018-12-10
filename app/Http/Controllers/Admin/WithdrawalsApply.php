@@ -11,6 +11,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\User;
+use App\Model\Token as TokenModel;
 use App\Model\WithdrawalsApply as WithdrawalsApplyModel;
 
 

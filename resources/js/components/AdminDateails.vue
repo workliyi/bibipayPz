@@ -40,7 +40,22 @@
                     }
                 ]
             }
+        },
+        created(){
+            let id = this.$route.params.id
+            this.$axios({
+                    method: 'post',
+                    url:'admin/countlog',
+                    params: {
+                        user_id:id,
+                    }
+                })
+                .then((response) => {
+                    this.data3 = response.data.data
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
         }
-        
     }
 </script>

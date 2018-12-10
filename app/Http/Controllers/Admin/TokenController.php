@@ -52,6 +52,7 @@ class TokenController extends Controller
     //获取usdt详细信息
     public function getusdt(Request $request, TokenModel $TokenModel,Curl $curl, ResponseContract $response)
     {
+        // echo 11111111111;
         $get_usdt_detail = $curl->curl(TokenController::URL_USDT_DETAIL , [] , 1);
         $get_usdt_detail = json_decode($get_usdt_detail , true);
         return $get_usdt_detail;
