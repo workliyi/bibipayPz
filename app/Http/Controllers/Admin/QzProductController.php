@@ -22,7 +22,7 @@ class QzProductController extends Controller
     {
         
         $data = $request->all()['data'];
-        $data['withdraw'] = $request->post('withdraw');
+        $data['withdraw'] = $request->withdraw;
         $data['create_time'] = time();
         $data['status'] = 1;
         $data['exercise_start_time'] = $data['exercise_start_time'] == NULL ? NULL : strtotime($data['exercise_start_time']);
@@ -86,7 +86,7 @@ class QzProductController extends Controller
     //查看权证产品
     public function data(Request $request, QzProductModel $QzProductModel)
     {
-        $id = $request->post('id');
+        $id = $request->id;
         $data = $QzProductModel->where('id', $id)->first();
         return response()->json($data)->setStatusCode(200);
     }
@@ -95,7 +95,7 @@ class QzProductController extends Controller
     //权证产品撤回 (更改withdraw字段：1=>已撤回  2=>正常)
     public function withdraw(Request $request, QzProductModel $QzProductModel)
     {
-        $id = $request->post('id');
+        $id = $request->id;
         $data = $QzProductModel->where('id', $id)->update(['withdraw' => 1]);
         if ($data) {
             return response()->json(['code' => 200]);
@@ -117,7 +117,7 @@ class QzProductController extends Controller
     //草稿箱删除
     public function delete(Request $request, QzProductModel $QzProductModel)
     {
-        $id = $request->post('id');
+        $id = $request->id;
         $data = $QzProductModel->where('id', $id)->delete();
         return response()->json($data)->setStatusCode(200);
     }
@@ -125,7 +125,7 @@ class QzProductController extends Controller
     //权证产品草稿箱发布
     public function news(Request $request, QzProductModel $QzProductModel)
     {
-        $id = $request->post('id');
+        $id = $request->id;
         $data = $QzProductModel->where('id', $id)->update(['withdraw' => 2]);
         if ($data) {
             return response()->json(['code' => 200]);
