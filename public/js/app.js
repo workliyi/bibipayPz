@@ -106973,7 +106973,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.data.start_time = date;
     },
     end_time: function end_time(date) {
-      console.log(date);
+      // console.log(date)
       this.data.end_time = date;
     },
     release: function release() {
@@ -106991,6 +106991,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           perPage: 1
         }
       }).then(function (response) {
+        console.log('response');
         console.log(response.data.data.data);
         _this.data3 = response.data.data.data;
         var _response$data = response.data,
@@ -107005,6 +107006,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           today_usdt_count: today_usdt_count,
           usdt_count: usdt_count
         };
+        // console.log(response.data);
       }).catch(function (error) {
         console.log(error);
       });
@@ -109381,9 +109383,22 @@ var moment = __webpack_require__(0);
       data3: []
     };
   },
-  created: function created() {},
+  created: function created() {
+    var _this2 = this;
+
+    this.$axios({
+      method: "post",
+      url: "admin/draft"
+    }).then(function (response) {
+      _this2.data3 = response.data.data;
+      console.log(response.data);
+    }).catch(function (error) {
+      console.log(error);
+    });
+  },
 
   methods: {
+    delproduct: function delproduct(id) {},
     time: function time(value) {
       return moment(parseInt(value)).format("YYYY-MM-DD HH:mm");
     }
@@ -109839,6 +109854,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 name: ''
             }
         };
+    },
+    created: function created() {
+        this.$axios({
+            method: "post",
+            url: "admin/usdtlist",
+            params: {
+                name: this.data.name
+            }
+        }).then(function (response) {
+            console.log(response.data);
+        }).catch(function (error) {
+            console.log(error);
+        });
     }
 });
 
@@ -109900,11 +109928,13 @@ var render = function() {
             { attrs: { span: "6" } },
             [
               _c("i-input", {
-                attrs: { value: _vm.data.name, placeholder: "请输入用户名" },
-                on: {
-                  "update:value": function($event) {
-                    _vm.$set(_vm.data, "name", $event)
-                  }
+                attrs: { placeholder: "请输入用户名" },
+                model: {
+                  value: _vm.data.name,
+                  callback: function($$v) {
+                    _vm.$set(_vm.data, "name", $$v)
+                  },
+                  expression: "data.name"
                 }
               })
             ],

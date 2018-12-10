@@ -87,7 +87,7 @@ export default {
             this.data.start_time = date;
         },
     end_time(date) {
-        console.log(date)
+        // console.log(date)
         this.data.end_time = date;
     },
     release() {
@@ -104,6 +104,7 @@ export default {
         }
       })
         .then(response => {
+          console.log('response')
           console.log(response.data.data.data)
           this.data3 = response.data.data.data;
           let {
@@ -118,6 +119,7 @@ export default {
             today_usdt_count,
             usdt_count
           };
+          // console.log(response.data);
         })
         .catch(function(error) {
           console.log(error);

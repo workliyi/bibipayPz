@@ -13,7 +13,7 @@
         <Row style="margin-top: 10px;">
             <i-col span="2" style="text-align: left; line-height: 30px;">用户名搜索：</i-col>
             <i-col span="6">
-                <i-input :value.sync="data.name" placeholder="请输入用户名"></i-input>
+                <i-input v-model="data.name" placeholder="请输入用户名"></i-input>
             </i-col>
             <i-col span="2">
                 <Button type="primary">搜索</Button>
@@ -44,18 +44,27 @@
                         width: 400
                     }
                 ],
-                data3: [
-                    {
-                        id: 74,
-                        name: '我们都是好孩子',
-                        number: "1",
-                        time: '2018-10-11 22:15:17'
-                    }
-                ],
+                data3: [],
                 data: {
                     name:'',
                 }
             }
+        },
+        created(){
+            this.$axios({
+                            method: "post",
+                            url: "admin/usdtlist",
+                            params: {
+                                name:this.data.name,
+                            }
+                        })
+                            .then(response => {
+                            console.log(response.data.data);
+                            this.data3 = response.data.data
+                            })
+                            .catch(function(error) {
+                            console.log(error);
+                            });
         }
         
     }

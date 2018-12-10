@@ -19,6 +19,7 @@
     "vue": "^2.5.7"
   },
   "dependencies": {
+    "bootstrap": "^4.1.3",
     "css-loader": "^0.28.9",
     "iview": "^2.9.2",
     "js-cookie": "^2.2.0",

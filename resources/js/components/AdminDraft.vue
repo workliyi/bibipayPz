@@ -110,9 +110,22 @@ export default {
     };
   },
   created() {
-    
+    this.$axios({
+      method: "post",
+      url: "admin/draft"
+    })
+      .then(response => {
+        this.data3 = response.data.data;
+        console.log(response.data);
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
   },
   methods: {
+    delproduct(id) {
+      
+    },
     time(value) {
       return moment(parseInt(value)).format("YYYY-MM-DD HH:mm");
     }
