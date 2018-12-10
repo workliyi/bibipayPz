@@ -99,19 +99,25 @@ class UserController extends Controller
         $endTime = $request->endTime;//查询结束时间
         
         if(is_null($beginTime) && !empty($endTime)){
-            $data = UserModel::where('created_at','<=',$endTime)->orderBy('created_at', 'desc')->paginate(15);
+            $data = UserModel::where('created_at','>=',$endTime)->orderBy('created_at', 'desc')->paginate(15);
         }
         if(is_null($endTime) && !empty($beginTime)){
-            $data = UserModel::where('created_at','>=',$beginTime)->orderBy('created_at', 'desc')->paginate(15);
+            $data = UserModel::where('created_at','<=',$beginTime)->orderBy('created_at', 'desc')->paginate(15);
         }
         if(!empty($endTime) && !empty($beginTime)){
             $data = UserModel::where('created_at','>=',$beginTime)->where('created_at','<=',$endTime)->orderBy('created_at', 'desc')->paginate(15);
         }
-        if(empty($endTime) && empty($beginTime)){
+        if(empty($endTime) && empty($beginTime) && !empty(!empty($name) || !empty($id) || !empty($tel))){
             $data = UserModel::orWhere('id',$id)
             ->orWhere('name',$name)
             ->orderBy('tel', $tel)->paginate(15);
+        } else if (empty($endTime) && empty($beginTime)){
+            $data = UserModel::paginate(15);
         }
+        // if(empty($endTime) && empty($beginTime)){
+        //     $data = UserModel::paginate(15);
+        // }
+        
         // $builder = with(new UserModel())->setHidden([])->newQuery();
         //整合筛选条件
 //         $condition = [

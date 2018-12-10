@@ -87,7 +87,7 @@ export default {
             this.data.start_time = date;
         },
     end_time(date) {
-        console.log(date)
+        // console.log(date)
         this.data.end_time = date;
     },
     release() {
@@ -104,7 +104,9 @@ export default {
         }
       })
         .then(response => {
-          this.data3 = response.data.data;
+          console.log('response')
+          console.log(response.data.data.data)
+          this.data3 = response.data.data.data;
           let {
             login_count,
             today_login_count,
@@ -117,7 +119,7 @@ export default {
             today_usdt_count,
             usdt_count
           };
-          console.log(response.data);
+          // console.log(response.data);
         })
         .catch(function(error) {
           console.log(error);
