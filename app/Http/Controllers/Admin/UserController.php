@@ -108,7 +108,9 @@ class UserController extends Controller
             $data = UserModel::where('created_at','>=',$beginTime)->where('created_at','<=',$endTime)->orderBy('created_at', 'desc')->paginate(15);
         }
         if(empty($endTime) && empty($beginTime)){
-            $data = UserModel::get();
+            $data = UserModel::orWhere('id',$id)
+            ->orWhere('name',$name)
+            ->orderBy('tel', $tel)->paginate(15);
         }
         // $builder = with(new UserModel())->setHidden([])->newQuery();
         //整合筛选条件
