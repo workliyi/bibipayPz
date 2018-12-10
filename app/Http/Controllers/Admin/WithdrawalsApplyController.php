@@ -16,6 +16,7 @@ use App\Model\WithdrawalsApply as WithdrawalsApplyModel;
 
 class WithdrawalsApply extends Controller
 {
+    const URL_APPLY_DETAIL = 'http://0.0.0.0:8787/api/openadmin/getapplylist';//获取钱包信息
     //提现申请审核列表
     public function lists(Request $request, TokenModel $TokenModel)
     {
