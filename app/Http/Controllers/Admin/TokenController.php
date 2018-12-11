@@ -16,8 +16,8 @@ use App\Model\Token as TokenModel;
 use Illuminate\Contracts\Routing\ResponseFactory as ResponseContract;
 class TokenController extends Controller
 {
-    const URL_WALLET_DETAIL = 'http://192.168.1.14:8787/api/openadmin/setToken';//获取钱包信息
-    const URL_USDT_DETAIL = 'http://192.168.1.14:8787/api/openadmin/usdtdet';//获取usdt总账信息
+    const URL_WALLET_DETAIL = 'http://0.0.0.0:8787/api/openadmin/setToken';//获取钱包信息
+    const URL_USDT_DETAIL = 'http://0.0.0.0:8787/api/openadmin/usdtdet';//获取usdt总账信息
     //返回权证币种
     public function return_token(TokenModel $TokenModel)
     {
@@ -25,13 +25,13 @@ class TokenController extends Controller
         return response()->json($data);
     }
     //设置币种是否开启提现审核
-    public function setting(Request $request, TokenModel $TokenModel)
+    public function setting(Request $request, TokenModel $Token)
     {
         
         $data = $request->TokenModel;
         return $data;
         foreach ($data as $value) {
-            $TokenModel->where('id', $value['id'])->update(['status' => $value['status']]);
+            $Token->where('id', $value['id'])->update(['status' => $value['status']]);
         }
         return response()->json(['message' => '成功', 'code' => 200, 'data' => $data]);
     }

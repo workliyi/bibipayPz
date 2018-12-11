@@ -25,5 +25,7 @@ Route::post('/poundage', 'Admin\TokenController@poundage');
 Route::get('/retutoken', 'Admin\TokenController@return_token');
 Route::post('/setting', 'Admin\TokenController@setting');
 Route::get('/getusdt', 'Admin\TokenController@getusdt');
-Route::post('/withdrawlist', 'Admin\WithdrawalsApply@lists');
-
+//提现申请审核列表
+Route::post('/withdrawlist', 'Admin\WithdrawalsApplyController@lists');
+//提现审核操作(通过/拒绝)
+Route::post('/examine', 'Admin\WithdrawalsApplyController@examine');
