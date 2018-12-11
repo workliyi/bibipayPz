@@ -21,11 +21,11 @@ class WithdrawalsApplyController extends Controller
     //提现申请审核列表
     public function lists(Request $request , Curl $curl)
     {
-        $get_apply_list = $curl->curl(WithdrawalsApplyController::URL_APPLY_DETAIL , [] , 1);
+        $token_symbol = $request->token_symbol;
+        $get_apply_list = $curl->curl(WithdrawalsApplyController::URL_APPLY_DETAIL , ['token_symbol' , $token_symbol] , 1);
         $get_apply_list = json_decode($get_apply_list , true);
         return $get_apply_list;
     }
-
     //提现审核操作(通过/拒绝)
     public function examine(Request $request, Curl $curl)
     {
