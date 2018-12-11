@@ -26,6 +26,7 @@
     </div>  
 </template>
 <script>
+let moment = require("moment");
     export default {
         data () {
             return {
@@ -38,33 +39,43 @@
                     },
                     {
                         title: '币种',
-                        key: 'currency',
-                        width: 200
+                        key: 'token_name',
+                        width: 100
                     },
                     {
                         title: '提现地址',
                         key: 'address',
-                        width: 200
+                        width: 300
                     },
                     {
                         title: '提现金额',
-                        key: 'amount',
+                        key: 'balance',
                         width: 200
                     },
                     {
                         title: '手续费',
-                        key: 'cost',
+                        key: 'poundage',
                         width: 200
                     },
                     {
                         title: '状态',
-                        key: 'stastus',
+                        key: 'status',
                         width: 200
                     },
                     {
                         title: '日期',
-                        key: 'Purchaser',
-                        width: 200
+                        width: 200,
+                        render: (h, params) => {
+                            console.log(this.time)
+                            let price = this.time(params.row.created_time * 1000)
+                            return h('Input', {
+                                    props: {
+                                        type: 'text',
+                                        value: price,
+                                        disabled:"disabled"
+                                    },
+                                })
+                        }
                     },
                     {
                         title: '操作',
@@ -72,25 +83,41 @@
                         fixed: 'right',
                         width: 200,
                         render: (h, params) => {
+                            if(params.row.status != 0){return;}
                             return h('div', [
                                 h('Button', {
                                     props: {
                                         type: 'success',
                                         size: 'small'
+                                    },
+                                    style:{
+                                        marginLeft: '30px'
+                                    },
+                                    on:{
+                                        click: () => {
+                                            this.examine(params.row.id,1)
+                                        }
                                     }
                                 }, '通过'),
                                 h('Button', {
                                     props: {
                                         type: 'success',
                                         size: 'small'
+                                    },
+                                    style:{
+                                        marginLeft: '30px'
+                                    },
+                                    on:{
+                                        click: () => {
+                                            this.examine(params.row.id,3)
+                                        }
                                     }
                                 }, '不通过')
                             ]);
                         }
                     }
                 ],
-                data3: [
-                ],
+                data3: [],
                 cityList: [
                     {
                         value: 'New York',
@@ -122,21 +149,45 @@
             }
         },
         created(){
-            this.$axios({
-            method: 'post',
-            url:'admin/withdrawlist'
-            })
-            .then((response) => {
-                this.data3 = response.data.data
-                console.log(response.data)
-            })
-            .catch(function (error) {
-                console.log(error);
-            })
+           this.release()
         },
         methods: {
+            examine(id, status){
+                this.$axios({
+                    method: 'post',
+                    url:'admin/examine',
+                    params:{
+                        id:id,
+                        status:status
+                    }
+                })
+                .then((response) => {
+                    // this.data3 = response.data.data
+                    console.log(response.data)
+                    // if()
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+            },
+            release(){
+                 this.$axios({
+                    method: 'post',
+                    url:'admin/withdrawlist'
+                    })
+                    .then((response) => {
+                        this.data3 = response.data.data
+                        console.log(response.data)
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    })
+            },
             TermReview () {
                 this.$router.push('/TermReview')
+            },
+            time(value){
+                return moment(parseInt(value)).format('YYYY-MM-DD HH:mm')
             }
         }
     }

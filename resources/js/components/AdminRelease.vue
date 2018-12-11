@@ -186,6 +186,7 @@ export default {
     };
   },
   created() {
+    
     // this.$axios({
     // method: 'post',
     // url:'admin/newproduct',

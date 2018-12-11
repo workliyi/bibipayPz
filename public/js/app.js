@@ -64083,7 +64083,7 @@ var content = __webpack_require__(169);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(5)("cdffbc50", content, false, {});
+var update = __webpack_require__(5)("ea1c9450", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -105754,7 +105754,7 @@ var content = __webpack_require__(186);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(5)("44a7a3e8", content, false, {});
+var update = __webpack_require__(5)("12dcea02", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -106196,7 +106196,7 @@ var content = __webpack_require__(191);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(5)("13c44b80", content, false, {});
+var update = __webpack_require__(5)("178a8ced", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -106220,7 +106220,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n.login[data-v-a65db5f6]{\n  background: linear-gradient(135deg, #7262d1, #48d7e4);\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  top: 0px;\n  left: 0px;\n}\n.from[data-v-a65db5f6]{\n  width: 175px;\n  height: 150px;\n  position: absolute;\n  top: 0px;\n  left: 0px;\n  bottom: 0px;\n  right: 0px;\n  margin: auto;\n}\n.title[data-v-a65db5f6]{\n  text-align: center;\n  font-size: 4em;\n  font-family: cursive;\n  margin-right: 20px;\n}\n.box-one[data-v-a65db5f6]{\n  margin-top: 15px;\n}\n\n", ""]);
+exports.push([module.i, "\n.login[data-v-a65db5f6]{\r\n  background: linear-gradient(135deg, #7262d1, #48d7e4);\r\n  width: 100%;\r\n  height: 100%;\r\n  position: absolute;\r\n  top: 0px;\r\n  left: 0px;\n}\n.from[data-v-a65db5f6]{\r\n  width: 175px;\r\n  height: 150px;\r\n  position: absolute;\r\n  top: 0px;\r\n  left: 0px;\r\n  bottom: 0px;\r\n  right: 0px;\r\n  margin: auto;\n}\n.title[data-v-a65db5f6]{\r\n  text-align: center;\r\n  font-size: 4em;\r\n  font-family: cursive;\r\n  margin-right: 20px;\n}\n.box-one[data-v-a65db5f6]{\r\n  margin-top: 15px;\n}\r\n\r\n", ""]);
 
 // exports
 
@@ -106640,7 +106640,7 @@ var content = __webpack_require__(198);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(5)("635330cc", content, false, {});
+var update = __webpack_require__(5)("6adf4c72", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -109558,8 +109558,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+var moment = __webpack_require__(0);
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
+        var _this = this;
+
         return {
             columns2: [{
                 title: '序号',
@@ -109568,43 +109571,72 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 fixed: 'left'
             }, {
                 title: '币种',
-                key: 'currency',
-                width: 200
+                key: 'token_name',
+                width: 100
             }, {
                 title: '提现地址',
                 key: 'address',
-                width: 200
+                width: 300
             }, {
                 title: '提现金额',
-                key: 'amount',
+                key: 'balance',
                 width: 200
             }, {
                 title: '手续费',
-                key: 'cost',
+                key: 'poundage',
                 width: 200
             }, {
                 title: '状态',
-                key: 'stastus',
+                key: 'status',
                 width: 200
             }, {
                 title: '日期',
-                key: 'Purchaser',
-                width: 200
+                width: 200,
+                render: function render(h, params) {
+                    console.log(_this.time);
+                    var price = _this.time(params.row.created_time * 1000);
+                    return h('Input', {
+                        props: {
+                            type: 'text',
+                            value: price,
+                            disabled: "disabled"
+                        }
+                    });
+                }
             }, {
                 title: '操作',
                 key: 'action',
                 fixed: 'right',
                 width: 200,
                 render: function render(h, params) {
+                    if (params.row.status != 0) {
+                        return;
+                    }
                     return h('div', [h('Button', {
                         props: {
                             type: 'success',
                             size: 'small'
+                        },
+                        style: {
+                            marginLeft: '30px'
+                        },
+                        on: {
+                            click: function click() {
+                                _this.examine(params.row.id, 1);
+                            }
                         }
                     }, '通过'), h('Button', {
                         props: {
                             type: 'success',
                             size: 'small'
+                        },
+                        style: {
+                            marginLeft: '30px'
+                        },
+                        on: {
+                            click: function click() {
+                                _this.examine(params.row.id, 3);
+                            }
                         }
                     }, '不通过')]);
                 }
@@ -109634,13 +109666,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
     created: function created() {
-        var _this = this;
+        var _this2 = this;
 
         this.$axios({
             method: 'post',
             url: 'admin/withdrawlist'
         }).then(function (response) {
-            _this.data3 = response.data.data;
+            _this2.data3 = response.data.data;
             console.log(response.data);
         }).catch(function (error) {
             console.log(error);
@@ -109648,8 +109680,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     methods: {
+        examine: function examine(id, status) {
+            this.$axios({
+                method: 'post',
+                url: 'admin/examine',
+                params: {
+                    id: id,
+                    status: status
+                }
+            }).then(function (response) {
+                // this.data3 = response.data.data
+                console.log(response.data);
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
         TermReview: function TermReview() {
             this.$router.push('/TermReview');
+        },
+        time: function time(value) {
+            return moment(parseInt(value)).format('YYYY-MM-DD HH:mm');
         }
     }
 });
@@ -110319,7 +110369,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }).then(function (response) {
                 var data = response.data;
                 data.forEach(function (item, index) {
-                    console.log(item);
                     var id = item.id,
                         status = item.status,
                         poundage = item.poundage,
@@ -110337,7 +110386,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         _this3.targetKeys1.push(item.id);
                     }
                 });
-                console.log(response.data);
             }).catch(function (error) {
                 console.log(error);
             });
