@@ -26,6 +26,7 @@
     </div>  
 </template>
 <script>
+let moment = require("moment");
     export default {
         data () {
             return {
@@ -38,7 +39,7 @@
                     },
                     {
                         title: '币种',
-                        key: 'currency',
+                        key: 'token_name',
                         width: 200
                     },
                     {
@@ -48,23 +49,33 @@
                     },
                     {
                         title: '提现金额',
-                        key: 'amount',
+                        key: 'balance',
                         width: 200
                     },
                     {
                         title: '手续费',
-                        key: 'cost',
+                        key: 'poundage',
                         width: 200
                     },
                     {
                         title: '状态',
-                        key: 'stastus',
+                        key: 'status',
                         width: 200
                     },
                     {
                         title: '日期',
-                        key: 'Purchaser',
-                        width: 200
+                        width: 200,
+                        render: (h, params) => {
+                            console.log(this.time)
+                            let price = this.time(params.row.created_time * 1000)
+                            return h('Input', {
+                                    props: {
+                                        type: 'text',
+                                        value: price,
+                                        disabled:"disabled"
+                                    },
+                                })
+                        }
                     },
                     {
                         title: '操作',
@@ -77,20 +88,25 @@
                                     props: {
                                         type: 'success',
                                         size: 'small'
+                                    },
+                                    style:{
+                                        marginLeft: '30px'
                                     }
                                 }, '通过'),
                                 h('Button', {
                                     props: {
                                         type: 'success',
                                         size: 'small'
+                                    },
+                                    style:{
+                                        marginLeft: '30px'
                                     }
                                 }, '不通过')
                             ]);
                         }
                     }
                 ],
-                data3: [
-                ],
+                data3: [],
                 cityList: [
                     {
                         value: 'New York',
@@ -137,6 +153,9 @@
         methods: {
             TermReview () {
                 this.$router.push('/TermReview')
+            },
+            time(value){
+                return moment(parseInt(value)).format('YYYY-MM-DD HH:mm')
             }
         }
     }

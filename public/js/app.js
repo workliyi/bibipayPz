@@ -109558,8 +109558,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+var moment = __webpack_require__(0);
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
+        var _this = this;
+
         return {
             columns2: [{
                 title: '序号',
@@ -109568,7 +109571,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 fixed: 'left'
             }, {
                 title: '币种',
-                key: 'currency',
+                key: 'token_name',
                 width: 200
             }, {
                 title: '提现地址',
@@ -109576,20 +109579,30 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 width: 200
             }, {
                 title: '提现金额',
-                key: 'amount',
+                key: 'balance',
                 width: 200
             }, {
                 title: '手续费',
-                key: 'cost',
+                key: 'poundage',
                 width: 200
             }, {
                 title: '状态',
-                key: 'stastus',
+                key: 'status',
                 width: 200
             }, {
                 title: '日期',
-                key: 'Purchaser',
-                width: 200
+                width: 200,
+                render: function render(h, params) {
+                    console.log(_this.time);
+                    var price = _this.time(params.row.created_time * 1000);
+                    return h('Input', {
+                        props: {
+                            type: 'text',
+                            value: price,
+                            disabled: "disabled"
+                        }
+                    });
+                }
             }, {
                 title: '操作',
                 key: 'action',
@@ -109600,11 +109613,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         props: {
                             type: 'success',
                             size: 'small'
+                        },
+                        style: {
+                            marginLeft: '30px'
                         }
                     }, '通过'), h('Button', {
                         props: {
                             type: 'success',
                             size: 'small'
+                        },
+                        style: {
+                            marginLeft: '30px'
                         }
                     }, '不通过')]);
                 }
@@ -109634,13 +109653,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
     created: function created() {
-        var _this = this;
+        var _this2 = this;
 
         this.$axios({
             method: 'post',
             url: 'admin/withdrawlist'
         }).then(function (response) {
-            _this.data3 = response.data.data;
+            _this2.data3 = response.data.data;
             console.log(response.data);
         }).catch(function (error) {
             console.log(error);
@@ -109650,6 +109669,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         TermReview: function TermReview() {
             this.$router.push('/TermReview');
+        },
+        time: function time(value) {
+            return moment(parseInt(value)).format('YYYY-MM-DD HH:mm');
         }
     }
 });
@@ -110299,7 +110321,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 moveKeys.forEach(function (item, index) {
                     _this2.data1[item - 1].status = 0;
                 });
-                console.log(_typeof(this.data1[0]));
                 this.setting(this.data1);
             } else {
                 moveKeys.forEach(function (item, index) {
@@ -110312,7 +110333,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         setting: function setting(data) {
             var _this3 = this;
 
-            console.log(data);
+            console.log(_typeof(data[0]));
             this.$axios({
                 method: 'post',
                 url: 'admin/setting',
@@ -110322,7 +110343,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             }).then(function (response) {
                 var data = response.data;
                 data.forEach(function (item, index) {
-                    console.log(item);
                     var id = item.id,
                         status = item.status,
                         poundage = item.poundage,
@@ -110340,7 +110360,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                         _this3.targetKeys1.push(item.id);
                     }
                 });
-                console.log(response.data);
             }).catch(function (error) {
                 console.log(error);
             });

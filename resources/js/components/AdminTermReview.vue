@@ -69,7 +69,6 @@
                 .then((response) => {
                     let data = response.data;
                         data.forEach((item, index) => {
-                            console.log(item)
                                 let {id, status, poundage, token_name} = item
                                 this.data1.push({
                                     key: id,
@@ -83,7 +82,6 @@
                                     this.targetKeys1.push(item.id)
                                 }
                         });
-                    console.log(response.data)
                 })
                 .catch(function (error) {
                     console.log(error);

@@ -16,8 +16,8 @@ use App\Model\Curl as Curl;
 
 class WithdrawalsApplyController extends Controller
 {
-    const URL_APPLY_DETAIL = 'http://0.0.0.0:8787/api/openadmin/getapplylist';//提现申请审核列表
-    const URL_EXAMINE_DETAIL = 'http://0.0.0.0:8787/api/openadmin/examine';//提现审核操作(通过/拒绝)
+    const URL_APPLY_DETAIL = 'http://192.168.1.14:8787/api/openadmin/getapplylist';//提现申请审核列表
+    const URL_EXAMINE_DETAIL = 'http://192.168.1.14:8787/api/openadmin/examine';//提现审核操作(通过/拒绝)
     //提现申请审核列表
     public function lists(Request $request , Curl $curl)
     {
