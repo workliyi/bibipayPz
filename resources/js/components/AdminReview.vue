@@ -152,6 +152,7 @@ let moment = require("moment");
            this.release()
         },
         methods: {
+            //审核(通过、拒绝)
             examine(id, status){
                 this.$axios({
                     method: 'post',
