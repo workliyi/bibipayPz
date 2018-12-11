@@ -40,12 +40,12 @@ let moment = require("moment");
                     {
                         title: '币种',
                         key: 'token_name',
-                        width: 200
+                        width: 100
                     },
                     {
                         title: '提现地址',
                         key: 'address',
-                        width: 200
+                        width: 300
                     },
                     {
                         title: '提现金额',
@@ -83,6 +83,7 @@ let moment = require("moment");
                         fixed: 'right',
                         width: 200,
                         render: (h, params) => {
+                            if(params.row.status != 0){return;}
                             return h('div', [
                                 h('Button', {
                                     props: {
@@ -91,6 +92,11 @@ let moment = require("moment");
                                     },
                                     style:{
                                         marginLeft: '30px'
+                                    },
+                                    on:{
+                                        click: () => {
+                                            this.examine(params.row.id,1)
+                                        }
                                     }
                                 }, '通过'),
                                 h('Button', {
@@ -100,6 +106,11 @@ let moment = require("moment");
                                     },
                                     style:{
                                         marginLeft: '30px'
+                                    },
+                                    on:{
+                                        click: () => {
+                                            this.examine(params.row.id,3)
+                                        }
                                     }
                                 }, '不通过')
                             ]);
@@ -138,19 +149,40 @@ let moment = require("moment");
             }
         },
         created(){
-            this.$axios({
-            method: 'post',
-            url:'admin/withdrawlist'
-            })
-            .then((response) => {
-                this.data3 = response.data.data
-                console.log(response.data)
-            })
-            .catch(function (error) {
-                console.log(error);
-            })
+           this.release()
         },
         methods: {
+            examine(id, status){
+                this.$axios({
+                    method: 'post',
+                    url:'admin/examine',
+                    params:{
+                        id:id,
+                        status:status
+                    }
+                })
+                .then((response) => {
+                    // this.data3 = response.data.data
+                    console.log(response.data)
+                    // if()
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+            },
+            release(){
+                 this.$axios({
+                    method: 'post',
+                    url:'admin/withdrawlist'
+                    })
+                    .then((response) => {
+                        this.data3 = response.data.data
+                        console.log(response.data)
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    })
+            },
             TermReview () {
                 this.$router.push('/TermReview')
             },
