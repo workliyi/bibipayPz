@@ -163,8 +163,10 @@ let moment = require("moment");
                 })
                 .then((response) => {
                     // this.data3 = response.data.data
+                    if(response.data.errmsg == 'OK'){
+                        this.release()
+                    }
                     console.log(response.data)
-                    // if()
                 })
                 .catch(function (error) {
                     console.log(error);
