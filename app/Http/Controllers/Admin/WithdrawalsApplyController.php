@@ -22,7 +22,8 @@ class WithdrawalsApplyController extends Controller
     public function lists(Request $request , Curl $curl)
     {
         $token_symbol = $request->token_symbol;
-        $get_apply_list = $curl->curl(WithdrawalsApplyController::URL_APPLY_DETAIL , ['token_symbol' , $token_symbol] , 1);
+        $status = $request->status;
+        $get_apply_list = $curl->curl(WithdrawalsApplyController::URL_APPLY_DETAIL , ['token_symbol'=> $token_symbol , 'status'=>$status] , 1);
         $get_apply_list = json_decode($get_apply_list , true);
         return $get_apply_list;
     }

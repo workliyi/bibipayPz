@@ -20,8 +20,8 @@ class OrderController extends Controller
      */
     public function lists(Request $request)
     {
-        $product_name = $request->post('product_name');
-        $product_num = $request->post('product_num');
+        $product_name = $request->product_name;
+        $product_num = $request->product_num;
         $builder = with(new QzOrder())->setHidden([])->newQuery();
         foreach (
             [
