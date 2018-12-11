@@ -23,6 +23,7 @@ Route::post('/withdraw', 'Admin\QzProductController@withdraw');
 Route::post('/prolist', 'Admin\QzProductController@lists');
 Route::post('/poundage', 'Admin\TokenController@poundage');
 Route::get('/retutoken', 'Admin\TokenController@return_token');
+Route::post('/setting', 'Admin\TokenController@setting');
 Route::get('/getusdt', 'Admin\TokenController@getusdt');
 //提现申请审核列表
 Route::post('/withdrawlist', 'Admin\WithdrawalsApplyController@lists');

@@ -8,6 +8,7 @@ class QzRmb extends Model
 {
     protected $table = 'qz_rmb';
     public $timestamps = false;
+    
     public function Rmb(){
         $QzDetails = new QzDetailsController();
         $doExecute = $QzDetails->getRmb();

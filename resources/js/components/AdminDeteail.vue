@@ -5,7 +5,7 @@
             <i-col span="9">当日注册：{{ count.today_login_count }}</i-col>
         </Row>
         <Row>
-            <i-col span="9">共充值（usdt）：{{ count.countusdt_count }}</i-col>
+            <i-col span="9">共充值（usdt）：{{ count.usdt_count }}</i-col>
             <i-col span="9">当日充值（usdt）：{{ count.today_usdt_count }}</i-col>
             <i-col span="6"><router-link to="/Users">返回</router-link></i-col>
         </Row>
