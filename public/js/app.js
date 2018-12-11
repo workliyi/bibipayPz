@@ -64083,7 +64083,7 @@ var content = __webpack_require__(169);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(5)("ea1c9450", content, false, {});
+var update = __webpack_require__(5)("cdffbc50", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -105754,7 +105754,7 @@ var content = __webpack_require__(186);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(5)("12dcea02", content, false, {});
+var update = __webpack_require__(5)("44a7a3e8", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -106196,7 +106196,7 @@ var content = __webpack_require__(191);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(5)("178a8ced", content, false, {});
+var update = __webpack_require__(5)("13c44b80", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -106220,7 +106220,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n.login[data-v-a65db5f6]{\r\n  background: linear-gradient(135deg, #7262d1, #48d7e4);\r\n  width: 100%;\r\n  height: 100%;\r\n  position: absolute;\r\n  top: 0px;\r\n  left: 0px;\n}\n.from[data-v-a65db5f6]{\r\n  width: 175px;\r\n  height: 150px;\r\n  position: absolute;\r\n  top: 0px;\r\n  left: 0px;\r\n  bottom: 0px;\r\n  right: 0px;\r\n  margin: auto;\n}\n.title[data-v-a65db5f6]{\r\n  text-align: center;\r\n  font-size: 4em;\r\n  font-family: cursive;\r\n  margin-right: 20px;\n}\n.box-one[data-v-a65db5f6]{\r\n  margin-top: 15px;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.login[data-v-a65db5f6]{\n  background: linear-gradient(135deg, #7262d1, #48d7e4);\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  top: 0px;\n  left: 0px;\n}\n.from[data-v-a65db5f6]{\n  width: 175px;\n  height: 150px;\n  position: absolute;\n  top: 0px;\n  left: 0px;\n  bottom: 0px;\n  right: 0px;\n  margin: auto;\n}\n.title[data-v-a65db5f6]{\n  text-align: center;\n  font-size: 4em;\n  font-family: cursive;\n  margin-right: 20px;\n}\n.box-one[data-v-a65db5f6]{\n  margin-top: 15px;\n}\n\n", ""]);
 
 // exports
 
@@ -106640,7 +106640,7 @@ var content = __webpack_require__(198);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(5)("6adf4c72", content, false, {});
+var update = __webpack_require__(5)("635330cc", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -109867,7 +109867,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 }
             }).then(function (response) {
                 console.log(response.data);
-                _this.data3 = response.data.data;
+                var _response$data = response.data,
+                    data = _response$data.data,
+                    login_count = _response$data.login_count,
+                    today_login_count = _response$data.today_login_count,
+                    today_usdt_count = _response$data.today_usdt_count,
+                    usdt_count = _response$data.usdt_count;
+
+                _this.data3 = data;
+                _this.count = {
+                    login_count: login_count,
+                    today_login_count: today_login_count,
+                    today_usdt_count: today_usdt_count,
+                    usdt_count: usdt_count
+                };
             }).catch(function (error) {
                 console.log(error);
             });
@@ -109890,9 +109903,13 @@ var render = function() {
       _c(
         "Row",
         [
-          _c("i-col", { attrs: { span: "9" } }, [_vm._v("共注册：")]),
+          _c("i-col", { attrs: { span: "9" } }, [
+            _vm._v("共注册：" + _vm._s(_vm.count.login_count))
+          ]),
           _vm._v(" "),
-          _c("i-col", { attrs: { span: "9" } }, [_vm._v("当日注册：")])
+          _c("i-col", { attrs: { span: "9" } }, [
+            _vm._v("当日注册：" + _vm._s(_vm.count.today_login_count))
+          ])
         ],
         1
       ),
@@ -109900,9 +109917,13 @@ var render = function() {
       _c(
         "Row",
         [
-          _c("i-col", { attrs: { span: "9" } }, [_vm._v("共充值（usdt）：")]),
+          _c("i-col", { attrs: { span: "9" } }, [
+            _vm._v("共充值（usdt）：" + _vm._s(_vm.count.countusdt_count))
+          ]),
           _vm._v(" "),
-          _c("i-col", { attrs: { span: "9" } }, [_vm._v("当日充值（usdt）：")]),
+          _c("i-col", { attrs: { span: "9" } }, [
+            _vm._v("当日充值（usdt）：" + _vm._s(_vm.count.today_usdt_count))
+          ]),
           _vm._v(" "),
           _c(
             "i-col",
