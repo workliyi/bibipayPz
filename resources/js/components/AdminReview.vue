@@ -5,16 +5,16 @@
                 币种：
             </i-col>
             <i-col span="4" style="padding-right:10px">
-                <Select v-model="model1" filterable>
-                    <Option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                <Select v-model="token_symbol" filterable>
+                    <Option v-for="item in statuss" :value="item.value" :key="item.value">{{ item.label }}</Option>
                 </Select>
             </i-col>
             <i-col span="2" style="text-align: left; line-height: 30px;">
                 状态:
             </i-col>
             <i-col span="4" style="padding-right:10px">
-                <Select v-model="model2" filterable>
-                    <Option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                <Select v-model="status" filterable>
+                    <Option v-for="item in statuss" :value="item.status" :key="item.value">{{ item.label }}</Option>
                 </Select>
             </i-col>
             <i-col span="2">
@@ -119,33 +119,15 @@ let moment = require("moment");
                 ],
                 data3: [],
                 cityList: [
-                    {
-                        value: 'New York',
-                        label: 'New York'
-                    },
-                    {
-                        value: 'London',
-                        label: 'London'
-                    },
-                    {
-                        value: 'Sydney',
-                        label: 'Sydney'
-                    },
-                    {
-                        value: 'Ottawa',
-                        label: 'Ottawa'
-                    },
-                    {
-                        value: 'Paris',
-                        label: 'Paris'
-                    },
-                    {
-                        value: 'Canberra',
-                        label: 'Canberra'
-                    }
+                   
                 ],
-                model1: '',
-                model2: ''
+                statuss:[
+                    {tatle:'待审核', status:0},
+                    {tatle:'已通过', status:2},
+                    {tatle:'未通过', status:3}
+                ],
+                token_symbol: '',
+                status: ''
             }
         },
         created(){
@@ -173,10 +155,15 @@ let moment = require("moment");
                     console.log(error);
                 })
             },
+
             release(){
                  this.$axios({
                     method: 'post',
-                    url:'admin/withdrawlist'
+                    url:'admin/withdrawlist',
+                    params:{
+                        token_symbol:this.model1,
+                        status:this.model1
+                    }
                     })
                     .then((response) => {
                         this.data3 = response.data.data
