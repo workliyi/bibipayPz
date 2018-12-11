@@ -65,7 +65,7 @@
       <Row>
         <i-col span="6">
           <Form-item prop="datetime">
-            <Date-picker placeholder="选择日期" format="yyyy-MM-dd HH:mm:ss" @on-change="ipo_time"></Date-picker>
+            <Date-picker type="datetime" placeholder="选择日期" format="yyyy-MM-dd HH:mm:ss" @on-change="ipo_time"></Date-picker>
           </Form-item>
         </i-col>
       </Row>
@@ -74,7 +74,7 @@
       <Row>
         <i-col span="6">
           <Form-item prop="datetime">
-            <Date-picker placeholder="选择日期" format="yyyy-MM-dd HH:mm:ss" @on-change="end_time"></Date-picker>
+            <Date-picker type="datetime" placeholder="选择日期" format="yyyy-MM-dd HH:mm:ss" @on-change="end_time"></Date-picker>
           </Form-item>
         </i-col>
       </Row>
@@ -83,13 +83,13 @@
       <Row>
         <i-col span="6">
           <Form-item prop="datetime">
-            <Date-picker type="datetime" placeholder="选择日期" format="yyyy-MM-dd HH:mm:ss" @on-change="par_start_time"></Date-picker>
+            <Date-picker type="datetime" placeholder="选择日期" format="yyyy-MM-dd HH:mm:ss" @on-change="pay_start_time"></Date-picker>
           </Form-item>
         </i-col>
         <i-col span="2" style="text-align: center">-</i-col>
         <i-col span="6">
           <Form-item prop="datetime">
-            <Date-picker type="datetime" placeholder="选择日期" format="yyyy-MM-dd HH:mm:ss" @on-change="par_end_time"></Date-picker>
+            <Date-picker type="datetime" placeholder="选择日期" format="yyyy-MM-dd HH:mm:ss" @on-change="pay_end_time"></Date-picker>
           </Form-item>
         </i-col>
       </Row>
@@ -139,6 +139,11 @@
     <Form-item label="保证金返还：">
       <i-input v-model="data.bail_return" placeholder="请输入保证金返还"></i-input>
     </Form-item>
+    <Row>
+      <i-col>
+        注：带‘*’为必填项
+      </i-col>
+    </Row>
     <Form-item>
       <i-button type="primary" @click="release(2)">发布</i-button>
       <i-button type="ghost" style="margin-left: 8px" @click="release(3)">存为草稿</i-button>
@@ -163,8 +168,8 @@ export default {
         exercise_price: "",
         ipo_time: "",
         end_time: "",
-        par_start_time: "",
-        par_end_time: "",
+        pay_start_time: "",
+        pay_end_time: "",
         exercise_start_time: "",
         exercise_end_time: "",
         max_num_option: "",
@@ -203,11 +208,11 @@ export default {
     end_time(date){
       this.data.end_time = date
     },
-    par_start_time(date){
-      this.data.par_start_time = date
+    pay_start_time(date){
+      this.data.pay_start_time = date
     },
-    par_end_time(date){
-      this.data.par_end_time = date
+    pay_end_time(date){
+      this.data.pay_end_time = date
     },
     exercise_start_time(date){
       this.data.exercise_start_time = date
@@ -260,20 +265,25 @@ export default {
         alert("行权开始时间必须大于期权到期时间");
         return;
       }
-      this.axios = false;
-      request
-        .post(createRequestURI("admin/create"), {
+      this.$axios({
+        method: "post",
+        url: "admin/pushproduct",
+        params:{
           data: this.data,
-          withdraw: withdraw
-        })
-        .then(response => {
-          this.data = response.data;
-          if (withdraw == 2) {
+          withdraw:withdraw
+        }
+      })
+      .then(response => {
+        console.log(response)
+        if (withdraw == 2) {
             this.$router.push("/List");
           } else {
             this.$router.push("/Draft");
           }
-        })
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
     },
     time(value) {
       if (!value) {

@@ -230,7 +230,7 @@ class UserController extends Controller
             $user = UserModel::where('name',$name)->first();
             if($user){
                 $data = $charge->where('qz_charge_log.user_id' , $user->id)
-                        ->whereBetween('votes', [$beginToday, $endToday])
+                        ->whereBetween('created_time', [$beginToday, $endToday])
                         ->leftJoin('qz_user' , 'qz_charge_log.user_id' , 'qz_user.id')
                         ->where('qz_charge_log.type' , 2)->where('qz_charge_log.action_type' , 6)->get();
             } else {

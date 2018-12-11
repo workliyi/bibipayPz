@@ -64083,7 +64083,7 @@ var content = __webpack_require__(169);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(5)("cdffbc50", content, false, {});
+var update = __webpack_require__(5)("ea1c9450", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -105754,7 +105754,7 @@ var content = __webpack_require__(186);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(5)("44a7a3e8", content, false, {});
+var update = __webpack_require__(5)("12dcea02", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -105889,7 +105889,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      isCollapsed: false
+      isCollapsed: false,
+      data: {
+        btc_balance: '',
+        usdt_address: '',
+        usdt_balance: ''
+      }
     };
   },
 
@@ -105900,8 +105905,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   },
   created: function created() {
+    var _this = this;
+
     this.$axios('admin/getusdt').then(function (response) {
-      console.log(response);
+      var _response$data = response.data,
+          btc_balance = _response$data.btc_balance,
+          usdt_address = _response$data.usdt_address,
+          usdt_balance = _response$data.usdt_balance;
+
+      _this.data = {
+        btc_balance: btc_balance,
+        usdt_address: usdt_address,
+        usdt_balance: usdt_balance
+      };
     });
   }
 });
@@ -106066,15 +106082,15 @@ var render = function() {
                     "Row",
                     [
                       _c("i-col", { attrs: { span: "10" } }, [
-                        _vm._v("USDT地址：")
+                        _vm._v("USDT地址：" + _vm._s(_vm.data.usdt_address))
                       ]),
                       _vm._v(" "),
                       _c("i-col", { attrs: { span: "7" } }, [
-                        _vm._v("USDT余额：")
+                        _vm._v("USDT余额：" + _vm._s(_vm.data.usdt_balance))
                       ]),
                       _vm._v(" "),
                       _c("i-col", { attrs: { span: "7" } }, [
-                        _vm._v("BTC余额：")
+                        _vm._v("BTC余额：" + _vm._s(_vm.data.btc_balance))
                       ])
                     ],
                     1
@@ -106180,7 +106196,7 @@ var content = __webpack_require__(191);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(5)("13c44b80", content, false, {});
+var update = __webpack_require__(5)("178a8ced", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -106204,7 +106220,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n.login[data-v-a65db5f6]{\n  background: linear-gradient(135deg, #7262d1, #48d7e4);\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  top: 0px;\n  left: 0px;\n}\n.from[data-v-a65db5f6]{\n  width: 175px;\n  height: 150px;\n  position: absolute;\n  top: 0px;\n  left: 0px;\n  bottom: 0px;\n  right: 0px;\n  margin: auto;\n}\n.title[data-v-a65db5f6]{\n  text-align: center;\n  font-size: 4em;\n  font-family: cursive;\n  margin-right: 20px;\n}\n.box-one[data-v-a65db5f6]{\n  margin-top: 15px;\n}\n\n", ""]);
+exports.push([module.i, "\n.login[data-v-a65db5f6]{\r\n  background: linear-gradient(135deg, #7262d1, #48d7e4);\r\n  width: 100%;\r\n  height: 100%;\r\n  position: absolute;\r\n  top: 0px;\r\n  left: 0px;\n}\n.from[data-v-a65db5f6]{\r\n  width: 175px;\r\n  height: 150px;\r\n  position: absolute;\r\n  top: 0px;\r\n  left: 0px;\r\n  bottom: 0px;\r\n  right: 0px;\r\n  margin: auto;\n}\n.title[data-v-a65db5f6]{\r\n  text-align: center;\r\n  font-size: 4em;\r\n  font-family: cursive;\r\n  margin-right: 20px;\n}\n.box-one[data-v-a65db5f6]{\r\n  margin-top: 15px;\n}\r\n\r\n", ""]);
 
 // exports
 
@@ -106624,7 +106640,7 @@ var content = __webpack_require__(198);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(5)("635330cc", content, false, {});
+var update = __webpack_require__(5)("6adf4c72", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -107956,6 +107972,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -107973,8 +107994,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         exercise_price: "",
         ipo_time: "",
         end_time: "",
-        par_start_time: "",
-        par_end_time: "",
+        pay_start_time: "",
+        pay_end_time: "",
         exercise_start_time: "",
         exercise_end_time: "",
         max_num_option: "",
@@ -108014,11 +108035,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     end_time: function end_time(date) {
       this.data.end_time = date;
     },
-    par_start_time: function par_start_time(date) {
-      this.data.par_start_time = date;
+    pay_start_time: function pay_start_time(date) {
+      this.data.pay_start_time = date;
     },
-    par_end_time: function par_end_time(date) {
-      this.data.par_end_time = date;
+    pay_end_time: function pay_end_time(date) {
+      this.data.pay_end_time = date;
     },
     exercise_start_time: function exercise_start_time(date) {
       this.data.exercise_start_time = date;
@@ -108073,17 +108094,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         alert("行权开始时间必须大于期权到期时间");
         return;
       }
-      this.axios = false;
-      request.post(createRequestURI("admin/create"), {
-        data: this.data,
-        withdraw: withdraw
+      this.$axios({
+        method: "post",
+        url: "admin/pushproduct",
+        params: {
+          data: this.data,
+          withdraw: withdraw
+        }
       }).then(function (response) {
-        _this.data = response.data;
+        console.log(response);
         if (withdraw == 2) {
           _this.$router.push("/List");
         } else {
           _this.$router.push("/Draft");
         }
+      }).catch(function (error) {
+        console.log(error);
       });
     },
     time: function time(value) {
@@ -108395,6 +108421,7 @@ var render = function() {
                     [
                       _c("Date-picker", {
                         attrs: {
+                          type: "datetime",
                           placeholder: "选择日期",
                           format: "yyyy-MM-dd HH:mm:ss"
                         },
@@ -108430,6 +108457,7 @@ var render = function() {
                     [
                       _c("Date-picker", {
                         attrs: {
+                          type: "datetime",
                           placeholder: "选择日期",
                           format: "yyyy-MM-dd HH:mm:ss"
                         },
@@ -108469,7 +108497,7 @@ var render = function() {
                           placeholder: "选择日期",
                           format: "yyyy-MM-dd HH:mm:ss"
                         },
-                        on: { "on-change": _vm.par_start_time }
+                        on: { "on-change": _vm.pay_start_time }
                       })
                     ],
                     1
@@ -108501,7 +108529,7 @@ var render = function() {
                           placeholder: "选择日期",
                           format: "yyyy-MM-dd HH:mm:ss"
                         },
-                        on: { "on-change": _vm.par_end_time }
+                        on: { "on-change": _vm.pay_end_time }
                       })
                     ],
                     1
@@ -108770,6 +108798,8 @@ var render = function() {
         ],
         1
       ),
+      _vm._v(" "),
+      _c("Row", [_c("i-col", [_vm._v("\n      注：带‘*’为必填项\n    ")])], 1),
       _vm._v(" "),
       _c(
         "Form-item",
@@ -109807,24 +109837,43 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 width: 400
             }, {
                 title: '数量',
-                key: 'number',
+                key: 'add_number',
                 width: 400
             }, {
                 title: '充值时间',
-                key: 'time',
+                key: 'updated_at',
                 width: 400
             }],
-            data3: [{
-                id: 74,
-                name: '我们都是好孩子',
-                number: "1",
-                time: '2018-10-11 22:15:17'
-            }],
+            data3: [],
             data: {
                 name: ''
-            }
+            },
+            count: {}
         };
+    },
+    created: function created() {
+        this.release();
+    },
+
+    methods: {
+        release: function release() {
+            var _this = this;
+
+            this.$axios({
+                method: "post",
+                url: "admin/usdtlist",
+                params: {
+                    name: this.data.name
+                }
+            }).then(function (response) {
+                console.log(response.data);
+                _this.data3 = response.data.data;
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
     }
+
 });
 
 /***/ }),
@@ -109885,11 +109934,13 @@ var render = function() {
             { attrs: { span: "6" } },
             [
               _c("i-input", {
-                attrs: { value: _vm.data.name, placeholder: "请输入用户名" },
-                on: {
-                  "update:value": function($event) {
-                    _vm.$set(_vm.data, "name", $event)
-                  }
+                attrs: { placeholder: "请输入用户名" },
+                model: {
+                  value: _vm.data.name,
+                  callback: function($$v) {
+                    _vm.$set(_vm.data, "name", $$v)
+                  },
+                  expression: "data.name"
                 }
               })
             ],
@@ -109899,7 +109950,13 @@ var render = function() {
           _c(
             "i-col",
             { attrs: { span: "2" } },
-            [_c("Button", { attrs: { type: "primary" } }, [_vm._v("搜索")])],
+            [
+              _c(
+                "Button",
+                { attrs: { type: "primary" }, on: { click: _vm.release } },
+                [_vm._v("搜索")]
+              )
+            ],
             1
           )
         ],
