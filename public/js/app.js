@@ -109614,163 +109614,148 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
 
 var moment = __webpack_require__(0);
 /* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        var _this = this;
+  data: function data() {
+    var _this = this;
 
-        return {
-            columns2: [{
-                title: '序号',
-                key: 'id',
-                width: 100,
-                fixed: 'left'
-            }, {
-                title: '币种',
-                key: 'token_name',
-                width: 100
-            }, {
-                title: '提现地址',
-                key: 'address',
-                width: 300
-            }, {
-                title: '提现金额',
-                key: 'balance',
-                width: 200
-            }, {
-                title: '手续费',
-                key: 'poundage',
-                width: 200
-            }, {
-                title: '状态',
-                key: 'status',
-                width: 200
-            }, {
-                title: '日期',
-                width: 200,
-                render: function render(h, params) {
-                    console.log(_this.time);
-                    var price = _this.time(params.row.created_time * 1000);
-                    return h('Input', {
-                        props: {
-                            type: 'text',
-                            value: price,
-                            disabled: "disabled"
-                        }
-                    });
-                }
-            }, {
-                title: '操作',
-                key: 'action',
-                fixed: 'right',
-                width: 200,
-                render: function render(h, params) {
-                    if (params.row.status != 0) {
-                        return;
-                    }
-                    return h('div', [h('Button', {
-                        props: {
-                            type: 'success',
-                            size: 'small'
-                        },
-                        style: {
-                            marginLeft: '30px'
-                        },
-                        on: {
-                            click: function click() {
-                                _this.examine(params.row.id, 1);
-                            }
-                        }
-                    }, '通过'), h('Button', {
-                        props: {
-                            type: 'success',
-                            size: 'small'
-                        },
-                        style: {
-                            marginLeft: '30px'
-                        },
-                        on: {
-                            click: function click() {
-                                _this.examine(params.row.id, 3);
-                            }
-                        }
-                    }, '不通过')]);
-                }
-            }],
-            data3: [],
-            cityList: [{
-                value: 'New York',
-                label: 'New York'
-            }, {
-                value: 'London',
-                label: 'London'
-            }, {
-                value: 'Sydney',
-                label: 'Sydney'
-            }, {
-                value: 'Ottawa',
-                label: 'Ottawa'
-            }, {
-                value: 'Paris',
-                label: 'Paris'
-            }, {
-                value: 'Canberra',
-                label: 'Canberra'
-            }],
-            model1: '',
-            model2: ''
-        };
-    },
-    created: function created() {
-        this.release();
-    },
-
-    methods: {
-        examine: function examine(id, status) {
-            var _this2 = this;
-
-            this.$axios({
-                method: 'post',
-                url: 'admin/examine',
-                params: {
-                    id: id,
-                    status: status
-                }
-            }).then(function (response) {
-                // this.data3 = response.data.data
-                if (response.data.errmsg == 'OK') {
-                    _this2.release();
-                }
-                console.log(response.data);
-            }).catch(function (error) {
-                console.log(error);
-            });
-        },
-        release: function release() {
-            var _this3 = this;
-
-            this.$axios({
-                method: 'post',
-                url: 'admin/withdrawlist'
-            }).then(function (response) {
-                _this3.data3 = response.data.data;
-                console.log(response.data);
-            }).catch(function (error) {
-                console.log(error);
-            });
-        },
-        TermReview: function TermReview() {
-            this.$router.push('/TermReview');
-        },
-        time: function time(value) {
-            return moment(parseInt(value)).format('YYYY-MM-DD HH:mm');
+    return {
+      columns2: [{
+        title: "序号",
+        key: "id",
+        width: 100,
+        fixed: "left"
+      }, {
+        title: "币种",
+        key: "token_name",
+        width: 100
+      }, {
+        title: "提现地址",
+        key: "address",
+        width: 300
+      }, {
+        title: "提现金额",
+        key: "balance",
+        width: 200
+      }, {
+        title: "手续费",
+        key: "poundage",
+        width: 200
+      }, {
+        title: "状态",
+        key: "status",
+        width: 200
+      }, {
+        title: "日期",
+        width: 200,
+        render: function render(h, params) {
+          var price = _this.time(params.row.created_time * 1000);
+          return h("Input", {
+            props: {
+              type: "text",
+              value: price,
+              disabled: "disabled"
+            }
+          });
         }
+      }, {
+        title: "操作",
+        key: "action",
+        fixed: "right",
+        width: 200,
+        render: function render(h, params) {
+          if (params.row.status != 0) {
+            return;
+          }
+          return h("div", [h("Button", {
+            props: {
+              type: "success",
+              size: "small"
+            },
+            style: {
+              marginLeft: "30px"
+            },
+            on: {
+              click: function click() {
+                _this.examine(params.row.id, 1);
+              }
+            }
+          }, "通过"), h("Button", {
+            props: {
+              type: "success",
+              size: "small"
+            },
+            style: {
+              marginLeft: "30px"
+            },
+            on: {
+              click: function click() {
+                _this.examine(params.row.id, 3);
+              }
+            }
+          }, "不通过")]);
+        }
+      }],
+      data3: [],
+      cityList: [],
+      statuss: [{ label: "待审核", status: 0 }, { label: "已通过", status: 1 }, { label: "未通过", status: 3 }],
+      token_symbol: "",
+      status: ""
+    };
+  },
+  created: function created() {
+    this.release();
+  },
+
+  methods: {
+    //审核(通过、拒绝)
+    examine: function examine(id, status) {
+      var _this2 = this;
+
+      this.$axios({
+        method: "post",
+        url: "admin/examine",
+        params: {
+          id: id,
+          status: status
+        }
+      }).then(function (response) {
+        // this.data3 = response.data.data
+        if (response.data.errmsg == "OK") {
+          _this2.release();
+        }
+        console.log(response.data);
+      }).catch(function (error) {
+        console.log(error);
+      });
+    },
+    release: function release() {
+      var _this3 = this;
+
+      this.$axios({
+        method: "post",
+        url: "admin/withdrawlist",
+        params: {
+          token_symbol: this.token_symbol,
+          status: this.status
+        }
+      }).then(function (response) {
+        console.log();
+        _this3.cityList = response.data.poundage;
+        console.log(_this3.cityList);
+        _this3.data3 = response.data.data.data;
+      }).catch(function (error) {
+        console.log(error);
+      });
+    },
+    TermReview: function TermReview() {
+      this.$router.push("/TermReview");
+    },
+    time: function time(value) {
+      return moment(parseInt(value)).format("YYYY-MM-DD HH:mm");
     }
+  }
 });
 
 /***/ }),
@@ -109793,7 +109778,7 @@ var render = function() {
               staticStyle: { "text-align": "left", "line-height": "30px" },
               attrs: { span: "2" }
             },
-            [_vm._v("\n            币种：\n        ")]
+            [_vm._v("币种：")]
           ),
           _vm._v(" "),
           _c(
@@ -109804,19 +109789,20 @@ var render = function() {
                 "Select",
                 {
                   attrs: { filterable: "" },
+                  on: { "on-change": _vm.release },
                   model: {
-                    value: _vm.model1,
+                    value: _vm.token_symbol,
                     callback: function($$v) {
-                      _vm.model1 = $$v
+                      _vm.token_symbol = $$v
                     },
-                    expression: "model1"
+                    expression: "token_symbol"
                   }
                 },
                 _vm._l(_vm.cityList, function(item) {
                   return _c(
                     "Option",
-                    { key: item.value, attrs: { value: item.value } },
-                    [_vm._v(_vm._s(item.label))]
+                    { key: item.id, attrs: { value: item.id } },
+                    [_vm._v(_vm._s(item.token_name))]
                   )
                 })
               )
@@ -109830,7 +109816,7 @@ var render = function() {
               staticStyle: { "text-align": "left", "line-height": "30px" },
               attrs: { span: "2" }
             },
-            [_vm._v("\n            状态:\n        ")]
+            [_vm._v("状态:")]
           ),
           _vm._v(" "),
           _c(
@@ -109841,18 +109827,19 @@ var render = function() {
                 "Select",
                 {
                   attrs: { filterable: "" },
+                  on: { "on-change": _vm.release },
                   model: {
-                    value: _vm.model2,
+                    value: _vm.status,
                     callback: function($$v) {
-                      _vm.model2 = $$v
+                      _vm.status = $$v
                     },
-                    expression: "model2"
+                    expression: "status"
                   }
                 },
-                _vm._l(_vm.cityList, function(item) {
+                _vm._l(_vm.statuss, function(item) {
                   return _c(
                     "Option",
-                    { key: item.value, attrs: { value: item.value } },
+                    { key: item.value, attrs: { value: item.status } },
                     [_vm._v(_vm._s(item.label))]
                   )
                 })
