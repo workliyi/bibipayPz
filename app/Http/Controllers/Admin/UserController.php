@@ -224,16 +224,13 @@ class UserController extends Controller
         $endToday = date('Y-m-d H:i:s', mktime(0,0,0,date('m'),date('d')+1,date('Y'))-1);
         // 1544435679
         $name = $request->name;//用户名称
-<<<<<<< HEAD
-=======
         //$beginTime = $request->beginTime;//查询开始时间
         //$endTime = $request->endTime;//查询结束时间
->>>>>>> cb3a0dfc29ab73bb9e202c0975e0fdc319e4fd2a
         if($name){
             $user = UserModel::where('name',$name)->first();
             if($user){
                 $data = $charge->where('qz_charge_log.user_id' , $user->id)
-                        ->whereBetween('votes', [$beginToday, $endToday])
+                        ->whereBetween('created_time', [$beginToday, $endToday])
                         ->leftJoin('qz_user' , 'qz_charge_log.user_id' , 'qz_user.id')
                         ->where('qz_charge_log.type' , 2)->where('qz_charge_log.action_type' , 6)->get();
             } else {

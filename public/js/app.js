@@ -109837,37 +109837,43 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 width: 400
             }, {
                 title: '数量',
-                key: 'number',
+                key: 'add_number',
                 width: 400
             }, {
                 title: '充值时间',
-                key: 'time',
+                key: 'updated_at',
                 width: 400
             }],
-            data3: [{
-                id: 74,
-                name: '我们都是好孩子',
-                number: "1",
-                time: '2018-10-11 22:15:17'
-            }],
+            data3: [],
             data: {
                 name: ''
-            }
+            },
+            count: {}
         };
     },
     created: function created() {
-        this.$axios({
-            method: "post",
-            url: "admin/usdtlist",
-            params: {
-                name: this.data.name
-            }
-        }).then(function (response) {
-            console.log(response.data);
-        }).catch(function (error) {
-            console.log(error);
-        });
+        this.release();
+    },
+
+    methods: {
+        release: function release() {
+            var _this = this;
+
+            this.$axios({
+                method: "post",
+                url: "admin/usdtlist",
+                params: {
+                    name: this.data.name
+                }
+            }).then(function (response) {
+                console.log(response.data);
+                _this.data3 = response.data.data;
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
     }
+
 });
 
 /***/ }),
@@ -109944,7 +109950,13 @@ var render = function() {
           _c(
             "i-col",
             { attrs: { span: "2" } },
-            [_c("Button", { attrs: { type: "primary" } }, [_vm._v("搜索")])],
+            [
+              _c(
+                "Button",
+                { attrs: { type: "primary" }, on: { click: _vm.release } },
+                [_vm._v("搜索")]
+              )
+            ],
             1
           )
         ],
