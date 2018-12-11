@@ -1,7 +1,11 @@
 /node_modules
+<<<<<<< HEAD
 /public/hot
 /public/js
 /public/storage
+=======
+/public
+>>>>>>> cb3a0dfc29ab73bb9e202c0975e0fdc319e4fd2a
 /storage/*.key
 /vendor
 /.idea
