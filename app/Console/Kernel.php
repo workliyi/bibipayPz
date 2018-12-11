@@ -13,7 +13,9 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        Commands\QzOrderCommand::class,
+        Commands\QzPriseCommand::class,
+        Commands\QzRmbCommand::class
     ];
 
     /**
@@ -26,6 +28,9 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
+        $schedule->command('command:rmb')->everyThirtyMinutes();
+      	$schedule->command('command:okdata')->everyMinute();
+        $schedule->command('command:qzorder')->everyMinute();
     }
 
     /**
