@@ -107312,7 +107312,7 @@ var moment = __webpack_require__(0);
         return {
             columns2: [{
                 title: '订单ID',
-                key: 'product_id',
+                key: 'id',
                 width: 100
             }, {
                 title: '订单名称',
@@ -107378,25 +107378,28 @@ var moment = __webpack_require__(0);
         };
     },
     created: function created() {
-        var _this2 = this;
-
-        this.$axios({
-            method: 'post',
-            url: 'admin/orderlist',
-            params: {
-                product_num: this.Order.id,
-                product_name: this.Order.userName,
-                perPage: 1
-            }
-        }).then(function (response) {
-            _this2.data3 = response.data.data;
-            console.log(response.data);
-        }).catch(function (error) {
-            console.log(error);
-        });
+        this.release();
     },
 
     methods: {
+        release: function release() {
+            var _this2 = this;
+
+            this.$axios({
+                method: 'post',
+                url: 'admin/orderlist',
+                params: {
+                    product_num: this.Order.id,
+                    product_name: this.Order.name,
+                    perPage: 1
+                }
+            }).then(function (response) {
+                _this2.data3 = response.data.data;
+                console.log(response.data);
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
         time: function time(value) {
             return moment(parseInt(value)).format('YYYY-MM-DD HH:mm');
         }
@@ -107700,11 +107703,13 @@ var render = function() {
             { attrs: { span: "6" } },
             [
               _c("i-input", {
-                attrs: { value: _vm.Order.name, placeholder: "请输入订单名称" },
-                on: {
-                  "update:value": function($event) {
-                    _vm.$set(_vm.Order, "name", $event)
-                  }
+                attrs: { placeholder: "请输入订单名称" },
+                model: {
+                  value: _vm.Order.name,
+                  callback: function($$v) {
+                    _vm.$set(_vm.Order, "name", $$v)
+                  },
+                  expression: "Order.name"
                 }
               })
             ],
@@ -107725,11 +107730,13 @@ var render = function() {
             { attrs: { span: "6" } },
             [
               _c("i-input", {
-                attrs: { value: _vm.Order.id, placeholder: "请输入订单ID" },
-                on: {
-                  "update:value": function($event) {
-                    _vm.$set(_vm.Order, "id", $event)
-                  }
+                attrs: { placeholder: "请输入订单ID" },
+                model: {
+                  value: _vm.Order.id,
+                  callback: function($$v) {
+                    _vm.$set(_vm.Order, "id", $$v)
+                  },
+                  expression: "Order.id"
                 }
               })
             ],
@@ -107739,7 +107746,13 @@ var render = function() {
           _c(
             "i-col",
             { attrs: { span: "2" } },
-            [_c("Button", { attrs: { type: "primary" } }, [_vm._v("搜索")])],
+            [
+              _c(
+                "Button",
+                { attrs: { type: "primary" }, on: { click: _vm.release } },
+                [_vm._v("搜索")]
+              )
+            ],
             1
           )
         ],
@@ -108915,90 +108928,114 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 var moment = __webpack_require__(0);
 /* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        var _this = this;
+  data: function data() {
+    var _this = this;
 
-        return {
-            columns2: [{
-                title: '#ID',
-                key: 'id',
-                width: 100
-            }, {
-                title: '状态',
-                width: 250,
-                render: function render(h, params) {
-                    var status = params.row.end_status;
-                    if (status === 1) {
-                        return h('span', '进行中');
-                    };
-                    if (status === 2) {
-                        return h('span', '已完成');
-                    };
-                    if (status === 3) {
-                        return h('span', '未开始');
-                    };
-                }
-            }, {
-                title: '发布日期',
-                width: 250,
-                render: function render(h, params) {
-                    var price = _this.time(params.row.create_time * 1000);
-                    return h('Input', {
-                        props: {
-                            type: 'text',
-                            value: price,
-                            disabled: "disabled"
-                        }
-                    });
-                }
-            }, {
-                title: '到期日期',
-                width: 250,
-                render: function render(h, params) {
-                    var price = _this.time(params.row.pay_end_time * 1000);
-                    return h('Input', {
-                        props: {
-                            type: 'text',
-                            value: price,
-                            disabled: "disabled"
-                        }
-                    });
-                }
-            }, {
-                title: '操作',
-                key: 'action',
-                width: 250,
-                render: function render(h, params) {
-                    return h('div', { style: { width: '100%', display: 'flex', justifyContent: 'space-around' } }, [h('i-button', { attrs: { type: "success", size: "small" } }, '下架'), h('i-button', { attrs: { type: "success", size: "small" } }, '查看')]);
-                }
-            }],
-            data3: [{
-                id: 74,
-                name: '我们都是好孩子',
-                phone: '17744407804',
-                time: '2018-10-11 22:15:17'
-            }]
-        };
-    },
-    created: function created() {
-        var _this2 = this;
-
-        this.$axios({
-            method: 'post',
-            url: 'admin/prolist'
-        }).then(function (response) {
-            _this2.data3 = response.data.data;
-            console.log(response.data);
-        }).catch(function (error) {
-            console.log(error);
-        });
-    },
-
-    methods: {
-        time: function time(value) {
-            return moment(parseInt(value)).format('YYYY-MM-DD HH:mm');
+    return {
+      columns2: [{
+        title: "#ID",
+        key: "id",
+        width: 100
+      }, {
+        title: "状态",
+        width: 250,
+        render: function render(h, params) {
+          var status = params.row.end_status;
+          if (status === 1) {
+            return h("span", "进行中");
+          }
+          if (status === 2) {
+            return h("span", "已完成");
+          }
+          if (status === 3) {
+            return h("span", "未开始");
+          }
         }
+      }, {
+        title: "发布日期",
+        width: 250,
+        render: function render(h, params) {
+          var price = _this.time(params.row.create_time * 1000);
+          return h("Input", {
+            props: {
+              type: "text",
+              value: price,
+              disabled: "disabled"
+            }
+          });
+        }
+      }, {
+        title: "到期日期",
+        width: 250,
+        render: function render(h, params) {
+          var price = _this.time(params.row.pay_end_time * 1000);
+          return h("Input", {
+            props: {
+              type: "text",
+              value: price,
+              disabled: "disabled"
+            }
+          });
+        }
+      }, {
+        title: "操作",
+        key: "action",
+        width: 250,
+        render: function render(h, params) {
+          return h("div", {
+            style: {
+              width: "100%",
+              display: "flex",
+              justifyContent: "space-around"
+            }
+          }, [h("i-button", {
+            attrs: { type: "success", size: "small" },
+            on: {
+              click: function click() {
+                _this.$axios({
+                  method: "post",
+                  url: "admin/withdraw",
+                  params: {
+                    id: params.row.id
+                  }
+                }).then(function (response) {
+                  // this.data3 = response.data.data;
+                  console.log(response.data);
+                }).catch(function (error) {
+                  console.log(error);
+                });
+              }
+            }
+          }, "下架"), h("i-button", { attrs: { type: "success", size: "small" } }, "查看")]);
+        }
+      }],
+      data3: [{
+        id: 74,
+        name: "我们都是好孩子",
+        phone: "17744407804",
+        time: "2018-10-11 22:15:17"
+      }]
+    };
+  },
+  created: function created() {
+    var _this2 = this;
+
+    this.$axios({
+      method: "post",
+      url: "admin/prolist"
+    }).then(function (response) {
+      _this2.data3 = response.data.data;
+      console.log(response.data);
+    }).catch(function (error) {
+      console.log(error);
+    });
+  },
+
+  methods: {
+    time: function time(value) {
+      return moment(parseInt(value)).format("YYYY-MM-DD HH:mm");
     }
+  }
 });
 
 /***/ }),
@@ -109867,7 +109904,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 }
             }).then(function (response) {
                 console.log(response.data);
-                _this.data3 = response.data.data;
+                var _response$data = response.data,
+                    data = _response$data.data,
+                    login_count = _response$data.login_count,
+                    today_login_count = _response$data.today_login_count,
+                    today_usdt_count = _response$data.today_usdt_count,
+                    usdt_count = _response$data.usdt_count;
+
+                _this.data3 = data;
+                _this.count = {
+                    login_count: login_count,
+                    today_login_count: today_login_count,
+                    today_usdt_count: today_usdt_count,
+                    usdt_count: usdt_count
+                };
             }).catch(function (error) {
                 console.log(error);
             });
@@ -109890,9 +109940,13 @@ var render = function() {
       _c(
         "Row",
         [
-          _c("i-col", { attrs: { span: "9" } }, [_vm._v("共注册：")]),
+          _c("i-col", { attrs: { span: "9" } }, [
+            _vm._v("共注册：" + _vm._s(_vm.count.login_count))
+          ]),
           _vm._v(" "),
-          _c("i-col", { attrs: { span: "9" } }, [_vm._v("当日注册：")])
+          _c("i-col", { attrs: { span: "9" } }, [
+            _vm._v("当日注册：" + _vm._s(_vm.count.today_login_count))
+          ])
         ],
         1
       ),
@@ -109900,9 +109954,13 @@ var render = function() {
       _c(
         "Row",
         [
-          _c("i-col", { attrs: { span: "9" } }, [_vm._v("共充值（usdt）：")]),
+          _c("i-col", { attrs: { span: "9" } }, [
+            _vm._v("共充值（usdt）：" + _vm._s(_vm.count.usdt_count))
+          ]),
           _vm._v(" "),
-          _c("i-col", { attrs: { span: "9" } }, [_vm._v("当日充值（usdt）：")]),
+          _c("i-col", { attrs: { span: "9" } }, [
+            _vm._v("当日充值（usdt）：" + _vm._s(_vm.count.today_usdt_count))
+          ]),
           _vm._v(" "),
           _c(
             "i-col",
@@ -110180,6 +110238,14 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -110191,39 +110257,93 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            data1: this.getMockData(),
-            targetKeys1: this.getTargetKeys()
+            data1: [],
+            targetKeys1: [],
+            data: []
         };
+    },
+    created: function created() {
+        var _this = this;
+
+        this.$axios.get('admin/retutoken').then(function (response) {
+            var data = response.data;
+            data.forEach(function (item, index) {
+                var id = item.id,
+                    status = item.status,
+                    poundage = item.poundage,
+                    token_name = item.token_name;
+
+                _this.data1.push({
+                    key: id,
+                    id: id,
+                    label: token_name,
+                    status: status,
+                    token_name: token_name,
+                    poundage: poundage
+                });
+                if (item.status == 0) {
+                    _this.targetKeys1.push(item.id);
+                }
+            });
+        });
     },
 
     methods: {
-        getMockData: function getMockData() {
-            var mockData = [];
-            for (var i = 1; i <= 20; i++) {
-                mockData.push({
-                    key: i.toString(),
-                    label: 'Content ' + i,
-                    description: 'The desc of content  ' + i,
-                    disabled: Math.random() * 3 < 1
-                });
-            }
-            return mockData;
-        },
-        getTargetKeys: function getTargetKeys() {
-            return this.getMockData().filter(function () {
-                return Math.random() * 2 > 1;
-            }).map(function (item) {
-                return item.key;
-            });
-        },
         render1: function render1(item) {
             return item.label;
         },
         handleChange1: function handleChange1(newTargetKeys, direction, moveKeys) {
-            console.log(newTargetKeys);
-            console.log(direction);
-            console.log(moveKeys);
+            var _this2 = this;
+
+            if (direction == 'right') {
+                moveKeys.forEach(function (item, index) {
+                    _this2.data1[item - 1].status = 0;
+                });
+                console.log(_typeof(this.data1[0]));
+                this.setting(this.data1);
+            } else {
+                moveKeys.forEach(function (item, index) {
+                    _this2.data1[item - 1].status = 1;
+                });
+                this.setting(this.data1);
+            }
             this.targetKeys1 = newTargetKeys;
+        },
+        setting: function setting(data) {
+            var _this3 = this;
+
+            console.log(data);
+            this.$axios({
+                method: 'post',
+                url: 'admin/setting',
+                params: {
+                    TokenModel: data
+                }
+            }).then(function (response) {
+                var data = response.data;
+                data.forEach(function (item, index) {
+                    console.log(item);
+                    var id = item.id,
+                        status = item.status,
+                        poundage = item.poundage,
+                        token_name = item.token_name;
+
+                    _this3.data1.push({
+                        key: id,
+                        id: id,
+                        label: token_name,
+                        status: status,
+                        token_name: token_name,
+                        poundage: poundage
+                    });
+                    if (item.status == 0) {
+                        _this3.targetKeys1.push(item.id);
+                    }
+                });
+                console.log(response.data);
+            }).catch(function (error) {
+                console.log(error);
+            });
         }
     }
 });
@@ -110240,7 +110360,9 @@ var render = function() {
     attrs: {
       data: _vm.data1,
       "target-keys": _vm.targetKeys1,
-      "render-format": _vm.render1
+      "render-format": _vm.render1,
+      filterable: "",
+      titles: ["不需要审核", "需要审核"]
     },
     on: { "on-change": _vm.handleChange1 }
   })

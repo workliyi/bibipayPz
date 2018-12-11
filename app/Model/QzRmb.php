@@ -7,4 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class QzRmb extends Model
 {
     protected $table = 'qz_rmb';
+    public $timestamps = false;
 }

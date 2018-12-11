@@ -3,14 +3,14 @@
         <Row style="margin-top: 10px;">
             <i-col span="2" style="text-align: left; line-height: 30px;">订单名称：</i-col>
             <i-col span="6">
-                <i-input :value.sync="Order.name" placeholder="请输入订单名称"></i-input>
+                <i-input v-model="Order.name" placeholder="请输入订单名称"></i-input>
             </i-col>
             <i-col span="2" style="text-align: left; line-height: 30px;">订单ID:</i-col>
             <i-col span="6">
-                <i-input :value.sync="Order.id" placeholder="请输入订单ID"></i-input>
+                <i-input v-model="Order.id" placeholder="请输入订单ID"></i-input>
             </i-col>
             <i-col span="2">
-                <Button type="primary">搜索</Button>
+                <Button type="primary" @click="release">搜索</Button>
             </i-col>
         </Row>
         <i-table style="margin-top: 10px;" width='90%' border :columns="columns2" :data="data3"></i-table>
@@ -26,7 +26,7 @@ let moment = require("moment");
                 columns2: [
                     {
                         title: '订单ID',
-                        key: 'product_id',
+                        key: 'id',
                         width: 100
                     },
                     {
@@ -89,24 +89,27 @@ let moment = require("moment");
             }
         },
         created(){
-            this.$axios({
-            method: 'post',
-            url:'admin/orderlist',
-            params: {
-                product_num:this.Order.id,
-                product_name:this.Order.userName,
-                perPage:1
-            }
-            })
-            .then((response) => {
-               this.data3 = response.data.data
-                console.log(response.data)
-            })
-            .catch(function (error) {
-                console.log(error);
-            })
+           this.release();
         },
         methods:{
+            release(){
+                 this.$axios({
+                    method: 'post',
+                    url:'admin/orderlist',
+                    params: {
+                        product_num:this.Order.id,
+                        product_name:this.Order.name,
+                        perPage:1
+                    }
+                })
+                    .then((response) => {
+                    this.data3 = response.data.data
+                        console.log(response.data)
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    })
+            },
             time(value){
                 return moment(parseInt(value)).format('YYYY-MM-DD HH:mm')
             }

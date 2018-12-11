@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable implements JWTSubject
 {
     protected $table = 'qz_user';
+    public $timestamps = false;
     use Notifiable;
 
     public function getJWTIdentifier()

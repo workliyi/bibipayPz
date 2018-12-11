@@ -27,7 +27,9 @@ class TokenController extends Controller
     //设置币种是否开启提现审核
     public function setting(Request $request, TokenModel $TokenModel)
     {
+        
         $data = $request->TokenModel;
+        return $data;
         foreach ($data as $value) {
             $TokenModel->where('id', $value['id'])->update(['status' => $value['status']]);
         }
