@@ -29,8 +29,8 @@ class TokenController extends Controller
     {
         
         $data = $request->TokenModel;
-        return $data;
         foreach ($data as $value) {
+            $value = json_decode($value , true);
             $Token->where('id', $value['id'])->update(['status' => $value['status']]);
         }
         return response()->json(['message' => '成功', 'code' => 200, 'data' => $data]);

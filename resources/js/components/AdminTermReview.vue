@@ -58,7 +58,7 @@
                 this.targetKeys1 = newTargetKeys;
             },
             setting(data){
-                console.log(typeof data[0])
+                console.log(data)
                 this.$axios({
                     method: 'post',
                     url:'admin/setting',

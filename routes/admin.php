@@ -29,3 +29,4 @@ Route::get('/getusdt', 'Admin\TokenController@getusdt');
 Route::post('/withdrawlist', 'Admin\WithdrawalsApplyController@lists');
 //提现审核操作(通过/拒绝)
 Route::post('/examine', 'Admin\WithdrawalsApplyController@examine');
+Route::post('/setting', 'Admin\TokenController@setting');
