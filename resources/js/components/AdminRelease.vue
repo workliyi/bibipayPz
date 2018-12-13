@@ -65,7 +65,7 @@
       <Row>
         <i-col span="6">
           <Form-item prop="datetime">
-            <Date-picker type="datetime" placeholder="选择日期" format="yyyy-MM-dd HH:mm:ss" @on-change="ipo_time"></Date-picker>
+            <DatePicker type="datetime" format="yyyy-MM-dd HH:mm" @on-change="ipo_time" placeholder="选择日期" v-model="data.ipo_time"></DatePicker>
           </Form-item>
         </i-col>
       </Row>
@@ -74,7 +74,7 @@
       <Row>
         <i-col span="6">
           <Form-item prop="datetime">
-            <Date-picker type="datetime" placeholder="选择日期" format="yyyy-MM-dd HH:mm:ss" @on-change="end_time"></Date-picker>
+            <DatePicker type="datetime" placeholder="选择日期" format="yyyy-MM-dd HH:mm" @on-change="end_time" v-model="data.end_time"></DatePicker>
           </Form-item>
         </i-col>
       </Row>
@@ -83,13 +83,13 @@
       <Row>
         <i-col span="6">
           <Form-item prop="datetime">
-            <Date-picker type="datetime" placeholder="选择日期" format="yyyy-MM-dd HH:mm:ss" @on-change="pay_start_time"></Date-picker>
+            <DatePicker type="datetime" placeholder="选择日期" format="yyyy-MM-dd HH:mm" @on-change="pay_start_time" v-model="data.pay_start_time"></DatePicker>
           </Form-item>
         </i-col>
         <i-col span="2" style="text-align: center">-</i-col>
         <i-col span="6">
           <Form-item prop="datetime">
-            <Date-picker type="datetime" placeholder="选择日期" format="yyyy-MM-dd HH:mm:ss" @on-change="pay_end_time"></Date-picker>
+            <DatePicker type="datetime" placeholder="选择日期" format="yyyy-MM-dd HH:mm" @on-change="pay_end_time" v-model="data.pay_end_time"></DatePicker>
           </Form-item>
         </i-col>
       </Row>
@@ -98,13 +98,13 @@
       <Row>
         <i-col span="6">
           <Form-item prop="datetime">
-            <Date-picker type="datetime" placeholder="选择日期" format="yyyy-MM-dd HH:mm:ss" @on-change="exercise_start_time"></Date-picker>
+            <DatePicker type="datetime" placeholder="选择日期" format="yyyy-MM-dd HH:mm" @on-change="exercise_start_time" v-model="data.exercise_start_time"></DatePicker>
           </Form-item>
         </i-col>
         <i-col span="2" style="text-align: center">-</i-col>
         <i-col span="6">
           <Form-item prop="datetime">
-            <Date-picker type="datetime" placeholder="选择日期" format="yyyy-MM-dd HH:mm:ss" @on-change="exercise_end_time" v-model="data.exercise_end_time"></Date-picker>
+            <DatePicker type="datetime" placeholder="选择日期" format="yyyy-MM-dd HH:mm" @on-change="exercise_end_time" v-model="data.exercise_end_time"></DatePicker>
           </Form-item>
         </i-col>
       </Row>
@@ -147,11 +147,12 @@
     <Form-item>
       <i-button type="primary" @click="release(2)">发布</i-button>
       <i-button type="ghost" style="margin-left: 8px" @click="release(3)">存为草稿</i-button>
-      <i-button type="ghost" style="margin-left: 8px" @click='showModel'>预览</i-button>
+      <i-button type="ghost" style="margin-left: 8px" @click='showModel'>{{Model ? '预览' : '取消预览'}}</i-button>
     </Form-item>
   </i-form>
 </template>
 <script>
+let moment = require("moment");
 export default {
   data() {
     return {
@@ -187,21 +188,29 @@ export default {
     };
   },
   created() {
+    console.log(this.$route.params)
+    if(this.$route.params.id){
+      this.$axios.get('admin/data',{
+      params:{
+        id:this.$route.params.id
+      }
+    })
+    .then((response) => {
+        
+        this.data = response.data
+        this.data.ipo_time = this.time(this.data.ipo_time)
+        this.data.end_time = this.time(this.data.end_time)
+        this.data.pay_start_time = this.time(this.data.pay_start_time)
+        this.data.pay_end_time = this.time(this.data.pay_end_time)
+        this.data.exercise_start_time = this.time(this.data.exercise_start_time)
+        this.data.exercise_end_time = this.time(this.data.exercise_end_time)
+        console.log(this.data)
+    })
+    .catch(function (error) {
+        console.log(error);
+    })
+    }
     
-    // this.$axios({
-    // method: 'post',
-    // url:'admin/newproduct',
-    // params: {
-    //     data:thi
-    // }
-    // })
-    // .then((response) => {
-    //    this.data3 = response.data.data
-    //     console.log(response.data)
-    // })
-    // .catch(function (error) {
-    //     console.log(error);
-    // })
   },
   methods: {
     ipo_time(date){

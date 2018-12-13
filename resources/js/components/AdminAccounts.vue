@@ -14,7 +14,7 @@
             </i-col>
         </Row>
         <i-table width='90%' border :columns="columns2" :data="data3"></i-table>
-         <Page :total="1" show-total />
+        <Page :total="pages.total" :page-size="pages.pageSize" show-total @on-change="changepage"/>
     </div>  
 </template>
 <script>
@@ -56,7 +56,6 @@
                                     },
                                 on: {
                                     click: () => {
-                                        console.log(params)
                                         this.$router.push('/Deteails/' + params.row.id)
                                     }
                                 }
@@ -68,30 +67,40 @@
                 data: {
                     userName:'',
                     id:''
+                },
+                pages:{
+                    current:'',             // 当前页码
+                    total:1,               // 数据总数
+                    pageSize:0,            //每页条数
                 }
             }
         },
         created(){
-           this.release()
+           this.release(1)
         },
         methods:{
-            release () {
-                console.log(this.data)
+            release (index) {
                 this.$axios({
                     method: 'post',
                     url:'admin/accountlist',
                     params: {
                         name:this.data.userName,
                         userId:this.data.id,
-                        perPage:1
+                        page:index,
                     }
                 })
                 .then((response) => {
                     this.data3 = response.data.data
+                    this.pages.total = response.data.total
+                    this.pages.pageSize = response.data.per_page
+                    this.pages.current = response.data.from
                 })
                 .catch(function (error) {
                     console.log(error);
                 })
+            },
+            changepage(index){
+                this.release(index)
             }
         }
         

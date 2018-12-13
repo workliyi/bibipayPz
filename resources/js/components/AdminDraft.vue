@@ -1,7 +1,7 @@
 <template>
   <div>
     <i-table width="90%" border :columns="columns2" :data="data3"></i-table>
-    <Page :total="100" show-total/>
+    <Page :total="pages.total" :page-size="pages.pageSize" show-total @on-change="changepage"/>
   </div>
 </template>
 <script>
@@ -19,7 +19,6 @@ export default {
           title: "发布日期",
           width: 300,
           render: (h, params) => {
-            console.log(this.time);
             let price = this.time(params.row.create_time * 1000);
             return h("Input", {
               props: {
@@ -61,44 +60,65 @@ export default {
               [
                 h(
                   "i-button",
-                    { 
-                      attrs: { type: "success", size: "small" } ,
-                      
-                    },
-                  "修改"
+                  { 
+                    attrs: { type: "success", size: "small" },
+                    on:{
+                      click: () => {
+                        this.$router.push('/Draft/' + params.row.id)
+                      }
+                    }
+                  },
+                  "查看/修改"
                 ),
                 h(
                   "i-button",
-                  { attrs: { type: "success", size: "small" } },
-                  "查看"
-                ),
-                h(
-                  "i-button",
-                  { attrs: { type: "success", size: "small" } },
+                  {
+                    attrs: { type: "success", size: "small" },
+                    on: {
+                      click: () => {
+                        console.log('newproduct')
+                        this.$axios({
+                          method: "post",
+                          url: "admin/newproduct",
+                          params: {
+                            id: params.row.id
+                          }
+                        })
+                          .then(response => {
+                            console.log(response.data.code);
+                            this.release();
+                          })
+                          .catch(function(error) {
+                            console.log(error);
+                          });
+                      }
+                    }
+                  },
                   "发布"
                 ),
                 h(
                   "i-button",
-                    {
-                       attrs: { type: "success", size: "small" },
-                       on: {
-                            click: () => {
-                                this.$axios({
-                                    method: "post",
-                                    url: "admin/delproduct",
-                                    params: {
-                                        id:params.row.id,
-                                    }
-                                })
-                                    .then(response => {
-                                    console.log(response.data);
-                                    })
-                                    .catch(function(error) {
-                                    console.log(error);
-                                    });
-                                },
-                        }
-                    },
+                  {
+                    attrs: { type: "success", size: "small" },
+                    on: {
+                      click: () => {
+                        this.$axios({
+                          method: "post",
+                          url: "admin/delproduct",
+                          params: {
+                            id: params.row.id
+                          }
+                        })
+                          .then(response => {
+                            console.log(response.data);
+                            this.release();
+                          })
+                          .catch(function(error) {
+                            console.log(error);
+                          });
+                      }
+                    }
+                  },
                   "删除"
                 )
               ]
@@ -106,28 +126,42 @@ export default {
           }
         }
       ],
-      data3: []
+      data3: [],
+      pages:{
+          current:'',             // 当前页码
+          total:1,               // 数据总数
+          pageSize:0,            //每页条数
+        }
     };
   },
   created() {
-    this.$axios({
-      method: "post",
-      url: "admin/draft"
-    })
-      .then(response => {
-        this.data3 = response.data.data;
-        console.log(response.data);
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
+    this.release(1);
   },
   methods: {
-    delproduct(id) {
-      
+    release(index) {
+      this.$axios({
+        method: "post",
+        url: "admin/draft",
+        params:{
+          page:index
+        }
+      })
+        .then(response => {
+          this.data3 = response.data.data;
+          this.pages.total = response.data.total
+          this.pages.pageSize = response.data.per_page
+          this.pages.current = response.data.from
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
     },
     time(value) {
       return moment(parseInt(value)).format("YYYY-MM-DD HH:mm");
+    },
+    changepage(index){
+      console.log(index)
+      this.release(index)
     }
   }
 };

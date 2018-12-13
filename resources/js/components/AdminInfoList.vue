@@ -1,7 +1,7 @@
 <template>
   <div>
     <i-table width="90%" border :columns="columns2" :data="data3"></i-table>
-    <Page :total="100" show-total/>
+    <Page :total="pages.total" :page-size="pages.pageSize" show-total @on-change="changepage"/>
   </div>
 </template>
 <script>
@@ -76,32 +76,39 @@ export default {
               [
                 h(
                   "i-button",
-                  { 
-                      attrs: { type: "success", size: "small" },
-                      on:{
-                          click:()=>{
-                                this.$axios({
-                                method: "post",
-                                url: "admin/withdraw",
-                                params: {
-                                            id:params.row.id,
-                                        }
-                                })
-                                .then(response => {
-                                    // this.data3 = response.data.data;
-                                    console.log(response.data);
-                                })
-                                .catch(function(error) {
-                                    console.log(error);
-                                });
+                  {
+                    attrs: { type: "success", size: "small" },
+                    on: {
+                      click: () => {
+                        this.$axios({
+                          method: "post",
+                          url: "admin/withdraw",
+                          params: {
+                            id: params.row.id
                           }
+                        })
+                          .then(response => {
+                            // this.data3 = response.data.data;
+                            console.log(response.data);
+                          })
+                          .catch(function(error) {
+                            console.log(error);
+                          });
                       }
+                    }
                   },
                   "下架"
                 ),
                 h(
                   "i-button",
-                  { attrs: { type: "success", size: "small" } },
+                  {
+                    attrs: { type: "success", size: "small" },
+                    on: {
+                      click: () => {
+                        this.$router.push("/View/" + params.row.id);
+                      }
+                    }
+                  },
                   "查看"
                 )
               ]
@@ -109,32 +116,45 @@ export default {
           }
         }
       ],
-      data3: [
-        {
-          id: 74,
-          name: "我们都是好孩子",
-          phone: "17744407804",
-          time: "2018-10-11 22:15:17"
-        }
-      ]
+      data3: [{}],
+      pages: {
+        current: "", // 当前页码
+        total: 1, // 数据总数
+        pageSize: 0 //每页条数
+      }
     };
   },
   created() {
-    this.$axios({
-      method: "post",
-      url: "admin/prolist"
-    })
-      .then(response => {
-        this.data3 = response.data.data;
-        console.log(response.data);
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
+    this.release(1);
   },
   methods: {
     time(value) {
       return moment(parseInt(value)).format("YYYY-MM-DD HH:mm");
+    },
+    changepage(index) {
+      this.release(index);
+    },
+    release(index) {
+      this.$axios({
+        method: "post",
+        url: "admin/prolist",
+        params: {
+          page: index
+        }
+      })
+        .then(response => {
+          this.data3 = response.data.data;
+          this.pages.total = response.data.total;
+          this.pages.pageSize = response.data.per_page;
+          this.pages.current = response.data.from;
+          console.log(response.data);
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+    },
+    changepage(index) {
+      this.release(index);
     }
   }
 };

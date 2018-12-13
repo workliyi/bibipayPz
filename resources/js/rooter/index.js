@@ -12,6 +12,7 @@ import AdminReview from '../components/AdminReview.vue';
 import AdminDeteail from '../components/AdminDeteail.vue';
 import AdminDateails from '../components/AdminDateails.vue';
 import AdminTermReview from '../components/AdminTermReview.vue';
+import AdminView from '../components/AdminView.vue';
 export default [
     { path: '/login', component: AdminLogin },
     { path: '/',
@@ -27,6 +28,8 @@ export default [
             { path: '/Draft', component: AdminDraft },
             { path: '/Deteail', component: AdminDeteail },
             { path: '/Deteails/:id', component: AdminDateails },
+            { path: '/Draft/:id', component: AdminRelease },
+            { path: '/View/:id', component: AdminView },
             { path: '/TermReview', component: AdminTermReview }
         ]
     },

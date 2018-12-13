@@ -18,7 +18,7 @@
       </i-col>
     </Row>
     <i-table width="90%" border :columns="columns2" :data="data3"></i-table>
-    <Page :total="100" show-total/>
+    <Page :total="pages.total" :page-size="pages.pageSize" show-total @on-change="changepage"/>
   </div>
 </template>
 <script>
@@ -55,8 +55,19 @@ export default {
         },
         {
           title: "状态",
-          key: "status",
-          width: 200
+          width: 200,
+          render: (h, params) => {
+            let status = params.row.status;
+            if (status == 0) {
+              return h("span", "待审核");
+            }
+            if (status == 1) {
+              return h("span", "已通过");
+            }
+            if (status == 3) {
+              return h("span", "未通过");
+            }
+          }
         },
         {
           title: "日期",
@@ -124,17 +135,22 @@ export default {
       ],
       data3: [],
       cityList: [],
-      statuss:[
+      statuss: [
         { label: "待审核", status: 0 },
         { label: "已通过", status: 1 },
         { label: "未通过", status: 3 }
       ],
       token_symbol: "",
-      status: ""
+      status: "",
+      pages: {
+        current: "", // 当前页码
+        total: 1, // 数据总数
+        pageSize: 0 //每页条数
+      }
     };
   },
   created() {
-    this.release();
+    this.release(1);
   },
   methods: {
     //审核(通过、拒绝)
@@ -150,7 +166,7 @@ export default {
         .then(response => {
           // this.data3 = response.data.data
           if (response.data.errmsg == "OK") {
-            this.release();
+            this.release(this.pages.current);
           }
           console.log(response.data);
         })
@@ -159,20 +175,22 @@ export default {
         });
     },
 
-    release() {
+    release(index) {
       this.$axios({
         method: "post",
         url: "admin/withdrawlist",
         params: {
           token_symbol: this.token_symbol,
-          status: this.status
+          status: this.status,
+          page: index
         }
       })
-        .then((response) => {
-            console.log()
+        .then(response => {
           this.cityList = response.data.poundage;
-          console.log(this.cityList)
           this.data3 = response.data.data.data;
+          this.pages.total = response.data.total;
+          this.pages.pageSize = response.data.per_page;
+          this.pages.current = response.data.from;
         })
         .catch(function(error) {
           console.log(error);
@@ -183,6 +201,10 @@ export default {
     },
     time(value) {
       return moment(parseInt(value)).format("YYYY-MM-DD HH:mm");
+    },
+    changepage(index) {
+      this.pages.current = index
+      this.release(index);
     }
   }
 };
