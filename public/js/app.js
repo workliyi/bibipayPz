@@ -4999,33 +4999,6 @@ module.exports = {
 /* 3 */
 /***/ (function(module, exports) {
 
-var g;
-
-// This works in non-strict mode
-g = (function() {
-	return this;
-})();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || Function("return this")() || (1,eval)("this");
-} catch(e) {
-	// This works if the window reference is available
-	if(typeof window === "object")
-		g = window;
-}
-
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
-
-module.exports = g;
-
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports) {
-
 /*
 	MIT License http://www.opensource.org/licenses/mit-license.php
 	Author Tobias Koppers @sokra
@@ -5102,6 +5075,33 @@ function toComment(sourceMap) {
 
 	return '/*# ' + data + ' */';
 }
+
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports) {
+
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || Function("return this")() || (1,eval)("this");
+} catch(e) {
+	// This works if the window reference is available
+	if(typeof window === "object")
+		g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
 
 
 /***/ }),
@@ -8039,7 +8039,7 @@ Popper.Defaults = Defaults;
 /* harmony default export */ __webpack_exports__["default"] = (Popper);
 //# sourceMappingURL=popper.js.map
 
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(3)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(4)))
 
 /***/ }),
 /* 9 */
@@ -29840,7 +29840,7 @@ Vue.compile = compileToFunctions;
 
 module.exports = Vue;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(165).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(165).setImmediate))
 
 /***/ }),
 /* 18 */
@@ -41698,7 +41698,7 @@ module.exports = "/fonts/vendor/_iview@2.14.3@iview/dist/styles/ionicons.eot?2c2
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(143);
-module.exports = __webpack_require__(233);
+module.exports = __webpack_require__(238);
 
 
 /***/ }),
@@ -58922,7 +58922,7 @@ if (token) {
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(7)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(7)(module)))
 
 /***/ }),
 /* 146 */
@@ -63826,7 +63826,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
                          (typeof global !== "undefined" && global.clearImmediate) ||
                          (this && this.clearImmediate);
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ }),
 /* 166 */
@@ -64019,7 +64019,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(12)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(12)))
 
 /***/ }),
 /* 167 */
@@ -64102,7 +64102,7 @@ if(false) {
 /* 169 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(4)(false);
+exports = module.exports = __webpack_require__(3)(false);
 // imports
 
 
@@ -105138,7 +105138,7 @@ if(false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var escape = __webpack_require__(177);
-exports = module.exports = __webpack_require__(4)(false);
+exports = module.exports = __webpack_require__(3)(false);
 // imports
 
 
@@ -105673,6 +105673,9 @@ module.exports = function (css) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_AdminDateails_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11__components_AdminDateails_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_AdminTermReview_vue__ = __webpack_require__(230);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_AdminTermReview_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12__components_AdminTermReview_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_AdminView_vue__ = __webpack_require__(233);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_AdminView_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13__components_AdminView_vue__);
+
 
 
 
@@ -105689,7 +105692,7 @@ module.exports = function (css) {
 
 /* harmony default export */ __webpack_exports__["a"] = ([{ path: '/login', component: __WEBPACK_IMPORTED_MODULE_1__components_AdminLogin_vue___default.a }, { path: '/',
     component: __WEBPACK_IMPORTED_MODULE_0__components_AdminHome_vue___default.a,
-    children: [{ path: '/', component: __WEBPACK_IMPORTED_MODULE_2__components_AdminAccounts_vue___default.a }, { path: '/Users', component: __WEBPACK_IMPORTED_MODULE_3__components_AdminUsers_vue___default.a }, { path: '/Order', component: __WEBPACK_IMPORTED_MODULE_4__components_AdminOrder_vue___default.a }, { path: '/Release', component: __WEBPACK_IMPORTED_MODULE_5__components_AdminRelease_vue___default.a }, { path: '/List', component: __WEBPACK_IMPORTED_MODULE_6__components_AdminInfoList_vue___default.a }, { path: '/Cost', component: __WEBPACK_IMPORTED_MODULE_7__components_AdminCost_vue___default.a }, { path: '/Review', component: __WEBPACK_IMPORTED_MODULE_9__components_AdminReview_vue___default.a }, { path: '/Draft', component: __WEBPACK_IMPORTED_MODULE_8__components_AdminDraft_vue___default.a }, { path: '/Deteail', component: __WEBPACK_IMPORTED_MODULE_10__components_AdminDeteail_vue___default.a }, { path: '/Deteails/:id', component: __WEBPACK_IMPORTED_MODULE_11__components_AdminDateails_vue___default.a }, { path: '/TermReview', component: __WEBPACK_IMPORTED_MODULE_12__components_AdminTermReview_vue___default.a }]
+    children: [{ path: '/', component: __WEBPACK_IMPORTED_MODULE_2__components_AdminAccounts_vue___default.a }, { path: '/Users', component: __WEBPACK_IMPORTED_MODULE_3__components_AdminUsers_vue___default.a }, { path: '/Order', component: __WEBPACK_IMPORTED_MODULE_4__components_AdminOrder_vue___default.a }, { path: '/Release', component: __WEBPACK_IMPORTED_MODULE_5__components_AdminRelease_vue___default.a }, { path: '/List', component: __WEBPACK_IMPORTED_MODULE_6__components_AdminInfoList_vue___default.a }, { path: '/Cost', component: __WEBPACK_IMPORTED_MODULE_7__components_AdminCost_vue___default.a }, { path: '/Review', component: __WEBPACK_IMPORTED_MODULE_9__components_AdminReview_vue___default.a }, { path: '/Draft', component: __WEBPACK_IMPORTED_MODULE_8__components_AdminDraft_vue___default.a }, { path: '/Deteail', component: __WEBPACK_IMPORTED_MODULE_10__components_AdminDeteail_vue___default.a }, { path: '/Deteails/:id', component: __WEBPACK_IMPORTED_MODULE_11__components_AdminDateails_vue___default.a }, { path: '/Draft/:id', component: __WEBPACK_IMPORTED_MODULE_5__components_AdminRelease_vue___default.a }, { path: '/View/:id', component: __WEBPACK_IMPORTED_MODULE_13__components_AdminView_vue___default.a }, { path: '/TermReview', component: __WEBPACK_IMPORTED_MODULE_12__components_AdminTermReview_vue___default.a }]
 }]);
 
 /***/ }),
@@ -105773,7 +105776,7 @@ if(false) {
 /* 186 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(4)(false);
+exports = module.exports = __webpack_require__(3)(false);
 // imports
 
 
@@ -106215,7 +106218,7 @@ if(false) {
 /* 191 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(4)(false);
+exports = module.exports = __webpack_require__(3)(false);
 // imports
 
 
@@ -106537,7 +106540,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         },
                         on: {
                             click: function click() {
-                                console.log(params);
                                 _this.$router.push('/Deteails/' + params.row.id);
                             }
                         }
@@ -106548,31 +106550,41 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             data: {
                 userName: '',
                 id: ''
+            },
+            pages: {
+                current: '', // 当前页码
+                total: 1, // 数据总数
+                pageSize: 0 //每页条数
             }
         };
     },
     created: function created() {
-        this.release();
+        this.release(1);
     },
 
     methods: {
-        release: function release() {
+        release: function release(index) {
             var _this2 = this;
 
-            console.log(this.data);
             this.$axios({
                 method: 'post',
                 url: 'admin/accountlist',
                 params: {
                     name: this.data.userName,
                     userId: this.data.id,
-                    perPage: 1
+                    page: index
                 }
             }).then(function (response) {
                 _this2.data3 = response.data.data;
+                _this2.pages.total = response.data.total;
+                _this2.pages.pageSize = response.data.per_page;
+                _this2.pages.current = response.data.from;
             }).catch(function (error) {
                 console.log(error);
             });
+        },
+        changepage: function changepage(index) {
+            this.release(index);
         }
     }
 
@@ -106659,7 +106671,7 @@ if(false) {
 /* 198 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(4)(false);
+exports = module.exports = __webpack_require__(3)(false);
 // imports
 
 
@@ -106820,7 +106832,14 @@ var render = function() {
         }
       }),
       _vm._v(" "),
-      _c("Page", { attrs: { total: 1, "show-total": "" } })
+      _c("Page", {
+        attrs: {
+          total: _vm.pages.total,
+          "page-size": _vm.pages.pageSize,
+          "show-total": ""
+        },
+        on: { "on-change": _vm.changepage }
+      })
     ],
     1
   )
@@ -106960,11 +106979,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         ipone: "",
         id: ""
       },
-      date: {}
+      date: {},
+      pages: {
+        current: "", // 当前页码
+        total: 1, // 数据总数
+        pageSize: 0 //每页条数
+      }
     };
   },
   created: function created() {
-    this.release();
+    this.release(1);
   },
 
   methods: {
@@ -106976,7 +107000,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       // console.log(date)
       this.data.end_time = date;
     },
-    release: function release() {
+    release: function release(index) {
       var _this = this;
 
       this.$axios({
@@ -106988,10 +107012,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           tel: this.data.ipone,
           beginTime: this.data.start_time,
           endTime: this.data.end_time,
-          perPage: 1
+          page: index
         }
       }).then(function (response) {
-        console.log('response');
+        console.log("response");
         console.log(response.data.data.data);
         _this.data3 = response.data.data.data;
         var _response$data = response.data,
@@ -107006,10 +107030,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           today_usdt_count: today_usdt_count,
           usdt_count: usdt_count
         };
+        _this.pages.total = response.data.data.total;
+        _this.pages.pageSize = response.data.data.per_page;
+        _this.pages.current = response.data.data.from;
         // console.log(response.data);
       }).catch(function (error) {
         console.log(error);
       });
+    },
+    changepage: function changepage(index) {
+      this.release(index);
     }
   }
 });
@@ -107215,7 +107245,14 @@ var render = function() {
         }
       }),
       _vm._v(" "),
-      _c("Page", { attrs: { total: 1, "show-total": "" } })
+      _c("Page", {
+        attrs: {
+          total: _vm.pages.total,
+          "page-size": _vm.pages.pageSize,
+          "show-total": ""
+        },
+        on: { "on-change": _vm.changepage }
+      })
     ],
     1
   )
@@ -107303,107 +107340,116 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
-
 var moment = __webpack_require__(0);
 /* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        var _this = this;
+  data: function data() {
+    var _this = this;
 
-        return {
-            columns2: [{
-                title: '订单ID',
-                key: 'id',
-                width: 100
-            }, {
-                title: '订单名称',
-                key: 'product_name',
-                width: 200
-            }, {
-                title: '购买金额（usdt)',
-                width: 200,
-                render: function render(h, params) {
-                    var price = params.row.token_price * params.row.token_amount;
-                    return h('Input', {
-                        props: {
-                            type: 'text',
-                            value: price,
-                            disabled: "disabled"
-                        }
-                    });
-                }
-            }, {
-                title: '状态',
-                render: function render(h, params) {
-                    var status = params.row.status;
-                    if (status === 0) {
-                        return h('span', '未付款');
-                    };
-                    if (status === 1) {
-                        return h('span', '已支付');
-                    };
-                    if (status === 2) {
-                        return h('span', '已行权');
-                    };
-                    if (status === 3) {
-                        return h('span', '已失效');
-                    };
-                    if (status === 4) {
-                        return h('span', '自动行权');
-                    };
-                }
-            }, {
-                title: '购买日期',
-                width: 200,
-                render: function render(h, params) {
-                    console.log(_this.time);
-                    var price = _this.time(params.row.buy_time * 1000);
-                    return h('Input', {
-                        props: {
-                            type: 'text',
-                            value: price,
-                            disabled: "disabled"
-                        }
-                    });
-                }
-            }, {
-                title: '购买人',
-                key: 'user_name',
-                width: 200
-            }],
-            data3: [],
-            Order: {
-                name: '',
-                id: ''
+    return {
+      columns2: [{
+        title: "订单ID",
+        key: "id",
+        width: 100
+      }, {
+        title: "订单名称",
+        key: "product_name",
+        width: 200
+      }, {
+        title: "购买金额（usdt)",
+        width: 200,
+        render: function render(h, params) {
+          var price = params.row.token_price * params.row.token_amount;
+          return h("Input", {
+            props: {
+              type: "text",
+              value: price,
+              disabled: "disabled"
             }
-        };
-    },
-    created: function created() {
-        this.release();
-    },
-
-    methods: {
-        release: function release() {
-            var _this2 = this;
-
-            this.$axios({
-                method: 'post',
-                url: 'admin/orderlist',
-                params: {
-                    product_num: this.Order.id,
-                    product_name: this.Order.name,
-                    perPage: 1
-                }
-            }).then(function (response) {
-                _this2.data3 = response.data.data;
-                console.log(response.data);
-            }).catch(function (error) {
-                console.log(error);
-            });
-        },
-        time: function time(value) {
-            return moment(parseInt(value)).format('YYYY-MM-DD HH:mm');
+          });
         }
+      }, {
+        title: "状态",
+        render: function render(h, params) {
+          var status = params.row.status;
+          if (status === 0) {
+            return h("span", "未付款");
+          }
+          if (status === 1) {
+            return h("span", "已支付");
+          }
+          if (status === 2) {
+            return h("span", "已行权");
+          }
+          if (status === 3) {
+            return h("span", "已失效");
+          }
+          if (status === 4) {
+            return h("span", "自动行权");
+          }
+        }
+      }, {
+        title: "购买日期",
+        width: 200,
+        render: function render(h, params) {
+          var price = _this.time(params.row.buy_time * 1000);
+          return h("Input", {
+            props: {
+              type: "text",
+              value: price,
+              disabled: "disabled"
+            }
+          });
+        }
+      }, {
+        title: "购买人",
+        key: "user_name",
+        width: 200
+      }],
+      data3: [],
+      Order: {
+        name: "",
+        id: ""
+      },
+      pages: {
+        current: "", // 当前页码
+        total: 1, // 数据总数
+        pageSize: 0 //每页条数
+      }
+    };
+  },
+  created: function created() {
+    this.release(1);
+  },
+
+  methods: {
+    release: function release(index) {
+      var _this2 = this;
+
+      this.$axios({
+        method: "post",
+        url: "admin/orderlist",
+        params: {
+          product_num: this.Order.id,
+          product_name: this.Order.name,
+          page: index
+        }
+      }).then(function (response) {
+        _this2.data3 = response.data.data;
+        _this2.pages.total = response.data.total;
+        _this2.pages.pageSize = response.data.per_page;
+        _this2.pages.current = response.data.from;
+        console.log(response.data);
+      }).catch(function (error) {
+        console.log(error);
+      });
+    },
+    time: function time(value) {
+      return moment(parseInt(value)).format("YYYY-MM-DD HH:mm");
+    },
+    changepage: function changepage(index) {
+      this.release(index);
     }
+  }
 });
 
 /***/ }),
@@ -107769,7 +107815,14 @@ var render = function() {
         }
       }),
       _vm._v(" "),
-      _c("Page", { attrs: { total: 1, "show-total": "" } })
+      _c("Page", {
+        attrs: {
+          total: _vm.pages.total,
+          "page-size": _vm.pages.pageSize,
+          "show-total": ""
+        },
+        on: { "on-change": _vm.changepage }
+      })
     ],
     1
   )
@@ -107991,6 +108044,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+var moment = __webpack_require__(0);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -108021,24 +108075,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         bail: "",
         charge_unit: "",
         bail_return: ""
-      }
+      },
+      Model: true
     };
   },
   created: function created() {
-    // this.$axios({
-    // method: 'post',
-    // url:'admin/newproduct',
-    // params: {
-    //     data:thi
-    // }
-    // })
-    // .then((response) => {
-    //    this.data3 = response.data.data
-    //     console.log(response.data)
-    // })
-    // .catch(function (error) {
-    //     console.log(error);
-    // })
+    var _this = this;
+
+    console.log(this.$route.params);
+    if (this.$route.params.id) {
+      this.$axios.get('admin/data', {
+        params: {
+          id: this.$route.params.id
+        }
+      }).then(function (response) {
+
+        _this.data = response.data;
+        _this.data.ipo_time = _this.time(_this.data.ipo_time);
+        _this.data.end_time = _this.time(_this.data.end_time);
+        _this.data.pay_start_time = _this.time(_this.data.pay_start_time);
+        _this.data.pay_end_time = _this.time(_this.data.pay_end_time);
+        _this.data.exercise_start_time = _this.time(_this.data.exercise_start_time);
+        _this.data.exercise_end_time = _this.time(_this.data.exercise_end_time);
+        console.log(_this.data);
+      }).catch(function (error) {
+        console.log(error);
+      });
+    }
   },
 
   methods: {
@@ -108061,7 +108124,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.data.exercise_end_time = date;
     },
     release: function release(withdraw) {
-      var _this = this;
+      var _this2 = this;
 
       console.log(withdraw);
       var time = new Date(this.data.exercise_start_time).getTime(); //行权开始时间
@@ -108117,9 +108180,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }).then(function (response) {
         console.log(response);
         if (withdraw == 2) {
-          _this.$router.push("/List");
+          _this2.$router.push("/List");
         } else {
-          _this.$router.push("/Draft");
+          _this2.$router.push("/Draft");
         }
       }).catch(function (error) {
         console.log(error);
@@ -108130,6 +108193,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return;
       }
       return moment(parseInt(value) * 1000).format("YYYY-MM-DD HH:mm");
+    },
+    showModel: function showModel() {
+      if (this.Model) {
+        this.Model = false;
+      } else {
+        this.Model = true;
+      }
     }
   }
 });
@@ -108149,297 +108219,328 @@ var render = function() {
       attrs: { model: _vm.data, "label-position": "right", "label-width": 150 }
     },
     [
-      _c(
-        "Form-item",
-        { attrs: { label: "名称：" } },
-        [
-          _c("i-input", {
-            attrs: { placeholder: "请输入名称" },
-            model: {
-              value: _vm.data.title,
-              callback: function($$v) {
-                _vm.$set(_vm.data, "title", $$v)
-              },
-              expression: "data.title"
-            }
-          })
-        ],
-        1
-      ),
+      _vm.Model || _vm.data.title
+        ? _c(
+            "Form-item",
+            { attrs: { label: "名称：" } },
+            [
+              _c("i-input", {
+                attrs: { placeholder: "请输入名称" },
+                model: {
+                  value: _vm.data.title,
+                  callback: function($$v) {
+                    _vm.$set(_vm.data, "title", $$v)
+                  },
+                  expression: "data.title"
+                }
+              })
+            ],
+            1
+          )
+        : _vm._e(),
       _vm._v(" "),
-      _c(
-        "Form-item",
-        { attrs: { label: "期权标的：" } },
-        [
-          _c("i-input", {
-            attrs: { placeholder: "请输入期权标的" },
-            model: {
-              value: _vm.data.token_type,
-              callback: function($$v) {
-                _vm.$set(_vm.data, "token_type", $$v)
-              },
-              expression: "data.token_type"
-            }
-          })
-        ],
-        1
-      ),
+      _vm.Model || _vm.data.token_type
+        ? _c(
+            "Form-item",
+            { attrs: { label: "期权标的：" } },
+            [
+              _c("i-input", {
+                attrs: { placeholder: "请输入期权标的" },
+                model: {
+                  value: _vm.data.token_type,
+                  callback: function($$v) {
+                    _vm.$set(_vm.data, "token_type", $$v)
+                  },
+                  expression: "data.token_type"
+                }
+              })
+            ],
+            1
+          )
+        : _vm._e(),
       _vm._v(" "),
-      _c(
-        "Form-item",
-        { attrs: { label: "合约类型：" } },
-        [
-          _c("i-input", {
-            attrs: { placeholder: "请输入合约类型" },
-            model: {
-              value: _vm.data.contract_type,
-              callback: function($$v) {
-                _vm.$set(_vm.data, "contract_type", $$v)
-              },
-              expression: "data.contract_type"
-            }
-          })
-        ],
-        1
-      ),
+      _vm.Model || _vm.data.contract_type
+        ? _c(
+            "Form-item",
+            { attrs: { label: "合约类型：" } },
+            [
+              _c("i-input", {
+                attrs: { placeholder: "请输入合约类型" },
+                model: {
+                  value: _vm.data.contract_type,
+                  callback: function($$v) {
+                    _vm.$set(_vm.data, "contract_type", $$v)
+                  },
+                  expression: "data.contract_type"
+                }
+              })
+            ],
+            1
+          )
+        : _vm._e(),
       _vm._v(" "),
-      _c(
-        "Form-item",
-        { attrs: { label: "计价单位：" } },
-        [
-          _c("i-input", {
-            attrs: { placeholder: "请输入计价单位" },
-            model: {
-              value: _vm.data.unit_valuation,
-              callback: function($$v) {
-                _vm.$set(_vm.data, "unit_valuation", $$v)
-              },
-              expression: "data.unit_valuation"
-            }
-          })
-        ],
-        1
-      ),
+      _vm.Model || _vm.data.unit_valuation
+        ? _c(
+            "Form-item",
+            { attrs: { label: "计价单位：" } },
+            [
+              _c("i-input", {
+                attrs: { placeholder: "请输入计价单位" },
+                model: {
+                  value: _vm.data.unit_valuation,
+                  callback: function($$v) {
+                    _vm.$set(_vm.data, "unit_valuation", $$v)
+                  },
+                  expression: "data.unit_valuation"
+                }
+              })
+            ],
+            1
+          )
+        : _vm._e(),
       _vm._v(" "),
-      _c(
-        "Form-item",
-        { attrs: { label: "*发行价：" } },
-        [
-          _c("i-input", {
-            attrs: { placeholder: "请输入发行价" },
-            model: {
-              value: _vm.data.issue_price,
-              callback: function($$v) {
-                _vm.$set(_vm.data, "issue_price", $$v)
-              },
-              expression: "data.issue_price"
-            }
-          })
-        ],
-        1
-      ),
+      _vm.Model || _vm.data.issue_price
+        ? _c(
+            "Form-item",
+            { attrs: { label: "*发行价：" } },
+            [
+              _c("i-input", {
+                attrs: { placeholder: "请输入发行价" },
+                model: {
+                  value: _vm.data.issue_price,
+                  callback: function($$v) {
+                    _vm.$set(_vm.data, "issue_price", $$v)
+                  },
+                  expression: "data.issue_price"
+                }
+              })
+            ],
+            1
+          )
+        : _vm._e(),
       _vm._v(" "),
-      _c(
-        "Form-item",
-        { attrs: { label: "最小价格单位：" } },
-        [
-          _c("i-input", {
-            attrs: { placeholder: "请输入最小价格单位" },
-            model: {
-              value: _vm.data.min_price,
-              callback: function($$v) {
-                _vm.$set(_vm.data, "min_price", $$v)
-              },
-              expression: "data.min_price"
-            }
-          })
-        ],
-        1
-      ),
+      _vm.Model || _vm.data.min_price
+        ? _c(
+            "Form-item",
+            { attrs: { label: "最小价格单位：" } },
+            [
+              _c("i-input", {
+                attrs: { placeholder: "请输入最小价格单位" },
+                model: {
+                  value: _vm.data.min_price,
+                  callback: function($$v) {
+                    _vm.$set(_vm.data, "min_price", $$v)
+                  },
+                  expression: "data.min_price"
+                }
+              })
+            ],
+            1
+          )
+        : _vm._e(),
       _vm._v(" "),
-      _c(
-        "Form-item",
-        { attrs: { label: "*合约比例：" } },
-        [
-          _c(
-            "Row",
+      _vm.Model || _vm.data.contract_first || _vm.data.constarct_second
+        ? _c(
+            "Form-item",
+            { attrs: { label: "*合约比例：" } },
             [
               _c(
-                "i-col",
-                { attrs: { span: "8" } },
+                "Row",
                 [
                   _c(
-                    "Form-item",
-                    { attrs: { prop: "contract_first" } },
+                    "i-col",
+                    { attrs: { span: "8" } },
                     [
-                      _c("i-input", {
-                        attrs: { placeholder: "请输入币种" },
-                        model: {
-                          value: _vm.data.contract_first,
-                          callback: function($$v) {
-                            _vm.$set(_vm.data, "contract_first", $$v)
-                          },
-                          expression: "data.contract_first"
-                        }
-                      })
+                      _c(
+                        "Form-item",
+                        { attrs: { prop: "contract_first" } },
+                        [
+                          _c("i-input", {
+                            attrs: { placeholder: "请输入币种" },
+                            model: {
+                              value: _vm.data.contract_first,
+                              callback: function($$v) {
+                                _vm.$set(_vm.data, "contract_first", $$v)
+                              },
+                              expression: "data.contract_first"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "i-col",
+                    {
+                      staticStyle: { "text-align": "center" },
+                      attrs: { span: "1" }
+                    },
+                    [_vm._v(":")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "i-col",
+                    { attrs: { span: "8" } },
+                    [
+                      _c(
+                        "Form-item",
+                        { attrs: { prop: "constarct_second" } },
+                        [
+                          _c("i-input", {
+                            attrs: { placeholder: "请输入合约" },
+                            model: {
+                              value: _vm.data.constarct_second,
+                              callback: function($$v) {
+                                _vm.$set(_vm.data, "constarct_second", $$v)
+                              },
+                              expression: "data.constarct_second"
+                            }
+                          })
+                        ],
+                        1
+                      )
                     ],
                     1
                   )
                 ],
                 1
-              ),
-              _vm._v(" "),
-              _c(
-                "i-col",
-                {
-                  staticStyle: { "text-align": "center" },
-                  attrs: { span: "1" }
+              )
+            ],
+            1
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.Model || _vm.data.description
+        ? _c(
+            "Form-item",
+            { attrs: { label: "文本描述：" } },
+            [
+              _c("i-input", {
+                attrs: {
+                  type: "textarea",
+                  placeholder: "请输入文本描述",
+                  rows: 3,
+                  autosize: { maxRows: 3, minRows: 3 }
                 },
-                [_vm._v(":")]
-              ),
-              _vm._v(" "),
-              _c(
-                "i-col",
-                { attrs: { span: "8" } },
-                [
-                  _c(
-                    "Form-item",
-                    { attrs: { prop: "constarct_second" } },
-                    [
-                      _c("i-input", {
-                        attrs: { placeholder: "请输入合约" },
-                        model: {
-                          value: _vm.data.constarct_second,
-                          callback: function($$v) {
-                            _vm.$set(_vm.data, "constarct_second", $$v)
-                          },
-                          expression: "data.constarct_second"
-                        }
-                      })
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
+                model: {
+                  value: _vm.data.description,
+                  callback: function($$v) {
+                    _vm.$set(_vm.data, "description", $$v)
+                  },
+                  expression: "data.description"
+                }
+              })
             ],
             1
           )
-        ],
-        1
-      ),
+        : _vm._e(),
       _vm._v(" "),
-      _c(
-        "Form-item",
-        { attrs: { label: "文本描述：" } },
-        [
-          _c("i-input", {
-            attrs: {
-              type: "textarea",
-              placeholder: "请输入文本描述",
-              rows: 3,
-              autosize: { maxRows: 3, minRows: 3 }
-            },
-            model: {
-              value: _vm.data.description,
-              callback: function($$v) {
-                _vm.$set(_vm.data, "description", $$v)
-              },
-              expression: "data.description"
-            }
-          })
-        ],
-        1
-      ),
+      _vm.Model || _vm.data.delivery_type
+        ? _c(
+            "Form-item",
+            { attrs: { label: "交割方式：" } },
+            [
+              _c("i-input", {
+                attrs: { placeholder: "请输入交割方式" },
+                model: {
+                  value: _vm.data.delivery_type,
+                  callback: function($$v) {
+                    _vm.$set(_vm.data, "delivery_type", $$v)
+                  },
+                  expression: "data.delivery_type"
+                }
+              })
+            ],
+            1
+          )
+        : _vm._e(),
       _vm._v(" "),
-      _c(
-        "Form-item",
-        { attrs: { label: "交割方式：" } },
-        [
-          _c("i-input", {
-            attrs: { placeholder: "请输入交割方式" },
-            model: {
-              value: _vm.data.delivery_type,
-              callback: function($$v) {
-                _vm.$set(_vm.data, "delivery_type", $$v)
-              },
-              expression: "data.delivery_type"
-            }
-          })
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "Form-item",
-        { attrs: { label: "*行权价格：" } },
-        [
-          _c(
-            "Row",
+      _vm.Model || _vm.data.exercise_price
+        ? _c(
+            "Form-item",
+            { attrs: { label: "*行权价格：" } },
             [
               _c(
-                "i-col",
-                { attrs: { span: "8" } },
+                "Row",
                 [
                   _c(
-                    "Form-item",
-                    { attrs: { prop: "contract_first" } },
+                    "i-col",
+                    { attrs: { span: "8" } },
                     [
-                      _c("i-input", {
-                        attrs: { placeholder: "请输入行权价格" },
-                        model: {
-                          value: _vm.data.exercise_price,
-                          callback: function($$v) {
-                            _vm.$set(_vm.data, "exercise_price", $$v)
-                          },
-                          expression: "data.exercise_price"
-                        }
-                      })
+                      _c(
+                        "Form-item",
+                        { attrs: { prop: "contract_first" } },
+                        [
+                          _c("i-input", {
+                            attrs: { placeholder: "请输入行权价格" },
+                            model: {
+                              value: _vm.data.exercise_price,
+                              callback: function($$v) {
+                                _vm.$set(_vm.data, "exercise_price", $$v)
+                              },
+                              expression: "data.exercise_price"
+                            }
+                          })
+                        ],
+                        1
+                      )
                     ],
                     1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "i-col",
+                    {
+                      staticStyle: { "text-align": "center" },
+                      attrs: { span: "1" }
+                    },
+                    [_vm._v("RMB")]
                   )
                 ],
                 1
-              ),
-              _vm._v(" "),
-              _c(
-                "i-col",
-                {
-                  staticStyle: { "text-align": "center" },
-                  attrs: { span: "1" }
-                },
-                [_vm._v("RMB")]
               )
             ],
             1
           )
-        ],
-        1
-      ),
+        : _vm._e(),
       _vm._v(" "),
-      _c(
-        "Form-item",
-        { attrs: { label: "*上市时间：" } },
-        [
-          _c(
-            "Row",
+      _vm.Model || _vm.data.ipo_time
+        ? _c(
+            "Form-item",
+            { attrs: { label: "*上市时间：" } },
             [
               _c(
-                "i-col",
-                { attrs: { span: "6" } },
+                "Row",
                 [
                   _c(
-                    "Form-item",
-                    { attrs: { prop: "datetime" } },
+                    "i-col",
+                    { attrs: { span: "6" } },
                     [
-                      _c("Date-picker", {
-                        attrs: {
-                          type: "datetime",
-                          placeholder: "选择日期",
-                          format: "yyyy-MM-dd HH:mm:ss"
-                        },
-                        on: { "on-change": _vm.ipo_time }
-                      })
+                      _c(
+                        "Form-item",
+                        { attrs: { prop: "datetime" } },
+                        [
+                          _c("DatePicker", {
+                            attrs: {
+                              type: "datetime",
+                              format: "yyyy-MM-dd HH:mm",
+                              placeholder: "选择日期"
+                            },
+                            on: { "on-change": _vm.ipo_time },
+                            model: {
+                              value: _vm.data.ipo_time,
+                              callback: function($$v) {
+                                _vm.$set(_vm.data, "ipo_time", $$v)
+                              },
+                              expression: "data.ipo_time"
+                            }
+                          })
+                        ],
+                        1
+                      )
                     ],
                     1
                   )
@@ -108449,33 +108550,42 @@ var render = function() {
             ],
             1
           )
-        ],
-        1
-      ),
+        : _vm._e(),
       _vm._v(" "),
-      _c(
-        "Form-item",
-        { attrs: { label: "*期权到期时间：" } },
-        [
-          _c(
-            "Row",
+      _vm.Model || _vm.data.end_time
+        ? _c(
+            "Form-item",
+            { attrs: { label: "*期权到期时间：" } },
             [
               _c(
-                "i-col",
-                { attrs: { span: "6" } },
+                "Row",
                 [
                   _c(
-                    "Form-item",
-                    { attrs: { prop: "datetime" } },
+                    "i-col",
+                    { attrs: { span: "6" } },
                     [
-                      _c("Date-picker", {
-                        attrs: {
-                          type: "datetime",
-                          placeholder: "选择日期",
-                          format: "yyyy-MM-dd HH:mm:ss"
-                        },
-                        on: { "on-change": _vm.end_time }
-                      })
+                      _c(
+                        "Form-item",
+                        { attrs: { prop: "datetime" } },
+                        [
+                          _c("DatePicker", {
+                            attrs: {
+                              type: "datetime",
+                              placeholder: "选择日期",
+                              format: "yyyy-MM-dd HH:mm"
+                            },
+                            on: { "on-change": _vm.end_time },
+                            model: {
+                              value: _vm.data.end_time,
+                              callback: function($$v) {
+                                _vm.$set(_vm.data, "end_time", $$v)
+                              },
+                              expression: "data.end_time"
+                            }
+                          })
+                        ],
+                        1
+                      )
                     ],
                     1
                   )
@@ -108485,65 +108595,81 @@ var render = function() {
             ],
             1
           )
-        ],
-        1
-      ),
+        : _vm._e(),
       _vm._v(" "),
-      _c(
-        "Form-item",
-        { attrs: { label: "*交易期限：" } },
-        [
-          _c(
-            "Row",
+      _vm.Model || _vm.data.pay_start_time || _vm.data.pay_end_time
+        ? _c(
+            "Form-item",
+            { attrs: { label: "*交易期限：" } },
             [
               _c(
-                "i-col",
-                { attrs: { span: "6" } },
+                "Row",
                 [
                   _c(
-                    "Form-item",
-                    { attrs: { prop: "datetime" } },
+                    "i-col",
+                    { attrs: { span: "6" } },
                     [
-                      _c("Date-picker", {
-                        attrs: {
-                          type: "datetime",
-                          placeholder: "选择日期",
-                          format: "yyyy-MM-dd HH:mm:ss"
-                        },
-                        on: { "on-change": _vm.pay_start_time }
-                      })
+                      _c(
+                        "Form-item",
+                        { attrs: { prop: "datetime" } },
+                        [
+                          _c("DatePicker", {
+                            attrs: {
+                              type: "datetime",
+                              placeholder: "选择日期",
+                              format: "yyyy-MM-dd HH:mm"
+                            },
+                            on: { "on-change": _vm.pay_start_time },
+                            model: {
+                              value: _vm.data.pay_start_time,
+                              callback: function($$v) {
+                                _vm.$set(_vm.data, "pay_start_time", $$v)
+                              },
+                              expression: "data.pay_start_time"
+                            }
+                          })
+                        ],
+                        1
+                      )
                     ],
                     1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "i-col",
-                {
-                  staticStyle: { "text-align": "center" },
-                  attrs: { span: "2" }
-                },
-                [_vm._v("-")]
-              ),
-              _vm._v(" "),
-              _c(
-                "i-col",
-                { attrs: { span: "6" } },
-                [
+                  ),
+                  _vm._v(" "),
                   _c(
-                    "Form-item",
-                    { attrs: { prop: "datetime" } },
+                    "i-col",
+                    {
+                      staticStyle: { "text-align": "center" },
+                      attrs: { span: "2" }
+                    },
+                    [_vm._v("-")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "i-col",
+                    { attrs: { span: "6" } },
                     [
-                      _c("Date-picker", {
-                        attrs: {
-                          type: "datetime",
-                          placeholder: "选择日期",
-                          format: "yyyy-MM-dd HH:mm:ss"
-                        },
-                        on: { "on-change": _vm.pay_end_time }
-                      })
+                      _c(
+                        "Form-item",
+                        { attrs: { prop: "datetime" } },
+                        [
+                          _c("DatePicker", {
+                            attrs: {
+                              type: "datetime",
+                              placeholder: "选择日期",
+                              format: "yyyy-MM-dd HH:mm"
+                            },
+                            on: { "on-change": _vm.pay_end_time },
+                            model: {
+                              value: _vm.data.pay_end_time,
+                              callback: function($$v) {
+                                _vm.$set(_vm.data, "pay_end_time", $$v)
+                              },
+                              expression: "data.pay_end_time"
+                            }
+                          })
+                        ],
+                        1
+                      )
                     ],
                     1
                   )
@@ -108553,72 +108679,81 @@ var render = function() {
             ],
             1
           )
-        ],
-        1
-      ),
+        : _vm._e(),
       _vm._v(" "),
-      _c(
-        "Form-item",
-        { attrs: { label: "*行权时间：" } },
-        [
-          _c(
-            "Row",
+      _vm.Model || _vm.data.exercise_start_time || _vm.data.exercise_end_time
+        ? _c(
+            "Form-item",
+            { attrs: { label: "*行权时间：" } },
             [
               _c(
-                "i-col",
-                { attrs: { span: "6" } },
+                "Row",
                 [
                   _c(
-                    "Form-item",
-                    { attrs: { prop: "datetime" } },
+                    "i-col",
+                    { attrs: { span: "6" } },
                     [
-                      _c("Date-picker", {
-                        attrs: {
-                          type: "datetime",
-                          placeholder: "选择日期",
-                          format: "yyyy-MM-dd HH:mm:ss"
-                        },
-                        on: { "on-change": _vm.exercise_start_time }
-                      })
+                      _c(
+                        "Form-item",
+                        { attrs: { prop: "datetime" } },
+                        [
+                          _c("DatePicker", {
+                            attrs: {
+                              type: "datetime",
+                              placeholder: "选择日期",
+                              format: "yyyy-MM-dd HH:mm"
+                            },
+                            on: { "on-change": _vm.exercise_start_time },
+                            model: {
+                              value: _vm.data.exercise_start_time,
+                              callback: function($$v) {
+                                _vm.$set(_vm.data, "exercise_start_time", $$v)
+                              },
+                              expression: "data.exercise_start_time"
+                            }
+                          })
+                        ],
+                        1
+                      )
                     ],
                     1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "i-col",
-                {
-                  staticStyle: { "text-align": "center" },
-                  attrs: { span: "2" }
-                },
-                [_vm._v("-")]
-              ),
-              _vm._v(" "),
-              _c(
-                "i-col",
-                { attrs: { span: "6" } },
-                [
+                  ),
+                  _vm._v(" "),
                   _c(
-                    "Form-item",
-                    { attrs: { prop: "datetime" } },
+                    "i-col",
+                    {
+                      staticStyle: { "text-align": "center" },
+                      attrs: { span: "2" }
+                    },
+                    [_vm._v("-")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "i-col",
+                    { attrs: { span: "6" } },
                     [
-                      _c("Date-picker", {
-                        attrs: {
-                          type: "datetime",
-                          placeholder: "选择日期",
-                          format: "yyyy-MM-dd HH:mm:ss"
-                        },
-                        on: { "on-change": _vm.exercise_end_time },
-                        model: {
-                          value: _vm.data.exercise_end_time,
-                          callback: function($$v) {
-                            _vm.$set(_vm.data, "exercise_end_time", $$v)
-                          },
-                          expression: "data.exercise_end_time"
-                        }
-                      })
+                      _c(
+                        "Form-item",
+                        { attrs: { prop: "datetime" } },
+                        [
+                          _c("DatePicker", {
+                            attrs: {
+                              type: "datetime",
+                              placeholder: "选择日期",
+                              format: "yyyy-MM-dd HH:mm"
+                            },
+                            on: { "on-change": _vm.exercise_end_time },
+                            model: {
+                              value: _vm.data.exercise_end_time,
+                              callback: function($$v) {
+                                _vm.$set(_vm.data, "exercise_end_time", $$v)
+                              },
+                              expression: "data.exercise_end_time"
+                            }
+                          })
+                        ],
+                        1
+                      )
                     ],
                     1
                   )
@@ -108628,189 +108763,207 @@ var render = function() {
             ],
             1
           )
-        ],
-        1
-      ),
+        : _vm._e(),
       _vm._v(" "),
-      _c(
-        "Form-item",
-        { attrs: { label: "*每人最多购买期权数量：" } },
-        [
-          _c("i-input", {
-            attrs: { placeholder: "请输入每人最多购买期权数量" },
-            model: {
-              value: _vm.data.max_num_option,
-              callback: function($$v) {
-                _vm.$set(_vm.data, "max_num_option", $$v)
-              },
-              expression: "data.max_num_option"
-            }
-          })
-        ],
-        1
-      ),
+      _vm.Model || _vm.data.max_num_option
+        ? _c(
+            "Form-item",
+            { attrs: { label: "*每人最多购买期权数量：" } },
+            [
+              _c("i-input", {
+                attrs: { placeholder: "请输入每人最多购买期权数量" },
+                model: {
+                  value: _vm.data.max_num_option,
+                  callback: function($$v) {
+                    _vm.$set(_vm.data, "max_num_option", $$v)
+                  },
+                  expression: "data.max_num_option"
+                }
+              })
+            ],
+            1
+          )
+        : _vm._e(),
       _vm._v(" "),
-      _c(
-        "Form-item",
-        { attrs: { label: "履行价格确认方式：" } },
-        [
-          _c("i-input", {
-            attrs: { placeholder: "请输入确认方式" },
-            model: {
-              value: _vm.data.execute_type,
-              callback: function($$v) {
-                _vm.$set(_vm.data, "execute_type", $$v)
-              },
-              expression: "data.execute_type"
-            }
-          })
-        ],
-        1
-      ),
+      _vm.Model || _vm.data.execute_type
+        ? _c(
+            "Form-item",
+            { attrs: { label: "履行价格确认方式：" } },
+            [
+              _c("i-input", {
+                attrs: { placeholder: "请输入确认方式" },
+                model: {
+                  value: _vm.data.execute_type,
+                  callback: function($$v) {
+                    _vm.$set(_vm.data, "execute_type", $$v)
+                  },
+                  expression: "data.execute_type"
+                }
+              })
+            ],
+            1
+          )
+        : _vm._e(),
       _vm._v(" "),
-      _c(
-        "Form-item",
-        { attrs: { label: "履行价格确认平台：" } },
-        [
-          _c("i-input", {
-            attrs: { placeholder: "请输入履行价格确认平台" },
-            model: {
-              value: _vm.data.execute_platform,
-              callback: function($$v) {
-                _vm.$set(_vm.data, "execute_platform", $$v)
-              },
-              expression: "data.execute_platform"
-            }
-          })
-        ],
-        1
-      ),
+      _vm.Model || _vm.data.execute_platform
+        ? _c(
+            "Form-item",
+            { attrs: { label: "履行价格确认平台：" } },
+            [
+              _c("i-input", {
+                attrs: { placeholder: "请输入履行价格确认平台" },
+                model: {
+                  value: _vm.data.execute_platform,
+                  callback: function($$v) {
+                    _vm.$set(_vm.data, "execute_platform", $$v)
+                  },
+                  expression: "data.execute_platform"
+                }
+              })
+            ],
+            1
+          )
+        : _vm._e(),
       _vm._v(" "),
-      _c(
-        "Form-item",
-        { attrs: { label: "履行价格权重比例：" } },
-        [
-          _c("i-input", {
-            attrs: { placeholder: "请输入履行价格权重比例" },
-            model: {
-              value: _vm.data.execute_weight_ratio,
-              callback: function($$v) {
-                _vm.$set(_vm.data, "execute_weight_ratio", $$v)
-              },
-              expression: "data.execute_weight_ratio"
-            }
-          })
-        ],
-        1
-      ),
+      _vm.Model || _vm.data.execute_weight_ratio
+        ? _c(
+            "Form-item",
+            { attrs: { label: "履行价格权重比例：" } },
+            [
+              _c("i-input", {
+                attrs: { placeholder: "请输入履行价格权重比例" },
+                model: {
+                  value: _vm.data.execute_weight_ratio,
+                  callback: function($$v) {
+                    _vm.$set(_vm.data, "execute_weight_ratio", $$v)
+                  },
+                  expression: "data.execute_weight_ratio"
+                }
+              })
+            ],
+            1
+          )
+        : _vm._e(),
       _vm._v(" "),
-      _c(
-        "Form-item",
-        { attrs: { label: "保证金标的：" } },
-        [
-          _c("i-input", {
-            attrs: { placeholder: "请输入保证金标的" },
-            model: {
-              value: _vm.data.bail_type,
-              callback: function($$v) {
-                _vm.$set(_vm.data, "bail_type", $$v)
-              },
-              expression: "data.bail_type"
-            }
-          })
-        ],
-        1
-      ),
+      _vm.Model || _vm.data.bail_type
+        ? _c(
+            "Form-item",
+            { attrs: { label: "保证金标的：" } },
+            [
+              _c("i-input", {
+                attrs: { placeholder: "请输入保证金标的" },
+                model: {
+                  value: _vm.data.bail_type,
+                  callback: function($$v) {
+                    _vm.$set(_vm.data, "bail_type", $$v)
+                  },
+                  expression: "data.bail_type"
+                }
+              })
+            ],
+            1
+          )
+        : _vm._e(),
       _vm._v(" "),
-      _c(
-        "Form-item",
-        { attrs: { label: "保证金率：" } },
-        [
-          _c("i-input", {
-            attrs: { placeholder: "请输入保证金率" },
-            model: {
-              value: _vm.data.bail_ratio,
-              callback: function($$v) {
-                _vm.$set(_vm.data, "bail_ratio", $$v)
-              },
-              expression: "data.bail_ratio"
-            }
-          })
-        ],
-        1
-      ),
+      _vm.Model || _vm.data.bail_ratio
+        ? _c(
+            "Form-item",
+            { attrs: { label: "保证金率：" } },
+            [
+              _c("i-input", {
+                attrs: { placeholder: "请输入保证金率" },
+                model: {
+                  value: _vm.data.bail_ratio,
+                  callback: function($$v) {
+                    _vm.$set(_vm.data, "bail_ratio", $$v)
+                  },
+                  expression: "data.bail_ratio"
+                }
+              })
+            ],
+            1
+          )
+        : _vm._e(),
       _vm._v(" "),
-      _c(
-        "Form-item",
-        { attrs: { label: "最小数量单位：" } },
-        [
-          _c("i-input", {
-            attrs: { disabled: "" },
-            model: {
-              value: _vm.data.min_number,
-              callback: function($$v) {
-                _vm.$set(_vm.data, "min_number", $$v)
-              },
-              expression: "data.min_number"
-            }
-          })
-        ],
-        1
-      ),
+      _vm.Model || _vm.data.min_number
+        ? _c(
+            "Form-item",
+            { attrs: { label: "最小数量单位：" } },
+            [
+              _c("i-input", {
+                attrs: { disabled: "" },
+                model: {
+                  value: _vm.data.min_number,
+                  callback: function($$v) {
+                    _vm.$set(_vm.data, "min_number", $$v)
+                  },
+                  expression: "data.min_number"
+                }
+              })
+            ],
+            1
+          )
+        : _vm._e(),
       _vm._v(" "),
-      _c(
-        "Form-item",
-        { attrs: { label: "保证金：" } },
-        [
-          _c("i-input", {
-            attrs: { placeholder: "请输入保证金" },
-            model: {
-              value: _vm.data.bail,
-              callback: function($$v) {
-                _vm.$set(_vm.data, "bail", $$v)
-              },
-              expression: "data.bail"
-            }
-          })
-        ],
-        1
-      ),
+      _vm.Model || _vm.data.bail
+        ? _c(
+            "Form-item",
+            { attrs: { label: "保证金：" } },
+            [
+              _c("i-input", {
+                attrs: { placeholder: "请输入保证金" },
+                model: {
+                  value: _vm.data.bail,
+                  callback: function($$v) {
+                    _vm.$set(_vm.data, "bail", $$v)
+                  },
+                  expression: "data.bail"
+                }
+              })
+            ],
+            1
+          )
+        : _vm._e(),
       _vm._v(" "),
-      _c(
-        "Form-item",
-        { attrs: { label: "其他要求：" } },
-        [
-          _c("i-input", {
-            attrs: { placeholder: "请输入其他要求" },
-            model: {
-              value: _vm.data.charge_unit,
-              callback: function($$v) {
-                _vm.$set(_vm.data, "charge_unit", $$v)
-              },
-              expression: "data.charge_unit"
-            }
-          })
-        ],
-        1
-      ),
+      _vm.Model || _vm.data.charge_unit
+        ? _c(
+            "Form-item",
+            { attrs: { label: "其他要求：" } },
+            [
+              _c("i-input", {
+                attrs: { placeholder: "请输入其他要求" },
+                model: {
+                  value: _vm.data.charge_unit,
+                  callback: function($$v) {
+                    _vm.$set(_vm.data, "charge_unit", $$v)
+                  },
+                  expression: "data.charge_unit"
+                }
+              })
+            ],
+            1
+          )
+        : _vm._e(),
       _vm._v(" "),
-      _c(
-        "Form-item",
-        { attrs: { label: "保证金返还：" } },
-        [
-          _c("i-input", {
-            attrs: { placeholder: "请输入保证金返还" },
-            model: {
-              value: _vm.data.bail_return,
-              callback: function($$v) {
-                _vm.$set(_vm.data, "bail_return", $$v)
-              },
-              expression: "data.bail_return"
-            }
-          })
-        ],
-        1
-      ),
+      _vm.Model || _vm.data.bail_return
+        ? _c(
+            "Form-item",
+            { attrs: { label: "保证金返还：" } },
+            [
+              _c("i-input", {
+                attrs: { placeholder: "请输入保证金返还" },
+                model: {
+                  value: _vm.data.bail_return,
+                  callback: function($$v) {
+                    _vm.$set(_vm.data, "bail_return", $$v)
+                  },
+                  expression: "data.bail_return"
+                }
+              })
+            ],
+            1
+          )
+        : _vm._e(),
       _vm._v(" "),
       _c("Row", [_c("i-col", [_vm._v("\n      注：带‘*’为必填项\n    ")])], 1),
       _vm._v(" "),
@@ -108846,8 +108999,12 @@ var render = function() {
           _vm._v(" "),
           _c(
             "i-button",
-            { staticStyle: { "margin-left": "8px" }, attrs: { type: "ghost" } },
-            [_vm._v("预览")]
+            {
+              staticStyle: { "margin-left": "8px" },
+              attrs: { type: "ghost" },
+              on: { click: _vm.showModel }
+            },
+            [_vm._v(_vm._s(_vm.Model ? "预览" : "取消预览"))]
           )
         ],
         1
@@ -108919,6 +109076,8 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -109006,36 +109165,57 @@ var moment = __webpack_require__(0);
                 });
               }
             }
-          }, "下架"), h("i-button", { attrs: { type: "success", size: "small" } }, "查看")]);
+          }, "下架"), h("i-button", {
+            attrs: { type: "success", size: "small" },
+            on: {
+              click: function click() {
+                _this.$router.push("/View/" + params.row.id);
+              }
+            }
+          }, "查看")]);
         }
       }],
-      data3: [{
-        id: 74,
-        name: "我们都是好孩子",
-        phone: "17744407804",
-        time: "2018-10-11 22:15:17"
-      }]
+      data3: [{}],
+      pages: {
+        current: "", // 当前页码
+        total: 1, // 数据总数
+        pageSize: 0 //每页条数
+      }
     };
   },
   created: function created() {
-    var _this2 = this;
-
-    this.$axios({
-      method: "post",
-      url: "admin/prolist"
-    }).then(function (response) {
-      _this2.data3 = response.data.data;
-      console.log(response.data);
-    }).catch(function (error) {
-      console.log(error);
-    });
+    this.release(1);
   },
 
-  methods: {
+  methods: _defineProperty({
     time: function time(value) {
       return moment(parseInt(value)).format("YYYY-MM-DD HH:mm");
+    },
+    changepage: function changepage(index) {
+      this.release(index);
+    },
+    release: function release(index) {
+      var _this2 = this;
+
+      this.$axios({
+        method: "post",
+        url: "admin/prolist",
+        params: {
+          page: index
+        }
+      }).then(function (response) {
+        _this2.data3 = response.data.data;
+        _this2.pages.total = response.data.total;
+        _this2.pages.pageSize = response.data.per_page;
+        _this2.pages.current = response.data.from;
+        console.log(response.data);
+      }).catch(function (error) {
+        console.log(error);
+      });
     }
-  }
+  }, "changepage", function changepage(index) {
+    this.release(index);
+  })
 });
 
 /***/ }),
@@ -109058,7 +109238,14 @@ var render = function() {
         }
       }),
       _vm._v(" "),
-      _c("Page", { attrs: { total: 100, "show-total": "" } })
+      _c("Page", {
+        attrs: {
+          total: _vm.pages.total,
+          "page-size": _vm.pages.pageSize,
+          "show-total": ""
+        },
+        on: { "on-change": _vm.changepage }
+      })
     ],
     1
   )
@@ -109140,28 +109327,51 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            data: {
-                IPC: '',
-                USDT: '',
-                CTC: '',
-                UST: '',
-                AXS: ''
-            }
-        };
+  data: function data() {
+    return {
+      poundage: []
+    };
+  },
+  created: function created() {
+    var _this = this;
+
+    this.$axios.get("admin/retutoken").then(function (response) {
+      _this.poundage = response.data;
+      console.log(_this.poundage);
+    }).catch(function (error) {
+      console.log(error);
+    });
+  },
+
+  methods: {
+    release: function release(name, poundage) {
+      this.$axios({
+        method: "post",
+        url: "admin/poundage",
+        params: {
+          token_name: name,
+          poundage: poundage
+        }
+      }).then(function (response) {
+        console.log(response);
+      }).catch(function (error) {
+        console.log(error);
+      });
+    },
+    postAdSpaces: function postAdSpaces(item) {
+      this.$axios({
+        method: "post",
+        url: "admin/poundage",
+        params: {
+          id: item.id,
+          poundage: item.poundage,
+          token_name: item.token_name
+        }
+      }).then(function (response) {});
     }
+  }
 });
 
 /***/ }),
@@ -109176,104 +109386,61 @@ var render = function() {
     "i-form",
     {
       style: { width: "70%", margin: "auto" },
-      attrs: { model: _vm.data, "label-position": "right", "label-width": 150 }
+      attrs: { "label-position": "right", "label-width": 150 }
     },
-    [
-      _c(
+    _vm._l(_vm.poundage, function(item, index) {
+      return _c(
         "Form-item",
-        { attrs: { label: "IPC:" } },
+        { key: index, attrs: { label: item.token_name } },
         [
-          _c("i-input", {
-            attrs: { value: _vm.data.IPC, placeholder: "请输入手续费" },
-            on: {
-              "update:value": function($event) {
-                _vm.$set(_vm.data, "IPC", $event)
-              }
-            }
-          })
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "Form-item",
-        { attrs: { label: "USDT:" } },
-        [
-          _c("i-input", {
-            attrs: { value: _vm.data.USDT, placeholder: "请输入手续费" },
-            on: {
-              "update:value": function($event) {
-                _vm.$set(_vm.data, "USDT", $event)
-              }
-            }
-          })
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "Form-item",
-        { attrs: { label: "CTC:" } },
-        [
-          _c("i-input", {
-            attrs: { value: _vm.data.CTC, placeholder: "请输入手续费" },
-            on: {
-              "update:value": function($event) {
-                _vm.$set(_vm.data, "CTC", $event)
-              }
-            }
-          })
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "Form-item",
-        { attrs: { label: "UST:" } },
-        [
-          _c("i-input", {
-            attrs: { value: _vm.data.UST, placeholder: "请输入手续费" },
-            on: {
-              "update:value": function($event) {
-                _vm.$set(_vm.data, "UST", $event)
-              }
-            }
-          })
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "Form-item",
-        { attrs: { label: "AXS:" } },
-        [
-          _c("i-input", {
-            attrs: { value: _vm.data.AXS, placeholder: "请输入手续费" },
-            on: {
-              "update:value": function($event) {
-                _vm.$set(_vm.data, "AXS", $event)
-              }
-            }
-          })
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "Form-item",
-        [
-          _c("i-button", { attrs: { type: "primary" } }, [_vm._v("提交")]),
-          _vm._v(" "),
           _c(
-            "i-button",
-            { staticStyle: { "margin-left": "8px" }, attrs: { type: "ghost" } },
-            [_vm._v("取消")]
+            "Row",
+            { attrs: { gutter: 16 } },
+            [
+              _c(
+                "i-col",
+                { attrs: { span: "10" } },
+                [
+                  _c("i-input", {
+                    attrs: { placeholder: "请输入手续费" },
+                    model: {
+                      value: item.poundage,
+                      callback: function($$v) {
+                        _vm.$set(item, "poundage", $$v)
+                      },
+                      expression: "item.poundage"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "i-col",
+                { attrs: { span: "2" } },
+                [
+                  _c(
+                    "i-button",
+                    {
+                      attrs: { type: "primary" },
+                      on: {
+                        click: function($event) {
+                          _vm.postAdSpaces(item)
+                        }
+                      }
+                    },
+                    [_vm._v("提交")]
+                  )
+                ],
+                1
+              )
+            ],
+            1
           )
         ],
         1
       )
-    ],
-    1
+    })
   )
 }
 var staticRenderFns = []
@@ -109360,7 +109527,6 @@ var moment = __webpack_require__(0);
         title: "发布日期",
         width: 300,
         render: function render(h, params) {
-          console.log(_this.time);
           var price = _this.time(params.row.create_time * 1000);
           return h("Input", {
             props: {
@@ -109395,9 +109561,32 @@ var moment = __webpack_require__(0);
               justifyContent: "space-around"
             }
           }, [h("i-button", {
-            attrs: { type: "success", size: "small" }
-
-          }, "修改"), h("i-button", { attrs: { type: "success", size: "small" } }, "查看"), h("i-button", { attrs: { type: "success", size: "small" } }, "发布"), h("i-button", {
+            attrs: { type: "success", size: "small" },
+            on: {
+              click: function click() {
+                _this.$router.push('/Draft/' + params.row.id);
+              }
+            }
+          }, "查看/修改"), h("i-button", {
+            attrs: { type: "success", size: "small" },
+            on: {
+              click: function click() {
+                console.log('newproduct');
+                _this.$axios({
+                  method: "post",
+                  url: "admin/newproduct",
+                  params: {
+                    id: params.row.id
+                  }
+                }).then(function (response) {
+                  console.log(response.data.code);
+                  _this.release();
+                }).catch(function (error) {
+                  console.log(error);
+                });
+              }
+            }
+          }, "发布"), h("i-button", {
             attrs: { type: "success", size: "small" },
             on: {
               click: function click() {
@@ -109409,6 +109598,7 @@ var moment = __webpack_require__(0);
                   }
                 }).then(function (response) {
                   console.log(response.data);
+                  _this.release();
                 }).catch(function (error) {
                   console.log(error);
                 });
@@ -109417,27 +109607,43 @@ var moment = __webpack_require__(0);
           }, "删除")]);
         }
       }],
-      data3: []
+      data3: [],
+      pages: {
+        current: '', // 当前页码
+        total: 1, // 数据总数
+        pageSize: 0 //每页条数
+      }
     };
   },
   created: function created() {
-    var _this2 = this;
-
-    this.$axios({
-      method: "post",
-      url: "admin/draft"
-    }).then(function (response) {
-      _this2.data3 = response.data.data;
-      console.log(response.data);
-    }).catch(function (error) {
-      console.log(error);
-    });
+    this.release(1);
   },
 
   methods: {
-    delproduct: function delproduct(id) {},
+    release: function release(index) {
+      var _this2 = this;
+
+      this.$axios({
+        method: "post",
+        url: "admin/draft",
+        params: {
+          page: index
+        }
+      }).then(function (response) {
+        _this2.data3 = response.data.data;
+        _this2.pages.total = response.data.total;
+        _this2.pages.pageSize = response.data.per_page;
+        _this2.pages.current = response.data.from;
+      }).catch(function (error) {
+        console.log(error);
+      });
+    },
     time: function time(value) {
       return moment(parseInt(value)).format("YYYY-MM-DD HH:mm");
+    },
+    changepage: function changepage(index) {
+      console.log(index);
+      this.release(index);
     }
   }
 });
@@ -109462,7 +109668,14 @@ var render = function() {
         }
       }),
       _vm._v(" "),
-      _c("Page", { attrs: { total: 100, "show-total": "" } })
+      _c("Page", {
+        attrs: {
+          total: _vm.pages.total,
+          "page-size": _vm.pages.pageSize,
+          "show-total": ""
+        },
+        on: { "on-change": _vm.changepage }
+      })
     ],
     1
   )
@@ -109553,155 +109766,170 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
 
 var moment = __webpack_require__(0);
 /* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        var _this = this;
+  data: function data() {
+    var _this = this;
 
-        return {
-            columns2: [{
-                title: '序号',
-                key: 'id',
-                width: 100,
-                fixed: 'left'
-            }, {
-                title: '币种',
-                key: 'token_name',
-                width: 100
-            }, {
-                title: '提现地址',
-                key: 'address',
-                width: 300
-            }, {
-                title: '提现金额',
-                key: 'balance',
-                width: 200
-            }, {
-                title: '手续费',
-                key: 'poundage',
-                width: 200
-            }, {
-                title: '状态',
-                key: 'status',
-                width: 200
-            }, {
-                title: '日期',
-                width: 200,
-                render: function render(h, params) {
-                    console.log(_this.time);
-                    var price = _this.time(params.row.created_time * 1000);
-                    return h('Input', {
-                        props: {
-                            type: 'text',
-                            value: price,
-                            disabled: "disabled"
-                        }
-                    });
-                }
-            }, {
-                title: '操作',
-                key: 'action',
-                fixed: 'right',
-                width: 200,
-                render: function render(h, params) {
-                    if (params.row.status != 0) {
-                        return;
-                    }
-                    return h('div', [h('Button', {
-                        props: {
-                            type: 'success',
-                            size: 'small'
-                        },
-                        style: {
-                            marginLeft: '30px'
-                        },
-                        on: {
-                            click: function click() {
-                                _this.examine(params.row.id, 1);
-                            }
-                        }
-                    }, '通过'), h('Button', {
-                        props: {
-                            type: 'success',
-                            size: 'small'
-                        },
-                        style: {
-                            marginLeft: '30px'
-                        },
-                        on: {
-                            click: function click() {
-                                _this.examine(params.row.id, 3);
-                            }
-                        }
-                    }, '不通过')]);
-                }
-            }],
-            data3: [],
-            cityList: [{
-                value: 'New York',
-                label: 'New York'
-            }, {
-                value: 'London',
-                label: 'London'
-            }, {
-                value: 'Sydney',
-                label: 'Sydney'
-            }, {
-                value: 'Ottawa',
-                label: 'Ottawa'
-            }, {
-                value: 'Paris',
-                label: 'Paris'
-            }, {
-                value: 'Canberra',
-                label: 'Canberra'
-            }],
-            model1: '',
-            model2: ''
-        };
-    },
-    created: function created() {
-        var _this2 = this;
-
-        this.$axios({
-            method: 'post',
-            url: 'admin/withdrawlist'
-        }).then(function (response) {
-            _this2.data3 = response.data.data;
-            console.log(response.data);
-        }).catch(function (error) {
-            console.log(error);
-        });
-    },
-
-    methods: {
-        examine: function examine(id, status) {
-            this.$axios({
-                method: 'post',
-                url: 'admin/examine',
-                params: {
-                    id: id,
-                    status: status
-                }
-            }).then(function (response) {
-                // this.data3 = response.data.data
-                console.log(response.data);
-            }).catch(function (error) {
-                console.log(error);
-            });
-        },
-        TermReview: function TermReview() {
-            this.$router.push('/TermReview');
-        },
-        time: function time(value) {
-            return moment(parseInt(value)).format('YYYY-MM-DD HH:mm');
+    return {
+      columns2: [{
+        title: "序号",
+        key: "id",
+        width: 100,
+        fixed: "left"
+      }, {
+        title: "币种",
+        key: "token_name",
+        width: 100
+      }, {
+        title: "提现地址",
+        key: "address",
+        width: 300
+      }, {
+        title: "提现金额",
+        key: "balance",
+        width: 200
+      }, {
+        title: "手续费",
+        key: "poundage",
+        width: 200
+      }, {
+        title: "状态",
+        width: 200,
+        render: function render(h, params) {
+          var status = params.row.status;
+          if (status == 0) {
+            return h("span", "待审核");
+          }
+          if (status == 1) {
+            return h("span", "已通过");
+          }
+          if (status == 3) {
+            return h("span", "未通过");
+          }
         }
+      }, {
+        title: "日期",
+        width: 200,
+        render: function render(h, params) {
+          var price = _this.time(params.row.created_time * 1000);
+          return h("Input", {
+            props: {
+              type: "text",
+              value: price,
+              disabled: "disabled"
+            }
+          });
+        }
+      }, {
+        title: "操作",
+        key: "action",
+        fixed: "right",
+        width: 200,
+        render: function render(h, params) {
+          if (params.row.status != 0) {
+            return;
+          }
+          return h("div", [h("Button", {
+            props: {
+              type: "success",
+              size: "small"
+            },
+            style: {
+              marginLeft: "30px"
+            },
+            on: {
+              click: function click() {
+                _this.examine(params.row.id, 1);
+              }
+            }
+          }, "通过"), h("Button", {
+            props: {
+              type: "success",
+              size: "small"
+            },
+            style: {
+              marginLeft: "30px"
+            },
+            on: {
+              click: function click() {
+                _this.examine(params.row.id, 3);
+              }
+            }
+          }, "不通过")]);
+        }
+      }],
+      data3: [],
+      cityList: [],
+      statuss: [{ label: "待审核", status: 0 }, { label: "已通过", status: 1 }, { label: "未通过", status: 3 }],
+      token_symbol: "",
+      status: "",
+      pages: {
+        current: "", // 当前页码
+        total: 1, // 数据总数
+        pageSize: 0 //每页条数
+      }
+    };
+  },
+  created: function created() {
+    this.release(1);
+  },
+
+  methods: {
+    //审核(通过、拒绝)
+    examine: function examine(id, status) {
+      var _this2 = this;
+
+      this.$axios({
+        method: "post",
+        url: "admin/examine",
+        params: {
+          id: id,
+          status: status
+        }
+      }).then(function (response) {
+        // this.data3 = response.data.data
+        if (response.data.errmsg == "OK") {
+          _this2.release(_this2.pages.current);
+        }
+        console.log(response.data);
+      }).catch(function (error) {
+        console.log(error);
+      });
+    },
+    release: function release(index) {
+      var _this3 = this;
+
+      this.$axios({
+        method: "post",
+        url: "admin/withdrawlist",
+        params: {
+          token_symbol: this.token_symbol,
+          status: this.status,
+          page: index
+        }
+      }).then(function (response) {
+        _this3.cityList = response.data.poundage;
+        _this3.data3 = response.data.data.data;
+        _this3.pages.total = response.data.total;
+        _this3.pages.pageSize = response.data.per_page;
+        _this3.pages.current = response.data.from;
+      }).catch(function (error) {
+        console.log(error);
+      });
+    },
+    TermReview: function TermReview() {
+      this.$router.push("/TermReview");
+    },
+    time: function time(value) {
+      return moment(parseInt(value)).format("YYYY-MM-DD HH:mm");
+    },
+    changepage: function changepage(index) {
+      this.pages.current = index;
+      this.release(index);
     }
+  }
 });
 
 /***/ }),
@@ -109724,7 +109952,7 @@ var render = function() {
               staticStyle: { "text-align": "left", "line-height": "30px" },
               attrs: { span: "2" }
             },
-            [_vm._v("\n            币种：\n        ")]
+            [_vm._v("币种：")]
           ),
           _vm._v(" "),
           _c(
@@ -109735,19 +109963,20 @@ var render = function() {
                 "Select",
                 {
                   attrs: { filterable: "" },
+                  on: { "on-change": _vm.release },
                   model: {
-                    value: _vm.model1,
+                    value: _vm.token_symbol,
                     callback: function($$v) {
-                      _vm.model1 = $$v
+                      _vm.token_symbol = $$v
                     },
-                    expression: "model1"
+                    expression: "token_symbol"
                   }
                 },
                 _vm._l(_vm.cityList, function(item) {
                   return _c(
                     "Option",
-                    { key: item.value, attrs: { value: item.value } },
-                    [_vm._v(_vm._s(item.label))]
+                    { key: item.id, attrs: { value: item.id } },
+                    [_vm._v(_vm._s(item.token_name))]
                   )
                 })
               )
@@ -109761,7 +109990,7 @@ var render = function() {
               staticStyle: { "text-align": "left", "line-height": "30px" },
               attrs: { span: "2" }
             },
-            [_vm._v("\n            状态:\n        ")]
+            [_vm._v("状态:")]
           ),
           _vm._v(" "),
           _c(
@@ -109772,18 +110001,19 @@ var render = function() {
                 "Select",
                 {
                   attrs: { filterable: "" },
+                  on: { "on-change": _vm.release },
                   model: {
-                    value: _vm.model2,
+                    value: _vm.status,
                     callback: function($$v) {
-                      _vm.model2 = $$v
+                      _vm.status = $$v
                     },
-                    expression: "model2"
+                    expression: "status"
                   }
                 },
-                _vm._l(_vm.cityList, function(item) {
+                _vm._l(_vm.statuss, function(item) {
                   return _c(
                     "Option",
-                    { key: item.value, attrs: { value: item.value } },
+                    { key: item.value, attrs: { value: item.status } },
                     [_vm._v(_vm._s(item.label))]
                   )
                 })
@@ -109821,7 +110051,14 @@ var render = function() {
         }
       }),
       _vm._v(" "),
-      _c("Page", { attrs: { total: 100, "show-total": "" } })
+      _c("Page", {
+        attrs: {
+          total: _vm.pages.total,
+          "page-size": _vm.pages.pageSize,
+          "show-total": ""
+        },
+        on: { "on-change": _vm.changepage }
+      })
     ],
     1
   )
@@ -109914,66 +110151,78 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            columns2: [{
-                title: '用户名称·',
-                key: 'name',
-                width: 400
-            }, {
-                title: '数量',
-                key: 'add_number',
-                width: 400
-            }, {
-                title: '充值时间',
-                key: 'updated_at',
-                width: 400
-            }],
-            data3: [],
-            data: {
-                name: ''
-            },
-            count: {}
-        };
-    },
-    created: function created() {
-        this.release();
-    },
+  data: function data() {
+    return {
+      columns2: [{
+        title: "用户名称·",
+        key: "name",
+        width: 400
+      }, {
+        title: "数量",
+        key: "add_number",
+        width: 400
+      }, {
+        title: "充值时间",
+        key: "updated_at",
+        width: 400
+      }],
+      data3: [],
+      data: {
+        name: ""
+      },
+      count: {},
+      pages: {
+        current: "", // 当前页码
+        total: 1, // 数据总数
+        pageSize: 0 //每页条数
+      }
+    };
+  },
+  created: function created() {
+    this.release(1);
+  },
 
-    methods: {
-        release: function release() {
-            var _this = this;
+  methods: {
+    release: function release(index) {
+      var _this = this;
 
-            this.$axios({
-                method: "post",
-                url: "admin/usdtlist",
-                params: {
-                    name: this.data.name
-                }
-            }).then(function (response) {
-                console.log(response.data);
-                var _response$data = response.data,
-                    data = _response$data.data,
-                    login_count = _response$data.login_count,
-                    today_login_count = _response$data.today_login_count,
-                    today_usdt_count = _response$data.today_usdt_count,
-                    usdt_count = _response$data.usdt_count;
-
-                _this.data3 = data;
-                _this.count = {
-                    login_count: login_count,
-                    today_login_count: today_login_count,
-                    today_usdt_count: today_usdt_count,
-                    usdt_count: usdt_count
-                };
-            }).catch(function (error) {
-                console.log(error);
-            });
+      this.$axios({
+        method: "post",
+        url: "admin/usdtlist",
+        params: {
+          name: this.data.name,
+          page: index
         }
-    }
+      }).then(function (response) {
+        var _response$data = response.data,
+            data = _response$data.data,
+            login_count = _response$data.login_count,
+            today_login_count = _response$data.today_login_count,
+            today_usdt_count = _response$data.today_usdt_count,
+            usdt_count = _response$data.usdt_count;
 
+        _this.data3 = data;
+        _this.count = {
+          login_count: login_count,
+          today_login_count: today_login_count,
+          today_usdt_count: today_usdt_count,
+          usdt_count: usdt_count
+        };
+        _this.pages.total = response.data.total;
+        _this.pages.pageSize = response.data.per_page;
+        _this.pages.current = response.data.from;
+      }).catch(function (error) {
+        console.log(error);
+      });
+    },
+    changepage: function changepage(index) {
+      this.release(index);
+    }
+  }
 });
 
 /***/ }),
@@ -110080,7 +110329,14 @@ var render = function() {
         }
       }),
       _vm._v(" "),
-      _c("Page", { attrs: { total: 100, "show-total": "" } })
+      _c("Page", {
+        attrs: {
+          total: _vm.pages.total,
+          "page-size": _vm.pages.pageSize,
+          "show-total": ""
+        },
+        on: { "on-change": _vm.changepage }
+      })
     ],
     1
   )
@@ -110156,48 +110412,82 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            columns2: [{
-                title: '收支',
-                key: 'income',
-                width: 200
-            }, {
-                title: '币种',
-                key: 'Currency',
-                width: 300
-            }, {
-                title: '金额',
-                key: 'Amount',
-                width: 300
-            }, {
-                title: '详情',
-                key: 'Details',
-                width: 300
-            }, {
-                title: '时间',
-                key: 'time',
-                width: 300
-            }],
-            data3: [{}]
-        };
-    },
-    created: function created() {
-        var _this = this;
+  data: function data() {
+    return {
+      columns2: [{
+        title: "收支",
+        width: 200,
+        render: function render(h, params) {
+          if (params.row.less_number) {
+            return h("span", "支出");
+          }
+          if (params.row.add_number) {
+            return h("span", "收入");
+          }
+        }
+      }, {
+        title: "币种",
+        key: "type",
+        width: 300
+      }, {
+        title: "金额",
+        width: 300,
+        render: function render(h, params) {
+          if (params.row.less_number) {
+            return h("span", params.row.less_number);
+          } else {
+            return h("span", params.row.add_number);
+          }
+        }
+      }, {
+        title: "详情",
+        key: "action_type",
+        width: 300
+      }, {
+        title: "时间",
+        key: "created_time",
+        width: 300
+      }],
+      data3: [],
+      pages: {
+        current: "", // 当前页码
+        total: 1, // 数据总数
+        pageSize: 0 //每页条数
+      }
+    };
+  },
+  created: function created() {
+    this.release(1);
+  },
 
-        var id = this.$route.params.id;
-        this.$axios({
-            method: 'post',
-            url: 'admin/countlog',
-            params: {
-                user_id: id
-            }
-        }).then(function (response) {
-            _this.data3 = response.data.data;
-        }).catch(function (error) {
-            console.log(error);
-        });
+  methods: {
+    changepage: function changepage(index) {
+      this.release(index);
+      console.log(index);
+    },
+    release: function release(index) {
+      var _this = this;
+
+      var id = this.$route.params.id;
+      this.$axios({
+        method: "post",
+        url: "admin/countlog",
+        params: {
+          user_id: id,
+          page: index
+        }
+      }).then(function (response) {
+        console.log(response.data);
+        _this.data3 = response.data.data;
+        _this.pages.total = response.data.total;
+        _this.pages.pageSize = response.data.per_page;
+        _this.pages.current = response.data.from;
+        console.log(_this.pages);
+      }).catch(function (error) {
+        console.log(error);
+      });
     }
+  }
 });
 
 /***/ }),
@@ -110220,7 +110510,14 @@ var render = function() {
         }
       }),
       _vm._v(" "),
-      _c("Page", { attrs: { total: 100, "show-total": "" } })
+      _c("Page", {
+        attrs: {
+          total: _vm.pages.total,
+          "page-size": _vm.pages.pageSize,
+          "show-total": ""
+        },
+        on: { "on-change": _vm.changepage }
+      })
     ],
     1
   )
@@ -110424,6 +110721,1070 @@ if (false) {
 
 /***/ }),
 /* 233 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(234)
+}
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(236)
+/* template */
+var __vue_template__ = __webpack_require__(237)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-26cdb2b9"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/AdminView.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-26cdb2b9", Component.options)
+  } else {
+    hotAPI.reload("data-v-26cdb2b9", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 234 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(235);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(5)("3e9d6112", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/_css-loader@0.28.11@css-loader/index.js!../../../node_modules/_vue-loader@13.7.3@vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-26cdb2b9\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/_vue-loader@13.7.3@vue-loader/lib/selector.js?type=styles&index=0!./AdminView.vue", function() {
+     var newContent = require("!!../../../node_modules/_css-loader@0.28.11@css-loader/index.js!../../../node_modules/_vue-loader@13.7.3@vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-26cdb2b9\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/_vue-loader@13.7.3@vue-loader/lib/selector.js?type=styles&index=0!./AdminView.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 235 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(3)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.expand-row[data-v-26cdb2b9] {\r\n  margin-bottom: 16px;\n}\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 236 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+var moment = __webpack_require__(0);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      data: {}
+    };
+  },
+  created: function created() {
+    var _this = this;
+
+    this.$axios.get('admin/data', {
+      params: {
+        id: this.$route.params.id
+      }
+    }).then(function (response) {
+      _this.data = response.data;
+      _this.data.ipo_time = _this.time(_this.data.ipo_time);
+      _this.data.end_time = _this.time(_this.data.end_time);
+      _this.data.pay_start_time = _this.time(_this.data.pay_start_time);
+      _this.data.pay_end_time = _this.time(_this.data.pay_end_time);
+      _this.data.exercise_start_time = _this.time(_this.data.exercise_start_time);
+      _this.data.exercise_end_time = _this.time(_this.data.exercise_end_time);
+      console.log(response);
+    });
+  },
+
+  methods: {
+    time: function time(value) {
+      if (!value) {
+        return;
+      }
+      return moment(parseInt(value) * 1000).format("YYYY-MM-DD HH:mm");
+    }
+  }
+});
+
+/***/ }),
+/* 237 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "i-form",
+    {
+      style: { width: "70%", margin: "auto" },
+      attrs: { model: _vm.data, "label-position": "right", "label-width": 150 }
+    },
+    [
+      _vm.data.title
+        ? _c(
+            "Form-item",
+            { attrs: { label: "名称：" } },
+            [
+              _c("i-input", {
+                attrs: { placeholder: "请输入名称", disabled: "" },
+                model: {
+                  value: _vm.data.title,
+                  callback: function($$v) {
+                    _vm.$set(_vm.data, "title", $$v)
+                  },
+                  expression: "data.title"
+                }
+              })
+            ],
+            1
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.data.token_type
+        ? _c(
+            "Form-item",
+            { attrs: { label: "期权标的：" } },
+            [
+              _c("i-input", {
+                attrs: { placeholder: "请输入期权标的", disabled: "" },
+                model: {
+                  value: _vm.data.token_type,
+                  callback: function($$v) {
+                    _vm.$set(_vm.data, "token_type", $$v)
+                  },
+                  expression: "data.token_type"
+                }
+              })
+            ],
+            1
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.data.contract_type
+        ? _c(
+            "Form-item",
+            { attrs: { label: "合约类型：" } },
+            [
+              _c("i-input", {
+                attrs: { placeholder: "请输入合约类型", disabled: "" },
+                model: {
+                  value: _vm.data.contract_type,
+                  callback: function($$v) {
+                    _vm.$set(_vm.data, "contract_type", $$v)
+                  },
+                  expression: "data.contract_type"
+                }
+              })
+            ],
+            1
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.data.unit_valuation
+        ? _c(
+            "Form-item",
+            { attrs: { label: "计价单位：" } },
+            [
+              _c("i-input", {
+                attrs: { placeholder: "请输入计价单位", disabled: "" },
+                model: {
+                  value: _vm.data.unit_valuation,
+                  callback: function($$v) {
+                    _vm.$set(_vm.data, "unit_valuation", $$v)
+                  },
+                  expression: "data.unit_valuation"
+                }
+              })
+            ],
+            1
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.data.issue_price
+        ? _c(
+            "Form-item",
+            { attrs: { label: "*发行价：" } },
+            [
+              _c("i-input", {
+                attrs: { placeholder: "请输入发行价", disabled: "" },
+                model: {
+                  value: _vm.data.issue_price,
+                  callback: function($$v) {
+                    _vm.$set(_vm.data, "issue_price", $$v)
+                  },
+                  expression: "data.issue_price"
+                }
+              })
+            ],
+            1
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.data.min_price
+        ? _c(
+            "Form-item",
+            { attrs: { label: "最小价格单位：" } },
+            [
+              _c("i-input", {
+                attrs: { placeholder: "请输入最小价格单位", disabled: "" },
+                model: {
+                  value: _vm.data.min_price,
+                  callback: function($$v) {
+                    _vm.$set(_vm.data, "min_price", $$v)
+                  },
+                  expression: "data.min_price"
+                }
+              })
+            ],
+            1
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.data.contract_first || _vm.data.constarct_second
+        ? _c(
+            "Form-item",
+            { attrs: { label: "*合约比例：" } },
+            [
+              _c(
+                "Row",
+                [
+                  _c(
+                    "i-col",
+                    { attrs: { span: "8" } },
+                    [
+                      _c(
+                        "Form-item",
+                        { attrs: { prop: "contract_first" } },
+                        [
+                          _c("i-input", {
+                            attrs: { placeholder: "请输入币种", disabled: "" },
+                            model: {
+                              value: _vm.data.contract_first,
+                              callback: function($$v) {
+                                _vm.$set(_vm.data, "contract_first", $$v)
+                              },
+                              expression: "data.contract_first"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "i-col",
+                    {
+                      staticStyle: { "text-align": "center" },
+                      attrs: { span: "1" }
+                    },
+                    [_vm._v(":")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "i-col",
+                    { attrs: { span: "8" } },
+                    [
+                      _c(
+                        "Form-item",
+                        { attrs: { prop: "constarct_second" } },
+                        [
+                          _c("i-input", {
+                            attrs: { placeholder: "请输入合约", disabled: "" },
+                            model: {
+                              value: _vm.data.constarct_second,
+                              callback: function($$v) {
+                                _vm.$set(_vm.data, "constarct_second", $$v)
+                              },
+                              expression: "data.constarct_second"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.data.description
+        ? _c(
+            "Form-item",
+            { attrs: { label: "文本描述：" } },
+            [
+              _c("i-input", {
+                attrs: {
+                  type: "textarea",
+                  placeholder: "请输入文本描述",
+                  rows: 3,
+                  autosize: { maxRows: 3, minRows: 3 },
+                  disabled: ""
+                },
+                model: {
+                  value: _vm.data.description,
+                  callback: function($$v) {
+                    _vm.$set(_vm.data, "description", $$v)
+                  },
+                  expression: "data.description"
+                }
+              })
+            ],
+            1
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.data.delivery_type
+        ? _c(
+            "Form-item",
+            { attrs: { label: "交割方式：" } },
+            [
+              _c("i-input", {
+                attrs: { placeholder: "请输入交割方式", disabled: "" },
+                model: {
+                  value: _vm.data.delivery_type,
+                  callback: function($$v) {
+                    _vm.$set(_vm.data, "delivery_type", $$v)
+                  },
+                  expression: "data.delivery_type"
+                }
+              })
+            ],
+            1
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.data.exercise_price
+        ? _c(
+            "Form-item",
+            { attrs: { label: "*行权价格：" } },
+            [
+              _c(
+                "Row",
+                [
+                  _c(
+                    "i-col",
+                    { attrs: { span: "8" } },
+                    [
+                      _c(
+                        "Form-item",
+                        { attrs: { prop: "contract_first" } },
+                        [
+                          _c("i-input", {
+                            attrs: {
+                              placeholder: "请输入行权价格",
+                              disabled: ""
+                            },
+                            model: {
+                              value: _vm.data.exercise_price,
+                              callback: function($$v) {
+                                _vm.$set(_vm.data, "exercise_price", $$v)
+                              },
+                              expression: "data.exercise_price"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "i-col",
+                    {
+                      staticStyle: { "text-align": "center" },
+                      attrs: { span: "1" }
+                    },
+                    [_vm._v("RMB")]
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.data.ipo_time
+        ? _c(
+            "Form-item",
+            { attrs: { label: "*上市时间：" } },
+            [
+              _c(
+                "Row",
+                [
+                  _c(
+                    "i-col",
+                    { attrs: { span: "6" } },
+                    [
+                      _c(
+                        "Form-item",
+                        { attrs: { prop: "datetime" } },
+                        [
+                          _c("DatePicker", {
+                            attrs: {
+                              type: "datetime",
+                              format: "yyyy-MM-dd HH:mm",
+                              placeholder: "选择日期",
+                              disabled: ""
+                            },
+                            model: {
+                              value: _vm.data.ipo_time,
+                              callback: function($$v) {
+                                _vm.$set(_vm.data, "ipo_time", $$v)
+                              },
+                              expression: "data.ipo_time"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.data.end_time
+        ? _c(
+            "Form-item",
+            { attrs: { label: "*期权到期时间：" } },
+            [
+              _c(
+                "Row",
+                [
+                  _c(
+                    "i-col",
+                    { attrs: { span: "6" } },
+                    [
+                      _c(
+                        "Form-item",
+                        { attrs: { prop: "datetime" } },
+                        [
+                          _c("DatePicker", {
+                            attrs: {
+                              type: "datetime",
+                              placeholder: "选择日期",
+                              format: "yyyy-MM-dd HH:mm",
+                              disabled: ""
+                            },
+                            model: {
+                              value: _vm.data.end_time,
+                              callback: function($$v) {
+                                _vm.$set(_vm.data, "end_time", $$v)
+                              },
+                              expression: "data.end_time"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.data.pay_start_time || _vm.data.pay_end_time
+        ? _c(
+            "Form-item",
+            { attrs: { label: "*交易期限：" } },
+            [
+              _c(
+                "Row",
+                [
+                  _c(
+                    "i-col",
+                    { attrs: { span: "6" } },
+                    [
+                      _c(
+                        "Form-item",
+                        { attrs: { prop: "datetime" } },
+                        [
+                          _c("DatePicker", {
+                            attrs: {
+                              type: "datetime",
+                              placeholder: "选择日期",
+                              format: "yyyy-MM-dd HH:mm",
+                              disabled: ""
+                            },
+                            model: {
+                              value: _vm.data.pay_start_time,
+                              callback: function($$v) {
+                                _vm.$set(_vm.data, "pay_start_time", $$v)
+                              },
+                              expression: "data.pay_start_time"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "i-col",
+                    {
+                      staticStyle: { "text-align": "center" },
+                      attrs: { span: "2" }
+                    },
+                    [_vm._v("-")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "i-col",
+                    { attrs: { span: "6" } },
+                    [
+                      _c(
+                        "Form-item",
+                        { attrs: { prop: "datetime" } },
+                        [
+                          _c("DatePicker", {
+                            attrs: {
+                              type: "datetime",
+                              placeholder: "选择日期",
+                              format: "yyyy-MM-dd HH:mm",
+                              disabled: ""
+                            },
+                            model: {
+                              value: _vm.data.pay_end_time,
+                              callback: function($$v) {
+                                _vm.$set(_vm.data, "pay_end_time", $$v)
+                              },
+                              expression: "data.pay_end_time"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.data.exercise_start_time || _vm.data.exercise_end_time
+        ? _c(
+            "Form-item",
+            { attrs: { label: "*行权时间：" } },
+            [
+              _c(
+                "Row",
+                [
+                  _c(
+                    "i-col",
+                    { attrs: { span: "6" } },
+                    [
+                      _c(
+                        "Form-item",
+                        { attrs: { prop: "datetime" } },
+                        [
+                          _c("DatePicker", {
+                            attrs: {
+                              type: "datetime",
+                              placeholder: "选择日期",
+                              format: "yyyy-MM-dd HH:mm",
+                              disabled: ""
+                            },
+                            model: {
+                              value: _vm.data.exercise_start_time,
+                              callback: function($$v) {
+                                _vm.$set(_vm.data, "exercise_start_time", $$v)
+                              },
+                              expression: "data.exercise_start_time"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "i-col",
+                    {
+                      staticStyle: { "text-align": "center" },
+                      attrs: { span: "2" }
+                    },
+                    [_vm._v("-")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "i-col",
+                    { attrs: { span: "6" } },
+                    [
+                      _c(
+                        "Form-item",
+                        { attrs: { prop: "datetime" } },
+                        [
+                          _c("DatePicker", {
+                            attrs: {
+                              type: "datetime",
+                              placeholder: "选择日期",
+                              format: "yyyy-MM-dd HH:mm",
+                              disabled: ""
+                            },
+                            model: {
+                              value: _vm.data.exercise_end_time,
+                              callback: function($$v) {
+                                _vm.$set(_vm.data, "exercise_end_time", $$v)
+                              },
+                              expression: "data.exercise_end_time"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.data.max_num_option
+        ? _c(
+            "Form-item",
+            { attrs: { label: "*每人最多购买期权数量：" } },
+            [
+              _c("i-input", {
+                attrs: {
+                  placeholder: "请输入每人最多购买期权数量",
+                  disabled: ""
+                },
+                model: {
+                  value: _vm.data.max_num_option,
+                  callback: function($$v) {
+                    _vm.$set(_vm.data, "max_num_option", $$v)
+                  },
+                  expression: "data.max_num_option"
+                }
+              })
+            ],
+            1
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.data.execute_type
+        ? _c(
+            "Form-item",
+            { attrs: { label: "履行价格确认方式：" } },
+            [
+              _c("i-input", {
+                attrs: { placeholder: "请输入确认方式", disabled: "" },
+                model: {
+                  value: _vm.data.execute_type,
+                  callback: function($$v) {
+                    _vm.$set(_vm.data, "execute_type", $$v)
+                  },
+                  expression: "data.execute_type"
+                }
+              })
+            ],
+            1
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.data.execute_platform
+        ? _c(
+            "Form-item",
+            { attrs: { label: "履行价格确认平台：" } },
+            [
+              _c("i-input", {
+                attrs: { placeholder: "请输入履行价格确认平台", disabled: "" },
+                model: {
+                  value: _vm.data.execute_platform,
+                  callback: function($$v) {
+                    _vm.$set(_vm.data, "execute_platform", $$v)
+                  },
+                  expression: "data.execute_platform"
+                }
+              })
+            ],
+            1
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.data.execute_weight_ratio
+        ? _c(
+            "Form-item",
+            { attrs: { label: "履行价格权重比例：" } },
+            [
+              _c("i-input", {
+                attrs: { placeholder: "请输入履行价格权重比例", disabled: "" },
+                model: {
+                  value: _vm.data.execute_weight_ratio,
+                  callback: function($$v) {
+                    _vm.$set(_vm.data, "execute_weight_ratio", $$v)
+                  },
+                  expression: "data.execute_weight_ratio"
+                }
+              })
+            ],
+            1
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.data.bail_type
+        ? _c(
+            "Form-item",
+            { attrs: { label: "保证金标的：" } },
+            [
+              _c("i-input", {
+                attrs: { placeholder: "请输入保证金标的", disabled: "" },
+                model: {
+                  value: _vm.data.bail_type,
+                  callback: function($$v) {
+                    _vm.$set(_vm.data, "bail_type", $$v)
+                  },
+                  expression: "data.bail_type"
+                }
+              })
+            ],
+            1
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.data.bail_ratio
+        ? _c(
+            "Form-item",
+            { attrs: { label: "保证金率：" } },
+            [
+              _c("i-input", {
+                attrs: { placeholder: "请输入保证金率", disabled: "" },
+                model: {
+                  value: _vm.data.bail_ratio,
+                  callback: function($$v) {
+                    _vm.$set(_vm.data, "bail_ratio", $$v)
+                  },
+                  expression: "data.bail_ratio"
+                }
+              })
+            ],
+            1
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.data.min_number
+        ? _c(
+            "Form-item",
+            { attrs: { label: "最小数量单位：" } },
+            [
+              _c("i-input", {
+                attrs: { disabled: "" },
+                model: {
+                  value: _vm.data.min_number,
+                  callback: function($$v) {
+                    _vm.$set(_vm.data, "min_number", $$v)
+                  },
+                  expression: "data.min_number"
+                }
+              })
+            ],
+            1
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.data.bail
+        ? _c(
+            "Form-item",
+            { attrs: { label: "保证金：" } },
+            [
+              _c("i-input", {
+                attrs: { placeholder: "请输入保证金", disabled: "" },
+                model: {
+                  value: _vm.data.bail,
+                  callback: function($$v) {
+                    _vm.$set(_vm.data, "bail", $$v)
+                  },
+                  expression: "data.bail"
+                }
+              })
+            ],
+            1
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.data.charge_unit
+        ? _c(
+            "Form-item",
+            { attrs: { label: "其他要求：" } },
+            [
+              _c("i-input", {
+                attrs: { placeholder: "请输入其他要求", disabled: "" },
+                model: {
+                  value: _vm.data.charge_unit,
+                  callback: function($$v) {
+                    _vm.$set(_vm.data, "charge_unit", $$v)
+                  },
+                  expression: "data.charge_unit"
+                }
+              })
+            ],
+            1
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.data.bail_return
+        ? _c(
+            "Form-item",
+            { attrs: { label: "保证金返还：" } },
+            [
+              _c("i-input", {
+                attrs: { placeholder: "请输入保证金返还", disabled: "" },
+                model: {
+                  value: _vm.data.bail_return,
+                  callback: function($$v) {
+                    _vm.$set(_vm.data, "bail_return", $$v)
+                  },
+                  expression: "data.bail_return"
+                }
+              })
+            ],
+            1
+          )
+        : _vm._e()
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-loader/node_modules/vue-hot-reload-api")      .rerender("data-v-26cdb2b9", module.exports)
+  }
+}
+
+/***/ }),
+/* 238 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

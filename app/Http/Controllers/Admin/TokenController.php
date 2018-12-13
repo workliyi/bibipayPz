@@ -16,8 +16,8 @@ use App\Model\Token as TokenModel;
 use Illuminate\Contracts\Routing\ResponseFactory as ResponseContract;
 class TokenController extends Controller
 {
-    const URL_WALLET_DETAIL = 'http://0.0.0.0:8787/api/openadmin/setToken';//获取钱包信息
-    const URL_USDT_DETAIL = 'http://0.0.0.0:8787/api/openadmin/usdtdet';//获取usdt总账信息
+    const URL_WALLET_DETAIL = 'http://192.168.1.14:8787/api/openadmin/setToken';//获取钱包信息
+    const URL_USDT_DETAIL = 'http://192.168.1.14:8787/api/openadmin/usdtdet';//获取usdt总账信息
     //返回权证币种
     public function return_token(TokenModel $TokenModel)
     {
@@ -38,11 +38,12 @@ class TokenController extends Controller
     //设置提现手续费
     public function poundage(Request $request, TokenModel $TokenModel,Curl $curl, ResponseContract $response)
     {
-        $data = $request->post();
-        $get_token_detail = $curl->curl(TokenController::URL_WALLET_DETAIL , 
-        ['token_name'=>$data['token_name'],'poundage'=>$data['poundage']
-        ] , 1);
+        $data = $request->all();
+        // return $data['poundage'];
+        $get_token_detail = $curl->curl(TokenController::URL_WALLET_DETAIL , ['token_name'=>$data['token_name'],'poundage'=>$data['poundage']] , 1);
+        
         $get_token_detail = json_decode($get_token_detail , true);
+        
         if($get_token_detail['code'] == 200){
             $result = $TokenModel
             ->where(['id' => $data['id'], 'token_name' => $data['token_name']])

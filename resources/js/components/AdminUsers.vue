@@ -38,7 +38,7 @@
       <i-button type="primary" @click="this.release">搜索</i-button>
     </Row>
     <i-table width="90%" border :columns="columns2" :data="data3"></i-table>
-    <Page :total="1" show-total/>
+    <Page :total="pages.total" :page-size="pages.pageSize" show-total @on-change="changepage"/>
   </div>
 </template>
 <script>
@@ -75,22 +75,27 @@ export default {
         ipone: "",
         id: ""
       },
-      date: {}
+      date: {},
+      pages: {
+        current: "", // 当前页码
+        total: 1, // 数据总数
+        pageSize: 0 //每页条数
+      }
     };
   },
   created() {
-      this.release()
+    this.release(1);
   },
   methods: {
     start_time(date) {
-        console.log(date)
-            this.data.start_time = date;
-        },
-    end_time(date) {
-        // console.log(date)
-        this.data.end_time = date;
+      console.log(date);
+      this.data.start_time = date;
     },
-    release() {
+    end_time(date) {
+      // console.log(date)
+      this.data.end_time = date;
+    },
+    release(index) {
       this.$axios({
         method: "post",
         url: "admin/userlist",
@@ -100,12 +105,12 @@ export default {
           tel: this.data.ipone,
           beginTime: this.data.start_time,
           endTime: this.data.end_time,
-          perPage: 1
+          page: index
         }
       })
         .then(response => {
-          console.log('response')
-          console.log(response.data.data.data)
+          console.log("response");
+          console.log(response.data.data.data);
           this.data3 = response.data.data.data;
           let {
             login_count,
@@ -119,11 +124,17 @@ export default {
             today_usdt_count,
             usdt_count
           };
+          this.pages.total = response.data.data.total;
+          this.pages.pageSize = response.data.data.per_page;
+          this.pages.current = response.data.data.from;
           // console.log(response.data);
         })
         .catch(function(error) {
           console.log(error);
         });
+    },
+    changepage(index) {
+      this.release(index);
     }
   }
 };
