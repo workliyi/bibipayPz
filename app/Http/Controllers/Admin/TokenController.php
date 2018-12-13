@@ -39,7 +39,9 @@ class TokenController extends Controller
     public function poundage(Request $request, TokenModel $TokenModel,Curl $curl, ResponseContract $response)
     {
         $data = $request->post();
-        $get_token_detail = $curl->curl(TokenController::URL_WALLET_DETAIL , ['token_name'=>$data['token_name'],'poundage'=>$data['poundage']] , 1);
+        $get_token_detail = $curl->curl(TokenController::URL_WALLET_DETAIL , 
+        ['token_name'=>$data['token_name'],'poundage'=>$data['poundage']
+        ] , 1);
         $get_token_detail = json_decode($get_token_detail , true);
         if($get_token_detail['code'] == 200){
             $result = $TokenModel

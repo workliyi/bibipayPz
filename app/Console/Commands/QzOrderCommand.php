@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use App\Model\QzExercise;
 use Illuminate\Support\Facades\Log;
+
 class QzOrderCommand extends Command
 {
     /**
