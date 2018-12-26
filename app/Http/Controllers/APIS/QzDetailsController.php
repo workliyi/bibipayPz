@@ -12,6 +12,7 @@ use App\Model\QzChargeLog;
 use App\Model\QzExerDetail;
 use App\Model\QzProduct;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Routing\ResponseFactory as ResponseContract;
 
@@ -330,6 +331,7 @@ class QzDetailsController extends Controller
         $plat_num = config('app.plat_num');
         //获取所有需要强制确权的用户
         $all_order = QzOrder::where('status', '=', '1')->where('exercise_time', '<', $now)->get()->toArray();
+        
         foreach ($all_order as $order){
             $order_id =  $order['id'];
             //获取用户定金
@@ -372,7 +374,7 @@ class QzDetailsController extends Controller
                 'action_type' => 10,
                 'category' => 0
             ];
-            $modify_ipc_detail = $curl->curl(QzDetailsController::URL_MODIFY_WALLET , $token_data , 1);
+            $modify_ipc_detail = Curl::curl(QzDetailsController::URL_MODIFY_WALLET , $token_data , 1);
             //处理确权详情表记录
             $log_data = [
                 'uid' =>$base_user->id,

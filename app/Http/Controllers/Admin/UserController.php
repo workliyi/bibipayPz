@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 use App\Model\QzChargeLog as ChargeLogModel;
 use App\Http\Controllers\Controller;
 use App\Model\User as UserModel;
+use App\Model\QzAdminUser;
 use App\Model\Token as TokenModel;
 use App\Model\TokenWallet as TokenWallet;
 class UserController extends Controller
@@ -57,8 +58,23 @@ class UserController extends Controller
         });
         return response()->json($datas)->setStatusCode(200);
     }
-
-
+     /**
+     * 创建用户
+     */
+    public function createadmin(Request $request){
+        $admin_name = $request->name;
+        $admin_password = $request->password;
+        $in_pass = md5(md5($admin_password).env('PLATFORM_KEY'));  
+        $data = [
+            'name' => $admin_name,
+            'password' => $in_pass
+        ];
+       $creat_admin = QzAdminUser::insertGetId($data);
+       if($creat_admin){
+        return response()->json(['message' => '管理员创建成功']);
+       }
+       return response()->json(['message' => '管理员创建失败']);
+    }
     /**
      * 行权用户收支记录
      */

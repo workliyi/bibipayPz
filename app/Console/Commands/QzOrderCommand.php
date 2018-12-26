@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use App\Model\QzExercise;
 use Illuminate\Support\Facades\Log;
+
 class QzOrderCommand extends Command
 {
     /**
@@ -38,6 +39,7 @@ class QzOrderCommand extends Command
      */
     public function handle()
     {
+    
         $exercise = new QzExercise();
         $do_exercise = $exercise->forceExecute();
         Log::info($do_exercise);

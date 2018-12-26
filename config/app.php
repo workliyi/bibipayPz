@@ -14,7 +14,7 @@ return [
     */
 
     'name' => env('APP_NAME', 'Laravel'),
-
+    //'log' => 'daily',
     /*
     |--------------------------------------------------------------------------
     | Application Environment
@@ -109,8 +109,10 @@ return [
     'cipher' => 'AES-256-CBC',
 
     'plat_key' =>env('PLATFORM_KEY'),
+
     'plat_num' =>env('PLATFORM_NUM'),
 
+    'warrant_key' => env('WARRANT_KEY'),
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers

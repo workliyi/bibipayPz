@@ -3,7 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use App\Models\QzRmb;
+use App\Model\QzRmb;
 use Illuminate\Support\Facades\Log;
 class QzRmbCommand extends Command
 {
@@ -36,6 +36,7 @@ class QzRmbCommand extends Command
      */
     public function handle()
     {
+        Log::info('定时任务：这是第三个++++++');
         $exercise = new QzRmb();
         $do_exercise = $exercise->Rmb();
         Log::info('这是人民币对应美元的价格'.$do_exercise);

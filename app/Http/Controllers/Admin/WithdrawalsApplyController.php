@@ -12,7 +12,7 @@ use App\Model\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\Curl as Curl;
-
+use Illuminate\Support\Facades\Log;
 
 class WithdrawalsApplyController extends Controller
 {

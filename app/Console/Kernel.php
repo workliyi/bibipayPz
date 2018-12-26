@@ -28,7 +28,7 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
-        $schedule->command('command:rmb')->everyThirtyMinutes();
+        $schedule->command('command:rmb')->hourly();
       	$schedule->command('command:okdata')->everyMinute();
         $schedule->command('command:qzorder')->everyMinute();
     }
