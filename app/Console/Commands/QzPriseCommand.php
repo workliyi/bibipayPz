@@ -3,7 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use App\Models\QzOkdata;
+use App\Model\QzOkdata;
 use Illuminate\Support\Facades\Log;
 class QzPriseCommand extends Command
 {
@@ -36,6 +36,7 @@ class QzPriseCommand extends Command
      */
     public function handle()
     {
+        Log::info('定时任务：这是第二个++++++');
         $exercise = new QzOkdata();
         $do_exercise = $exercise->okdata();
         Log::info($do_exercise);

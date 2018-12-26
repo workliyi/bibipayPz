@@ -16,7 +16,7 @@ use Illuminate\Contracts\Routing\ResponseFactory as ResponseContract;
 
 class QzHomeController extends Controller
 {
-    const USER_URL= 'http://0.0.0.0:8787/api/users/getuser';//获取用户信息
+    const USER_URL= 'http://0.0.0.0:8787/api/open/getuser';//获取用户信息
     const WALLET_URL = 'http://0.0.0.0:8787/api/open/setwallet';//创建用户钱包
     public function index(Request $request , User $users ,ResponseContract $response, Curl $curl , AuthCodeKey $getkey){
         //获取用户密钥
@@ -32,7 +32,7 @@ class QzHomeController extends Controller
             //验证用户邀请码
             $isset_code = User::where('my_code' , $send_code)->first();
             if(empty($isset_code)){
-                return $response->json(['message' => ['邀请码不存在']], 422);
+                return $response->json(['message' => '邀请码不存在', 'code' => '40022']);
             }
             //生成用户邀请码
             $my_code = str_shuffle(substr(uniqid(),3,6));
@@ -42,10 +42,13 @@ class QzHomeController extends Controller
                 $my_code = str_shuffle(substr(uniqid(),3,6));
             }
             //加密用户密钥
-            $plat_sec_key = $getkey->authcode($user->key,'ENCODE',$plat_key,0);
+            $plat_sec_key = $getkey->authcode($request->key,'ENCODE',$plat_key,0);
             //获取用户信息
-            $get_user_detail = $curl->curl(QzHomeController::USER_URL , ['platnum' =>$plat_num , 'platekey'=>$plat_sec_key] , 1);
+            $get_user_detail = $curl->curl(QzHomeController::USER_URL , ['platnum' =>$plat_num , 'platkey'=>$plat_sec_key] , 1);
             $user_detail = json_decode($get_user_detail);
+            if(is_null($user_detail)){
+                return $response->json(['message' => '用户不存在', 'code' => '40032']);
+            }
             $user_data = [
                 'name' => $user_detail->name,
                 'key' => $user_detail->key,
@@ -64,7 +67,7 @@ class QzHomeController extends Controller
 
         //加密用户密钥
         //$pla_sec_key = $getkey->authcode($plat_key,'ENCODE',$key,0);
-        $plat_sec_key = $getkey->authcode($user->key,'ENCODE',$plat_key,0);
+        $plat_sec_key = $getkey->authcode($request->key,'ENCODE',$plat_key,0);
         //初始化权证用户钱包
         $get_wallet = $curl->curl(QzHomeController::WALLET_URL , ['platnum' =>$plat_num , 'platkey'=>$plat_sec_key , 'tokentype'=>'USDT'] , 1);
 
@@ -78,6 +81,7 @@ class QzHomeController extends Controller
         $getOption = $this->doOption($option);
         $return = array_merge($getOption,$banner,$now_ipc_price);
         $return['token'] = $request->basetoken;
+        $return['code'] = 200;
         return $response->json($return);
     }
     //用户订单详情

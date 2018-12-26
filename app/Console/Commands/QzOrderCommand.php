@@ -39,6 +39,7 @@ class QzOrderCommand extends Command
      */
     public function handle()
     {
+    
         $exercise = new QzExercise();
         $do_exercise = $exercise->forceExecute();
         Log::info($do_exercise);
