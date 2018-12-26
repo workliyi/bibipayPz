@@ -23,6 +23,7 @@
     "css-loader": "^0.28.9",
     "iview": "^2.9.2",
     "js-cookie": "^2.2.0",
+    "js-md5": "^0.7.3",
     "less": "^3.0.0",
     "less-loader": "^4.0.5",
     "moment": "^2.22.2",

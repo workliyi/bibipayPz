@@ -41,7 +41,7 @@
   <div class="layout">
     <Layout :style="{minHeight: '100vh'}">
       <Sider collapsible :collapsed-width="78" v-model="isCollapsed">
-        <Menu active-name="1-1" theme="dark" width="auto" :class="menuitemClasses">
+        <Menu :active-name='num' theme="dark" width="auto" :class="menuitemClasses">
           <MenuItem name="1-1">
             <!-- <Icon type="home"></Icon> -->
             <router-link tag="span" to="/">账户管理</router-link>
@@ -75,6 +75,10 @@
             <!-- <Icon type="settings"></Icon> -->
             <router-link tag="span" to="/Draft">草稿箱</router-link>
           </MenuItem>
+          <MenuItem name="1-9">
+            <!-- <Icon type="settings"></Icon> -->
+            <span  @click="quit()">退出</span>
+          </MenuItem>
         </Menu>
       </Sider>
       <Layout>
@@ -95,10 +99,12 @@
   </div>
 </template>
 <script>
+import { delCookie } from '../api/api.js'
   export default {
     data () {
       return {
         isCollapsed: false,
+        num:"1-2",
         data:{
           btc_balance:'',
           usdt_address:'',
@@ -116,6 +122,33 @@
       
     },
     created(){
+      console.log(this.$route.path)
+      switch(this.$route.path){
+        case "/":
+         this.num = "1-1"
+         break;
+         case "/Users":
+         this.num = "1-2"
+         break;
+         case "/Order":
+         this.num = "1-3"
+         break;
+         case "/Release":
+         this.num = "1-4"
+         break;
+         case "/List":
+         this.num = "1-5"
+         break;
+         case "/Review":
+         this.num = "1-6"
+         break;
+         case "/Cost":
+         this.num = "1-7"
+         break;
+         case "/Draft":
+         this.num = "1-8"
+         break;
+      }
       this.$axios('admin/getusdt').then( (response) => {
         let { btc_balance, usdt_address, usdt_balance } = response.data
         this.data ={
@@ -124,6 +157,12 @@
           usdt_balance
         }
       })
+    },
+    methods:{
+      quit(){
+        delCookie('token')
+        this.$router.push('/login')
+      }
     }
   }
 </script>
