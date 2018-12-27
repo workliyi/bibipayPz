@@ -23,6 +23,8 @@
   </div>
 </template>
 <script>
+import md5 from 'js-md5';
+import { setCookie } from '../api/api.js'
 export default {
   data() {
     return {
@@ -67,6 +69,8 @@ export default {
         })
         .then((response) => {
           if(response.data.id){
+            let token = md5(md5(this.formInline.user)+md5(this.formInline.password))
+            setCookie('token',token,1)
             this.$router.push('/')
           }
         })
