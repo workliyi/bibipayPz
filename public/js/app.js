@@ -86797,85 +86797,128 @@ var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
         component: __WEBPACK_IMPORTED_MODULE_2__components_AdminHome_vue___default.a,
         children: [{
             path: '/',
+            meta: {
+                requireAuth: true
+            },
             component: function component(resolve) {
                 __webpack_require__.e/* require */(6).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(75)]; ((resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
             }
         }, {
             path: '/Users',
+            meta: {
+                requireAuth: true
+            },
             component: function component(resolve) {
                 __webpack_require__.e/* require */(7).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(76)]; ((resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
             }
         }, {
             path: '/Order',
+            meta: {
+                requireAuth: true
+            },
             component: function component(resolve) {
                 __webpack_require__.e/* require */(3).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(77)]; ((resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
             }
         }, {
             path: '/Release',
+            meta: {
+                requireAuth: true
+            },
             component: function component(resolve) {
                 __webpack_require__.e/* require */(0/* duplicate */).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(19)]; ((resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
             }
         }, {
             path: '/List',
+            meta: {
+                requireAuth: true
+            },
             component: function component(resolve) {
                 __webpack_require__.e/* require */(4).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(78)]; ((resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
             }
         }, {
             path: '/Cost',
+            meta: {
+                requireAuth: true
+            },
             component: function component(resolve) {
                 __webpack_require__.e/* require */(11).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(79)]; ((resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
             }
         }, {
             path: '/Review',
+            meta: {
+                requireAuth: true
+            },
             component: function component(resolve) {
                 __webpack_require__.e/* require */(2).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(80)]; ((resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
             }
         }, {
             path: '/Draft',
+            meta: {
+                requireAuth: true
+            },
             component: function component(resolve) {
                 __webpack_require__.e/* require */(5).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(81)]; ((resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
             }
         }, {
             path: '/Deteail',
+            meta: {
+                requireAuth: true
+            },
             component: function component(resolve) {
                 __webpack_require__.e/* require */(9).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(82)]; ((resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
             }
         }, {
             path: '/Deteails/:id',
+            meta: {
+                requireAuth: true
+            },
             component: function component(resolve) {
                 __webpack_require__.e/* require */(10).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(83)]; ((resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
             }
         }, {
             path: '/Draft/:id',
+            meta: {
+                requireAuth: true
+            },
             component: function component(resolve) {
                 __webpack_require__.e/* require */(0/* duplicate */).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(19)]; ((resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
             }
         }, {
             path: '/View/:id',
+            meta: {
+                requireAuth: true
+            },
             component: function component(resolve) {
                 __webpack_require__.e/* require */(1).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(84)]; ((resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
             }
         }, {
             path: '/TermReview',
+            meta: {
+                requireAuth: true
+            },
             component: function component(resolve) {
                 __webpack_require__.e/* require */(8).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(85)]; ((resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
             }
         }]
-    }] });
+    }]
+});
 router.beforeEach(function (to, from, next) {
+    var token = Object(__WEBPACK_IMPORTED_MODULE_0__api_api_js__["b" /* getCookie */])('token');
     if (to.matched.some(function (res) {
         return res.meta.requireAuth;
     })) {
         // 判断是否需要登录权限
-        var token = Object(__WEBPACK_IMPORTED_MODULE_0__api_api_js__["b" /* getCookie */])('token');
+
         if (token) {
             // 判断是否登录
+            console.log('token');
             Object(__WEBPACK_IMPORTED_MODULE_0__api_api_js__["c" /* setCookie */])('token', token, 1);
             next();
         } else {
             // 没登录则跳转到登录界面
             next({
-                path: '/login'
+                path: '/login',
+                query: { redirect: to.fullPath }
             });
         }
     } else {
@@ -90096,7 +90139,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.login[data-v-a65db5f6]{\r\n  background: linear-gradient(135deg, #7262d1, #48d7e4);\r\n  width: 100%;\r\n  height: 100%;\r\n  position: absolute;\r\n  top: 0px;\r\n  left: 0px;\n}\n.from[data-v-a65db5f6]{\r\n  width: 175px;\r\n  height: 150px;\r\n  position: absolute;\r\n  top: 0px;\r\n  left: 0px;\r\n  bottom: 0px;\r\n  right: 0px;\r\n  margin: auto;\n}\n.title[data-v-a65db5f6]{\r\n  text-align: center;\r\n  font-size: 4em;\r\n  font-family: cursive;\r\n  margin-right: 20px;\n}\n.box-one[data-v-a65db5f6]{\r\n  margin-top: 15px;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.login[data-v-a65db5f6] {\r\n  background: linear-gradient(135deg, #7262d1, #48d7e4);\r\n  width: 100%;\r\n  height: 100%;\r\n  position: absolute;\r\n  top: 0px;\r\n  left: 0px;\n}\n.from[data-v-a65db5f6] {\r\n  width: 175px;\r\n  height: 150px;\r\n  position: absolute;\r\n  top: 0px;\r\n  left: 0px;\r\n  bottom: 0px;\r\n  right: 0px;\r\n  margin: auto;\n}\n.title[data-v-a65db5f6] {\r\n  text-align: center;\r\n  font-size: 4em;\r\n  font-family: cursive;\r\n  margin-right: 20px;\n}\n.box-one[data-v-a65db5f6] {\r\n  margin-top: 15px;\n}\r\n", ""]);
 
 // exports
 
@@ -90110,8 +90153,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_js_md5__ = __webpack_require__(71);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_js_md5___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_js_md5__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__api_api_js__ = __webpack_require__(8);
-//
-//
 //
 //
 //
@@ -90163,6 +90204,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
     };
   },
+  created: function created() {
+    var redirect = this.$route.query.redirect;
+    if (redirect) {
+      this.renderFunc();
+    }
+  },
 
   methods: {
     handleSubmit: function handleSubmit(name) {
@@ -90170,8 +90217,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       this.$refs[name].validate(function (valid) {
         _this.$axios({
-          method: 'post',
-          url: 'admin/dologin',
+          method: "post",
+          url: "admin/dologin",
           params: {
             username: _this.formInline.user,
             password: _this.formInline.password
@@ -90179,12 +90226,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }).then(function (response) {
           if (response.data.id) {
             var token = __WEBPACK_IMPORTED_MODULE_0_js_md5___default()(__WEBPACK_IMPORTED_MODULE_0_js_md5___default()(_this.formInline.user) + __WEBPACK_IMPORTED_MODULE_0_js_md5___default()(_this.formInline.password));
-            Object(__WEBPACK_IMPORTED_MODULE_1__api_api_js__["c" /* setCookie */])('token', token, 1);
-            _this.$router.push('/');
+            Object(__WEBPACK_IMPORTED_MODULE_1__api_api_js__["c" /* setCookie */])("token", token, 1);
+            _this.$router.push("/");
           }
         }).catch(function (error) {
           console.log(error);
         });
+      });
+    },
+    renderFunc: function renderFunc() {
+      this.$Message.info({
+        render: function render(h) {
+          return h("span", ["请登录 "]);
+        }
       });
     }
   }
@@ -90903,9 +90957,7 @@ var render = function() {
       "div",
       { staticClass: "from" },
       [
-        _c("h2", { staticClass: "title" }, [
-          _vm._v("\n        warrant\n      ")
-        ]),
+        _c("h2", { staticClass: "title" }, [_vm._v("warrant")]),
         _vm._v(" "),
         _c(
           "Form",

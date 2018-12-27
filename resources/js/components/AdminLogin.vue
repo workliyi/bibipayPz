@@ -1,30 +1,28 @@
 <template>
   <div class="login">
-      <div class="from">
-        <h2 class="title">
-          warrant
-        </h2>
-        <Form ref="formInline" :model="formInline" :rules="ruleInline" inline class="box-one">
-          <FormItem prop="user">
-              <Input type="text" v-model="formInline.user" placeholder="Username">
-                  <Icon type="" slot="prepend">账号</Icon>
-              </Input>
-          </FormItem>
-          <FormItem prop="password">
-              <Input type="password" v-model="formInline.password" placeholder="Password">
-                  <Icon type="" slot="prepend">密码</Icon>
-              </Input>
-          </FormItem>
-          <FormItem>
-              <Button type="primary" @click="handleSubmit('formInline')">Signin</Button>
-          </FormItem>
+    <div class="from">
+      <h2 class="title">warrant</h2>
+      <Form ref="formInline" :model="formInline" :rules="ruleInline" inline class="box-one">
+        <FormItem prop="user">
+          <Input type="text" v-model="formInline.user" placeholder="Username">
+            <Icon type slot="prepend">账号</Icon>
+          </Input>
+        </FormItem>
+        <FormItem prop="password">
+          <Input type="password" v-model="formInline.password" placeholder="Password">
+            <Icon type slot="prepend">密码</Icon>
+          </Input>
+        </FormItem>
+        <FormItem>
+          <Button type="primary" @click="handleSubmit('formInline')">Signin</Button>
+        </FormItem>
       </Form>
     </div>
   </div>
 </template>
 <script>
-import md5 from 'js-md5';
-import { setCookie } from '../api/api.js'
+import md5 from "js-md5";
+import { setCookie } from "../api/api.js";
 export default {
   data() {
     return {
@@ -56,34 +54,51 @@ export default {
       }
     };
   },
+  created() {
+    let redirect = this.$route.query.redirect;
+    if (redirect) {
+      this.renderFunc()
+    }
+  },
   methods: {
     handleSubmit(name) {
       this.$refs[name].validate(valid => {
         this.$axios({
-          method: 'post',
-          url:'admin/dologin',
+          method: "post",
+          url: "admin/dologin",
           params: {
-            username:this.formInline.user,
-            password:this.formInline.password,
+            username: this.formInline.user,
+            password: this.formInline.password
           }
         })
-        .then((response) => {
-          if(response.data.id){
-            let token = md5(md5(this.formInline.user)+md5(this.formInline.password))
-            setCookie('token',token,1)
-            this.$router.push('/')
-          }
-        })
-        .catch(function (error) {
-          console.log(error);
-        })
+          .then(response => {
+            if (response.data.id) {
+              let token = md5(
+                md5(this.formInline.user) + md5(this.formInline.password)
+              );
+              setCookie("token", token, 1);
+              this.$router.push("/");
+            }
+          })
+          .catch(function(error) {
+            console.log(error);
+          });
+      });
+    },
+    renderFunc() {
+      this.$Message.info({
+        render: h => {
+          return h("span", [
+            "请登录 ",
+          ]);
+        }
       });
     }
   }
 };
 </script>
 <style scoped>
-.login{
+.login {
   background: linear-gradient(135deg, #7262d1, #48d7e4);
   width: 100%;
   height: 100%;
@@ -91,7 +106,7 @@ export default {
   top: 0px;
   left: 0px;
 }
-.from{
+.from {
   width: 175px;
   height: 150px;
   position: absolute;
@@ -101,14 +116,13 @@ export default {
   right: 0px;
   margin: auto;
 }
-.title{
+.title {
   text-align: center;
   font-size: 4em;
   font-family: cursive;
   margin-right: 20px;
 }
-.box-one{
+.box-one {
   margin-top: 15px;
 }
-
 </style>
