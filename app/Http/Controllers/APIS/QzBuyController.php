@@ -26,9 +26,9 @@ class QzBuyController extends Controller
      *	   40030：交易已结束
      *     40024：钱包操作失败
      */
-    const URL_WALLET_DETAIL = 'http://0.0.0.0:8787/api/open/walletdetail';//获取钱包信息
-    const URL_MODIFY_WALLET = 'http://0.0.0.0:8787/api/open/modwallet';//修改钱包余额等
-    const URL_SET_CHARGE_LOG = 'http://0.0.0.0:8787/api/open/chargelog';//记录用户钱包操作
+    const URL_WALLET_DETAIL = UCENTER_URL.'/api/open/walletdetail';//获取钱包信息
+    const URL_MODIFY_WALLET = UCENTER_URL.'/api/open/modwallet';//修改钱包余额等
+    const URL_SET_CHARGE_LOG = UCENTER_URL.'/api/open/chargelog';//记录用户钱包操作
     //权证购买接口
     public function buyGoods(Request $request, ResponseContract $response ,QzOrder $order,Curl $curl, AuthCodeKey $getkey)
     {

@@ -29,9 +29,9 @@ class QzDetailsController extends Controller
     protected $jhKey = 'e6b854cef1d9951f3c674539ef0381a8';
     protected $url = 'http://web.juhe.cn:8080/finance/exchange/rmbquot';
     protected $okurl = 'https://www.okb.com/api/v1/ticker.do?symbol=ipc_usdt';
-    const URL_WALLET_DETAIL = 'http://0.0.0.0:8787/api/open/walletdetail';//获取钱包信息
-    const URL_MODIFY_WALLET = 'http://0.0.0.0:8787/api/open/modwallet';//修改钱包余额等
-    const URL_SET_CHARGE_LOG = 'http://0.0.0.0:8787/api/open/chargelog';//记录用户钱包操作
+    const URL_WALLET_DETAIL = UCENTER_URL.'/api/open/walletdetail';//获取钱包信息
+    const URL_MODIFY_WALLET = UCENTER_URL.'/api/open/modwallet';//修改钱包余额等
+    const URL_SET_CHARGE_LOG = UCENTER_URL.'/api/open/chargelog';//记录用户钱包操作
     //获取用户订单信息
     public function index(Request $request, ResponseContract $response , QzOrder $QzOrder)
     {

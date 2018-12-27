@@ -16,8 +16,8 @@ use App\Model\Token as TokenModel;
 use Illuminate\Contracts\Routing\ResponseFactory as ResponseContract;
 class TokenController extends Controller
 {
-    const URL_WALLET_DETAIL = 'http://192.168.1.14:8787/api/openadmin/setToken';//获取钱包信息
-    const URL_USDT_DETAIL = 'http://192.168.1.14:8787/api/openadmin/usdtdet';//获取usdt总账信息
+    const URL_WALLET_DETAIL = UCENTER_URL.'/api/openadmin/setToken';//获取钱包信息
+    const URL_USDT_DETAIL = UCENTER_URL.'/api/openadmin/usdtdet';//获取usdt总账信息
     //返回权证币种
     public function return_token(TokenModel $TokenModel)
     {

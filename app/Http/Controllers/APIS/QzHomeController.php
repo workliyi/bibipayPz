@@ -16,8 +16,8 @@ use Illuminate\Contracts\Routing\ResponseFactory as ResponseContract;
 
 class QzHomeController extends Controller
 {
-    const USER_URL= 'http://0.0.0.0:8787/api/open/getuser';//获取用户信息
-    const WALLET_URL = 'http://0.0.0.0:8787/api/open/setwallet';//创建用户钱包
+    const USER_URL= UCENTER_URL.'/api/open/getuser';//获取用户信息
+    const WALLET_URL = UCENTER_URL.'/api/open/setwallet';//创建用户钱包
     public function index(Request $request , User $users ,ResponseContract $response, Curl $curl , AuthCodeKey $getkey){
         //获取用户密钥
         $user = $request->user;
